@@ -23,6 +23,6 @@ plt.xticks(major_xticks)
 plt.yticks(major_yticks)
 # plt.yticks(minor_yticks, minor=True)
 
-plt.title("Plattegrond AmstelHaege")
+plt.title("Map AmstelHaege")
 plt.grid()
 plt.show()
