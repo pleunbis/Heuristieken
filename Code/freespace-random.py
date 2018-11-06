@@ -92,6 +92,22 @@ for i in range(3):
     ax.add_patch(rect3)
 # break
 
+plt.ylim(0, 180)
+plt.xlim(0, 160)
+
+major_xticks = np.arange(0, 160, 1)
+
+major_yticks = np.arange(0, 180, 1)
+
+
+plt.xticks(major_xticks)
+plt.yticks(major_yticks)
+
+#
+plt.title("Map AmstelHaege")
+plt.grid()
+plt.show()
+
 for current_house in houses:
     min_freespace = 180.0
     for house in houses:
@@ -115,7 +131,7 @@ for current_house in houses:
             while True:
                 if a <= float(x) / 2 <= a + width and b <= y <= b + depth:
                     break
-                elif y == 180.0:
+                elif y >= 180.0 or y <= 0:
                     if freespace > current_house.freespace:
                         freespace = 180
                     break
@@ -144,7 +160,7 @@ for current_house in houses:
             while True:
                 if b - depth <= float(y) / 2 <= b and a <= x <= a + width:
                     break
-                elif x == 160.0:
+                elif x >= 160.0 or x <= 0:
                     if freespace > current_house.freespace:
                         freespace = 180
                     break
@@ -172,7 +188,7 @@ for current_house in houses:
             while True:
                 if a - width <= float(x) / 2 <= a and b - depth <= y <= b:
                     break
-                elif y == 180.0 or y == 0:
+                elif y >= 180.0 or y <= 0:
                     if freespace > current_house.freespace:
                         freespace = 180
                     break
@@ -203,7 +219,7 @@ for current_house in houses:
             while True:
                 if b <= float(y) / 2 <= b + depth and a - width <= x <= a:
                     break
-                elif x == 160.0 or x == 0:
+                elif x >= 160.0 or x <= 0:
                     if freespace > current_house.freespace:
                         freespace = 180
                     break
@@ -218,19 +234,3 @@ for current_house in houses:
     min_freespace -= current_house.freespace
     current_house.extra_freespace = min_freespace
     print(current_house)
-
-plt.ylim(0, 180)
-plt.xlim(0, 160)
-
-major_xticks = np.arange(0, 160, 1)
-
-major_yticks = np.arange(0, 180, 1)
-
-
-plt.xticks(major_xticks)
-plt.yticks(major_yticks)
-
-#
-plt.title("Map AmstelHaege")
-plt.grid()
-plt.show()
