@@ -1,0 +1,23 @@
+{
+  "sf": {
+    "width":"8.0",
+    "depth":"8.0",
+    "freespace":"2.0",
+    "value":"285000.0",
+    "price_improvement":"0.03"
+  },
+  "b": {
+    "width":"10.0",
+    "depth":"7.5",
+    "freespace":"3.0",
+    "value":"399000.0",
+    "price_improvement":"0.04"
+  },
+  "m": {
+    "width":"11.0",
+    "depth":"10.5",
+    "freespace":"6.0",
+    "value":"610000.0",
+    "price_improvement":"0.06"
+  }
+}
