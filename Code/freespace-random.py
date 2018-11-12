@@ -6,190 +6,590 @@ import random
 import math
 from house_classes import *
 
-fig = plt.figure()
-ax = fig.add_subplot(111)
-Paste_house = True
+# def cal(houses):
+#     current_house=houses[-1]
+#     min_freespace = 180.0
+#     for house in houses:
+#         if house == current_house:
+#             # print(house)
+#             continue
+#
+#         # upper left corner of house itself
+#         x, y = current_house.x, current_house.y + current_house.depth
+#
+#         # lower left corner of house above this house
+#         a = house.x
+#         b = house.y
+#
+#         # width and depth of house above this house
+#         width, depth = house.width, house.depth
+#
+#         for x in range(int(current_house.x * 2), int((current_house.x + current_house.width) * 2 + 1)):
+#             freespace = 0.0
+#             y = current_house.y + current_house.depth
+#             while True:
+#                 if a <= float(x) / 2 <= a + width and b <= y <= b + depth:
+#                     break
+#                 elif y >= 180.0 or y <= 0:
+#                     if freespace > current_house.freespace:
+#                         freespace = 180
+#                     break
+#                 else:
+#                     freespace = freespace + 0.5
+#                 y += 0.5
+#             if freespace < min_freespace:
+#                 min_freespace = freespace
+#
+#         # print(house)
+#         # print(min_freespace)
+#
+#         # upper right corner of house itself
+#         x, y = current_house.x + current_house.width , current_house.y + current_house.depth
+#
+#         # upper left corner of house next to this house (right)
+#         a = house.x
+#         b = house.y + house.depth
+#
+#         # width and depth of house next to this house (right)
+#         width, depth = house.width, house.depth
+#
+#         for y in range(int((current_house.y + current_house.depth) * 2), int(current_house.y * 2 - 1), -1):
+#             freespace = 0.0
+#             x = current_house.x + current_house.width
+#             while True:
+#                 if b - depth <= float(y) / 2 <= b and a <= x <= a + width:
+#                     break
+#                 elif x >= 160.0 or x <= 0:
+#                     if freespace > current_house.freespace:
+#                         freespace = 180
+#                     break
+#                 else:
+#                     freespace = freespace + 0.5
+#                 x += 0.5
+#             if freespace < min_freespace:
+#                 min_freespace = freespace
+#
+#         # print(min_freespace)
+#
+#         # lower right corner of house itself
+#         x, y = current_house.x + current_house.width, current_house.y
+#
+#         # upper right corner of house underneath this house
+#         a = house.x + house.width
+#         b = house.y + house.depth
+#
+#         # width and depth of house underneath this house
+#         width, depth = house.width, house.depth
+#
+#         for x in range(int((current_house.x + current_house.width) * 2), int(current_house.x * 2 - 1), -1):
+#             freespace = 0.0
+#             y = current_house.y
+#             while True:
+#                 if a - width <= float(x) / 2 <= a and b - depth <= y <= b:
+#                     break
+#                 elif y >= 180.0 or y <= 0:
+#                     if freespace > current_house.freespace:
+#                         freespace = 180
+#                     break
+#                 else:
+#                     freespace = freespace + 0.5
+#                 y -= 0.5
+#
+#             if freespace < min_freespace:
+#                 min_freespace = freespace
+#
+#             # print(freespace)
+#
+#         # print(min_freespace)
+#
+#         # lower left corner of house itself
+#         x, y = current_house.x, current_house.y
+#
+#         # lower right corner of house next to this house (left)
+#         a = house.x + house.width
+#         b = house.y
+#
+#         # width and depth of house next to this house (left)
+#         width, depth = house.width, house.depth
+#
+#         for y in range(int(current_house.y * 2), int((current_house.y + current_house.depth) * 2 + 1)):
+#             freespace = 0.0
+#             x = current_house.x
+#             while True:
+#                 if b <= float(y) / 2 <= b + depth and a - width <= x <= a:
+#                     break
+#                 elif x >= 160.0 or x <= 0:
+#                     if freespace > current_house.freespace:
+#                         freespace = 180
+#                     break
+#                 else:
+#                     freespace = freespace + 0.5
+#                 x -= 0.5
+#             if freespace < min_freespace:
+#                 min_freespace = freespace
+#
+#     min_freespace -= current_house.freespace
+#     current_house.extra_freespace = min_freespace
+#
+#     return current_house
 
-while Paste_house == True:
-    Paste_house = False
-    houses = []
 
-    # singlefamily houses
-    for i in range(12):
+repetition = []
+for repeat in range(30):
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    Paste_house = True
 
-        # create random x and y
-        x = random.randrange(0, 170, 1)
-        y = random.randrange(0, 150, 1)
+    while Paste_house == True:
+        Paste_house = False
+        houses = []
 
-        # append to houses
-        houses.append(Singlefamily(i, x, y, 0))
+        # singlefamily houses
+        for i in range(12):
+            positief = False
+            while positief == False:
+                # create random x and y
+                x = random.randrange(0, 170, 1)
+                y = random.randrange(0, 150, 1)
 
-        # create rectangle
-        rect1 = matplotlib.patches.Rectangle((x, y), 8, 8, color="blue")
-        ax.add_patch(rect1)
+                # append to houses
+                houses.append(Singlefamily(i, x, y, 0))
+                current_house=houses[-1]
+                min_freespace = 180.0
+                for house in houses:
+                    if house == current_house:
+                        # print(house)
+                        continue
 
-    # bungalows
-    for i in range(5):
+                    # upper left corner of house itself
+                    x, y = current_house.x, current_house.y + current_house.depth
 
-        # create random x and y
-        x = random.randrange(0, 180, 1)
-        y = random.randrange(0, 160, 1)
+                    # lower left corner of house above this house
+                    a = house.x
+                    b = house.y
 
-        # append to houses
-        houses.append(Bungalow(i + 12, x, y, 0))
+                    # width and depth of house above this house
+                    width, depth = house.width, house.depth
 
-        # create rectange
-        rect2 = matplotlib.patches.Rectangle((x, y), 10, 7.5, color="deeppink")
-        ax.add_patch(rect2)
+                    for x in range(int(current_house.x * 2), int((current_house.x + current_house.width) * 2 + 1)):
+                        freespace = 0.0
+                        y = current_house.y + current_house.depth
+                        while True:
+                            if a <= float(x) / 2 <= a + width and b <= y <= b + depth:
+                                break
+                            elif y >= 180.0 or y <= 0:
+                                if freespace > current_house.freespace:
+                                    freespace = 180
+                                break
+                            else:
+                                freespace = freespace + 0.5
+                            y += 0.5
+                        if freespace < min_freespace:
+                            min_freespace = freespace
 
-    # maisons
-    for i in range(3):
+                    # print(house)
+                    # print(min_freespace)
 
-        # create random x and y
-        x = random.randrange(0, 160, 1)
-        y = random.randrange(0, 180, 1)
+                    # upper right corner of house itself
+                    x, y = current_house.x + current_house.width , current_house.y + current_house.depth
 
-        # append to houses
-        houses.append(Maison(i + 17, x, y, 0))
+                    # upper left corner of house next to this house (right)
+                    a = house.x
+                    b = house.y + house.depth
 
-        # create rectange
-        rect3 = matplotlib.patches.Rectangle((x, y), 11, 10.5, color="gold")
-        ax.add_patch(rect3)
-    # break
+                    # width and depth of house next to this house (right)
+                    width, depth = house.width, house.depth
 
-    for current_house in houses:
-        min_freespace = 180.0
-        for house in houses:
-            if house == current_house:
-                # print(house)
-                continue
+                    for y in range(int((current_house.y + current_house.depth) * 2), int(current_house.y * 2 - 1), -1):
+                        freespace = 0.0
+                        x = current_house.x + current_house.width
+                        while True:
+                            if b - depth <= float(y) / 2 <= b and a <= x <= a + width:
+                                break
+                            elif x >= 160.0 or x <= 0:
+                                if freespace > current_house.freespace:
+                                    freespace = 180
+                                break
+                            else:
+                                freespace = freespace + 0.5
+                            x += 0.5
+                        if freespace < min_freespace:
+                            min_freespace = freespace
 
-            # upper left corner of house itself
-            x, y = current_house.x, current_house.y + current_house.depth
+                    # print(min_freespace)
 
-            # lower left corner of house above this house
-            a = house.x
-            b = house.y
+                    # lower right corner of house itself
+                    x, y = current_house.x + current_house.width, current_house.y
 
-            # width and depth of house above this house
-            width, depth = house.width, house.depth
+                    # upper right corner of house underneath this house
+                    a = house.x + house.width
+                    b = house.y + house.depth
 
-            for x in range(int(current_house.x * 2), int((current_house.x + current_house.width) * 2 + 1)):
-                freespace = 0.0
-                y = current_house.y + current_house.depth
-                while True:
-                    if a <= float(x) / 2 <= a + width and b <= y <= b + depth:
-                        break
-                    elif y >= 180.0 or y <= 0:
-                        if freespace > current_house.freespace:
-                            freespace = 180
-                        break
-                    else:
-                        freespace = freespace + 0.5
-                    y += 0.5
-                if freespace < min_freespace:
-                    min_freespace = freespace
+                    # width and depth of house underneath this house
+                    width, depth = house.width, house.depth
 
-            # print(house)
-            # print(min_freespace)
+                    for x in range(int((current_house.x + current_house.width) * 2), int(current_house.x * 2 - 1), -1):
+                        freespace = 0.0
+                        y = current_house.y
+                        while True:
+                            if a - width <= float(x) / 2 <= a and b - depth <= y <= b:
+                                break
+                            elif y >= 180.0 or y <= 0:
+                                if freespace > current_house.freespace:
+                                    freespace = 180
+                                break
+                            else:
+                                freespace = freespace + 0.5
+                            y -= 0.5
 
-            # upper right corner of house itself
-            x, y = current_house.x + current_house.width , current_house.y + current_house.depth
+                        if freespace < min_freespace:
+                            min_freespace = freespace
 
-            # upper left corner of house next to this house (right)
-            a = house.x
-            b = house.y + house.depth
+                        # print(freespace)
 
-            # width and depth of house next to this house (right)
-            width, depth = house.width, house.depth
+                    # print(min_freespace)
 
-            for y in range(int((current_house.y + current_house.depth) * 2), int(current_house.y * 2 - 1), -1):
-                freespace = 0.0
-                x = current_house.x + current_house.width
-                while True:
-                    if b - depth <= float(y) / 2 <= b and a <= x <= a + width:
-                        break
-                    elif x >= 160.0 or x <= 0:
-                        if freespace > current_house.freespace:
-                            freespace = 180
-                        break
-                    else:
-                        freespace = freespace + 0.5
-                    x += 0.5
-                if freespace < min_freespace:
-                    min_freespace = freespace
+                    # lower left corner of house itself
+                    x, y = current_house.x, current_house.y
 
-            # print(min_freespace)
+                    # lower right corner of house next to this house (left)
+                    a = house.x + house.width
+                    b = house.y
 
-            # lower right corner of house itself
-            x, y = current_house.x + current_house.width, current_house.y
+                    # width and depth of house next to this house (left)
+                    width, depth = house.width, house.depth
 
-            # upper right corner of house underneath this house
-            a = house.x + house.width
-            b = house.y + house.depth
+                    for y in range(int(current_house.y * 2), int((current_house.y + current_house.depth) * 2 + 1)):
+                        freespace = 0.0
+                        x = current_house.x
+                        while True:
+                            if b <= float(y) / 2 <= b + depth and a - width <= x <= a:
+                                break
+                            elif x >= 160.0 or x <= 0:
+                                if freespace > current_house.freespace:
+                                    freespace = 180
+                                break
+                            else:
+                                freespace = freespace + 0.5
+                            x -= 0.5
+                        if freespace < min_freespace:
+                            min_freespace = freespace
 
-            # width and depth of house underneath this house
-            width, depth = house.width, house.depth
+                min_freespace -= current_house.freespace
+                current_house.extra_freespace = min_freespace
 
-            for x in range(int((current_house.x + current_house.width) * 2), int(current_house.x * 2 - 1), -1):
-                freespace = 0.0
-                y = current_house.y
-                while True:
-                    if a - width <= float(x) / 2 <= a and b - depth <= y <= b:
-                        break
-                    elif y >= 180.0 or y <= 0:
-                        if freespace > current_house.freespace:
-                            freespace = 180
-                        break
-                    else:
-                        freespace = freespace + 0.5
-                    y -= 0.5
+                # cal(houses)
+                current_house.calculateprice()
+                if current_house.extra_freespace < 0:
+                    del houses[-1]
+                else:
 
-                if freespace < min_freespace:
-                    min_freespace = freespace
+                    # create rectangle
+                    rect1 = matplotlib.patches.Rectangle((current_house.x, current_house.y), 8, 8, color="blue")
+                    ax.add_patch(rect1)
+                    positief = True
+            # print(current_house)
+            # create rectangle
+            # rect1 = matplotlib.patches.Rectangle((x, y), 8, 8, color="blue")
+            # ax.add_patch(rect1)
 
-                # print(freespace)
+        # bungalows
+        for i in range(5):
+            positief = False
+            while positief == False:
+                # create random x and y
+                x = random.randrange(0, 180, 1)
+                y = random.randrange(0, 160, 1)
 
-            # print(min_freespace)
+                # append to houses
+                houses.append(Bungalow(i + 12, x, y, 0))
+                current_house=houses[-1]
+                min_freespace = 180.0
+                for house in houses:
+                    if house == current_house:
+                        # print(house)
+                        continue
 
-            # lower left corner of house itself
-            x, y = current_house.x, current_house.y
+                    # upper left corner of house itself
+                    x, y = current_house.x, current_house.y + current_house.depth
 
-            # lower right corner of house next to this house (left)
-            a = house.x + house.width
-            b = house.y
+                    # lower left corner of house above this house
+                    a = house.x
+                    b = house.y
 
-            # width and depth of house next to this house (left)
-            width, depth = house.width, house.depth
+                    # width and depth of house above this house
+                    width, depth = house.width, house.depth
 
-            for y in range(int(current_house.y * 2), int((current_house.y + current_house.depth) * 2 + 1)):
-                freespace = 0.0
-                x = current_house.x
-                while True:
-                    if b <= float(y) / 2 <= b + depth and a - width <= x <= a:
-                        break
-                    elif x >= 160.0 or x <= 0:
-                        if freespace > current_house.freespace:
-                            freespace = 180
-                        break
-                    else:
-                        freespace = freespace + 0.5
-                    x -= 0.5
-                if freespace < min_freespace:
-                    min_freespace = freespace
+                    for x in range(int(current_house.x * 2), int((current_house.x + current_house.width) * 2 + 1)):
+                        freespace = 0.0
+                        y = current_house.y + current_house.depth
+                        while True:
+                            if a <= float(x) / 2 <= a + width and b <= y <= b + depth:
+                                break
+                            elif y >= 180.0 or y <= 0:
+                                if freespace > current_house.freespace:
+                                    freespace = 180
+                                break
+                            else:
+                                freespace = freespace + 0.5
+                            y += 0.5
+                        if freespace < min_freespace:
+                            min_freespace = freespace
 
-        min_freespace -= current_house.freespace
-        current_house.extra_freespace = min_freespace
-        current_house.calculateprice()
-        if current_house.extra_freespace < 0:
-            Paste_house = True
-        print(current_house)
+                    # print(house)
+                    # print(min_freespace)
 
-total = 0
-for house in houses:
-    total = total + house.total_price
+                    # upper right corner of house itself
+                    x, y = current_house.x + current_house.width , current_house.y + current_house.depth
 
-print(total)
+                    # upper left corner of house next to this house (right)
+                    a = house.x
+                    b = house.y + house.depth
+
+                    # width and depth of house next to this house (right)
+                    width, depth = house.width, house.depth
+
+                    for y in range(int((current_house.y + current_house.depth) * 2), int(current_house.y * 2 - 1), -1):
+                        freespace = 0.0
+                        x = current_house.x + current_house.width
+                        while True:
+                            if b - depth <= float(y) / 2 <= b and a <= x <= a + width:
+                                break
+                            elif x >= 160.0 or x <= 0:
+                                if freespace > current_house.freespace:
+                                    freespace = 180
+                                break
+                            else:
+                                freespace = freespace + 0.5
+                            x += 0.5
+                        if freespace < min_freespace:
+                            min_freespace = freespace
+
+                    # print(min_freespace)
+
+                    # lower right corner of house itself
+                    x, y = current_house.x + current_house.width, current_house.y
+
+                    # upper right corner of house underneath this house
+                    a = house.x + house.width
+                    b = house.y + house.depth
+
+                    # width and depth of house underneath this house
+                    width, depth = house.width, house.depth
+
+                    for x in range(int((current_house.x + current_house.width) * 2), int(current_house.x * 2 - 1), -1):
+                        freespace = 0.0
+                        y = current_house.y
+                        while True:
+                            if a - width <= float(x) / 2 <= a and b - depth <= y <= b:
+                                break
+                            elif y >= 180.0 or y <= 0:
+                                if freespace > current_house.freespace:
+                                    freespace = 180
+                                break
+                            else:
+                                freespace = freespace + 0.5
+                            y -= 0.5
+
+                        if freespace < min_freespace:
+                            min_freespace = freespace
+
+                        # print(freespace)
+
+                    # print(min_freespace)
+
+                    # lower left corner of house itself
+                    x, y = current_house.x, current_house.y
+
+                    # lower right corner of house next to this house (left)
+                    a = house.x + house.width
+                    b = house.y
+
+                    # width and depth of house next to this house (left)
+                    width, depth = house.width, house.depth
+
+                    for y in range(int(current_house.y * 2), int((current_house.y + current_house.depth) * 2 + 1)):
+                        freespace = 0.0
+                        x = current_house.x
+                        while True:
+                            if b <= float(y) / 2 <= b + depth and a - width <= x <= a:
+                                break
+                            elif x >= 160.0 or x <= 0:
+                                if freespace > current_house.freespace:
+                                    freespace = 180
+                                break
+                            else:
+                                freespace = freespace + 0.5
+                            x -= 0.5
+                        if freespace < min_freespace:
+                            min_freespace = freespace
+
+                min_freespace -= current_house.freespace
+                current_house.extra_freespace = min_freespace
+                current_house.calculateprice()
+                if current_house.extra_freespace < 0:
+                    del houses[-1]
+                else:
+
+                    # create rectangle
+                    rect2 = matplotlib.patches.Rectangle((current_house.x, current_house.y), 10, 7.5, color="deeppink")
+                    ax.add_patch(rect2)
+                    positief = True
+            # print(current_house)
+            # create rectangle
+            # rect2 = matplotlib.patches.Rectangle((x, y), 10, 7.5, color="deeppink")
+            # ax.add_patch(rect2)
+
+        # maisons
+        for i in range(3):
+            positief = False
+            while positief == False:
+                # create random x and y
+                x = random.randrange(0, 160, 1)
+                y = random.randrange(0, 180, 1)
+
+                # append to houses
+                houses.append(Maison(i + 17, x, y, 0))
+                current_house=houses[-1]
+                min_freespace = 180.0
+                for house in houses:
+                    if house == current_house:
+                        # print(house)
+                        continue
+
+                    # upper left corner of house itself
+                    x, y = current_house.x, current_house.y + current_house.depth
+
+                    # lower left corner of house above this house
+                    a = house.x
+                    b = house.y
+
+                    # width and depth of house above this house
+                    width, depth = house.width, house.depth
+
+                    for x in range(int(current_house.x * 2), int((current_house.x + current_house.width) * 2 + 1)):
+                        freespace = 0.0
+                        y = current_house.y + current_house.depth
+                        while True:
+                            if a <= float(x) / 2 <= a + width and b <= y <= b + depth:
+                                break
+                            elif y >= 180.0 or y <= 0:
+                                if freespace > current_house.freespace:
+                                    freespace = 180
+                                break
+                            else:
+                                freespace = freespace + 0.5
+                            y += 0.5
+                        if freespace < min_freespace:
+                            min_freespace = freespace
+
+                    # print(house)
+                    # print(min_freespace)
+
+                    # upper right corner of house itself
+                    x, y = current_house.x + current_house.width , current_house.y + current_house.depth
+
+                    # upper left corner of house next to this house (right)
+                    a = house.x
+                    b = house.y + house.depth
+
+                    # width and depth of house next to this house (right)
+                    width, depth = house.width, house.depth
+
+                    for y in range(int((current_house.y + current_house.depth) * 2), int(current_house.y * 2 - 1), -1):
+                        freespace = 0.0
+                        x = current_house.x + current_house.width
+                        while True:
+                            if b - depth <= float(y) / 2 <= b and a <= x <= a + width:
+                                break
+                            elif x >= 160.0 or x <= 0:
+                                if freespace > current_house.freespace:
+                                    freespace = 180
+                                break
+                            else:
+                                freespace = freespace + 0.5
+                            x += 0.5
+                        if freespace < min_freespace:
+                            min_freespace = freespace
+
+                    # print(min_freespace)
+
+                    # lower right corner of house itself
+                    x, y = current_house.x + current_house.width, current_house.y
+
+                    # upper right corner of house underneath this house
+                    a = house.x + house.width
+                    b = house.y + house.depth
+
+                    # width and depth of house underneath this house
+                    width, depth = house.width, house.depth
+
+                    for x in range(int((current_house.x + current_house.width) * 2), int(current_house.x * 2 - 1), -1):
+                        freespace = 0.0
+                        y = current_house.y
+                        while True:
+                            if a - width <= float(x) / 2 <= a and b - depth <= y <= b:
+                                break
+                            elif y >= 180.0 or y <= 0:
+                                if freespace > current_house.freespace:
+                                    freespace = 180
+                                break
+                            else:
+                                freespace = freespace + 0.5
+                            y -= 0.5
+
+                        if freespace < min_freespace:
+                            min_freespace = freespace
+
+                        # print(freespace)
+
+                    # print(min_freespace)
+
+                    # lower left corner of house itself
+                    x, y = current_house.x, current_house.y
+
+                    # lower right corner of house next to this house (left)
+                    a = house.x + house.width
+                    b = house.y
+
+                    # width and depth of house next to this house (left)
+                    width, depth = house.width, house.depth
+
+                    for y in range(int(current_house.y * 2), int((current_house.y + current_house.depth) * 2 + 1)):
+                        freespace = 0.0
+                        x = current_house.x
+                        while True:
+                            if b <= float(y) / 2 <= b + depth and a - width <= x <= a:
+                                break
+                            elif x >= 160.0 or x <= 0:
+                                if freespace > current_house.freespace:
+                                    freespace = 180
+                                break
+                            else:
+                                freespace = freespace + 0.5
+                            x -= 0.5
+                        if freespace < min_freespace:
+                            min_freespace = freespace
+
+                min_freespace -= current_house.freespace
+                current_house.extra_freespace = min_freespace
+                current_house.calculateprice()
+                if current_house.extra_freespace < 0:
+
+                    del houses[-1]
+                else:
+
+                    # create rectangle
+                    rect3 = matplotlib.patches.Rectangle((current_house.x, current_house.y), 11, 10.5, color="gold")
+                    ax.add_patch(rect3)
+                    positief = True
+
+    total = 0
+    for house in houses:
+        total = total + house.total_price
+    repetition.append(total)
+    repetition.sort()
+# print(total)
 
 plt.ylim(0, 180)
 plt.xlim(0, 160)
@@ -206,3 +606,4 @@ plt.yticks(major_yticks)
 plt.title("Map AmstelHaege")
 plt.grid()
 plt.show()
+print(repetition)
