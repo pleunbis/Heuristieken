@@ -169,9 +169,16 @@ for repeat in range(1):
                         # upper left corner of house itself
                         x, y = current_house.x, current_house.y + current_house.depth
 
+                        circle_x = x
+                        circle_y = y
+
                         # lower left corner of house above this house
                         a = house.x
                         b = house.y
+
+                        # lower right corner of other house
+                        rect_x = a + house.width
+                        rect_y = b
 
                         # width and depth of house above this house
                         width, depth = house.width, house.depth
@@ -192,15 +199,28 @@ for repeat in range(1):
                             if freespace < min_freespace:
                                 min_freespace = freespace
 
-                        # print(house)
-                        # print(min_freespace)
+                        if rect_x <= circle_x and rect_y >= circle_y:
+                            radius = hypot(rect_x - circle_x, rect_y - circle_y)
+                            radius = round(radius * 2) / 2
+                            if radius < min_radius:
+                                min_radius = radius
+                            if radius < min_freespace:
+                                min_freespace = radius
+
 
                         # upper right corner of house itself
                         x, y = current_house.x + current_house.width , current_house.y + current_house.depth
 
+                        circle_x = x
+                        circle_y = y
+
                         # upper left corner of house next to this house (right)
                         a = house.x
                         b = house.y + house.depth
+
+                        # lower left corner of other house
+                        rect_x = a
+                        rect_y = b - house.depth
 
                         # width and depth of house next to this house (right)
                         width, depth = house.width, house.depth
@@ -221,14 +241,28 @@ for repeat in range(1):
                             if freespace < min_freespace:
                                 min_freespace = freespace
 
+                        if rect_x >= circle_x and rect_y >= circle_y:
+                            radius = hypot(rect_x - circle_x, rect_y - circle_y)
+                            radius = round(radius * 2) / 2
+                            if radius < min_radius:
+                                min_radius = radius
+                            if radius < min_freespace:
+                                min_freespace = radius
+                            # print(house, radius)
                         # print(min_freespace)
 
                         # lower right corner of house itself
                         x, y = current_house.x + current_house.width, current_house.y
 
+                        circle_x = x
+                        circle_y = y
+
                         # upper right corner of house underneath this house
                         a = house.x + house.width
                         b = house.y + house.depth
+
+                        rect_x = a - house.width
+                        rect_y = b
 
                         # width and depth of house underneath this house
                         width, depth = house.width, house.depth
@@ -246,9 +280,17 @@ for repeat in range(1):
                                 else:
                                     freespace = freespace + 0.5
                                 y -= 0.5
-
                             if freespace < min_freespace:
                                 min_freespace = freespace
+
+                            if rect_x >= circle_x and rect_y <= circle_y:
+                                radius = hypot(rect_x - circle_x, rect_y - circle_y)
+                                radius = round(radius * 2) / 2
+                                if radius < min_radius:
+                                    min_radius = radius
+                                if radius < min_freespace:
+                                    min_freespace = radius
+                                    # print(house, radius)
 
                             # print(freespace)
 
@@ -336,9 +378,16 @@ for repeat in range(1):
                         # upper left corner of house itself
                         x, y = current_house.x, current_house.y + current_house.depth
 
+                        circle_x = x
+                        circle_y = y
+
                         # lower left corner of house above this house
                         a = house.x
                         b = house.y
+
+                        # lower right corner of other house
+                        rect_x = a + house.width
+                        rect_y = b
 
                         # width and depth of house above this house
                         width, depth = house.width, house.depth
@@ -359,15 +408,28 @@ for repeat in range(1):
                             if freespace < min_freespace:
                                 min_freespace = freespace
 
-                        # print(house)
-                        # print(min_freespace)
+                        if rect_x <= circle_x and rect_y >= circle_y:
+                            radius = hypot(rect_x - circle_x, rect_y - circle_y)
+                            radius = round(radius * 2) / 2
+                            if radius < min_radius:
+                                min_radius = radius
+                            if radius < min_freespace:
+                                min_freespace = radius
+                            # print(house, radius)
 
                         # upper right corner of house itself
                         x, y = current_house.x + current_house.width , current_house.y + current_house.depth
 
+                        circle_x = x
+                        circle_y = y
+
                         # upper left corner of house next to this house (right)
                         a = house.x
                         b = house.y + house.depth
+
+                        # lower left corner of other house
+                        rect_x = a
+                        rect_y = b - house.depth
 
                         # width and depth of house next to this house (right)
                         width, depth = house.width, house.depth
@@ -388,14 +450,27 @@ for repeat in range(1):
                             if freespace < min_freespace:
                                 min_freespace = freespace
 
-                        # print(min_freespace)
+                        if rect_x >= circle_x and rect_y >= circle_y:
+                            radius = hypot(rect_x - circle_x, rect_y - circle_y)
+                            radius = round(radius * 2) / 2
+                            if radius < min_radius:
+                                min_radius = radius
+                            if radius < min_freespace:
+                                min_freespace = radius
+                            # print(house, radius)
 
                         # lower right corner of house itself
                         x, y = current_house.x + current_house.width, current_house.y
 
+                        circle_x = x
+                        circle_y = y
+
                         # upper right corner of house underneath this house
                         a = house.x + house.width
                         b = house.y + house.depth
+
+                        rect_x = a - house.width
+                        rect_y = b
 
                         # width and depth of house underneath this house
                         width, depth = house.width, house.depth
@@ -413,13 +488,17 @@ for repeat in range(1):
                                 else:
                                     freespace = freespace + 0.5
                                 y -= 0.5
-
                             if freespace < min_freespace:
                                 min_freespace = freespace
 
-                            # print(freespace)
-
-                        # print(min_freespace)
+                            if rect_x >= circle_x and rect_y <= circle_y:
+                                radius = hypot(rect_x - circle_x, rect_y - circle_y)
+                                radius = round(radius * 2) / 2
+                                if radius < min_radius:
+                                    min_radius = radius
+                                if radius < min_freespace:
+                                    min_freespace = radius
+                                    # print(house, radius)
 
                         # lower left corner of house itself
                         x, y = current_house.x, current_house.y
@@ -501,9 +580,16 @@ for repeat in range(1):
                         # upper left corner of house itself
                         x, y = current_house.x, current_house.y + current_house.depth
 
+                        circle_x = x
+                        circle_y = y
+
                         # lower left corner of house above this house
                         a = house.x
                         b = house.y
+
+                        # lower right corner of other house
+                        rect_x = a + house.width
+                        rect_y = b
 
                         # width and depth of house above this house
                         width, depth = house.width, house.depth
@@ -524,15 +610,28 @@ for repeat in range(1):
                             if freespace < min_freespace:
                                 min_freespace = freespace
 
-                        # print(house)
-                        # print(min_freespace)
+                        if rect_x <= circle_x and rect_y >= circle_y:
+                            radius = hypot(rect_x - circle_x, rect_y - circle_y)
+                            radius = round(radius * 2) / 2
+                            if radius < min_radius:
+                                min_radius = radius
+                            if radius < min_freespace:
+                                min_freespace = radius
+                            # print(house, radius)
 
                         # upper right corner of house itself
                         x, y = current_house.x + current_house.width , current_house.y + current_house.depth
 
+                        circle_x = x
+                        circle_y = y
+
                         # upper left corner of house next to this house (right)
                         a = house.x
                         b = house.y + house.depth
+
+                        # lower left corner of other house
+                        rect_x = a
+                        rect_y = b - house.depth
 
                         # width and depth of house next to this house (right)
                         width, depth = house.width, house.depth
@@ -553,14 +652,27 @@ for repeat in range(1):
                             if freespace < min_freespace:
                                 min_freespace = freespace
 
-                        # print(min_freespace)
+                        if rect_x >= circle_x and rect_y >= circle_y:
+                            radius = hypot(rect_x - circle_x, rect_y - circle_y)
+                            radius = round(radius * 2) / 2
+                            if radius < min_radius:
+                                min_radius = radius
+                            if radius < min_freespace:
+                                min_freespace = radius
+                            # print(house, radius)
 
                         # lower right corner of house itself
                         x, y = current_house.x + current_house.width, current_house.y
 
+                        circle_x = x
+                        circle_y = y
+
                         # upper right corner of house underneath this house
                         a = house.x + house.width
                         b = house.y + house.depth
+
+                        rect_x = a - house.width
+                        rect_y = b
 
                         # width and depth of house underneath this house
                         width, depth = house.width, house.depth
@@ -578,13 +690,17 @@ for repeat in range(1):
                                 else:
                                     freespace = freespace + 0.5
                                 y -= 0.5
-
                             if freespace < min_freespace:
                                 min_freespace = freespace
 
-                            # print(freespace)
-
-                        # print(min_freespace)
+                            if rect_x >= circle_x and rect_y <= circle_y:
+                                radius = hypot(rect_x - circle_x, rect_y - circle_y)
+                                radius = round(radius * 2) / 2
+                                if radius < min_radius:
+                                    min_radius = radius
+                                if radius < min_freespace:
+                                    min_freespace = radius
+                                    # print(house, radius)
 
                         # lower left corner of house itself
                         x, y = current_house.x, current_house.y
@@ -655,9 +771,16 @@ for repeat in range(1):
                 # upper left corner of house itself
                 x, y = current_house.x, current_house.y + current_house.depth
 
+                circle_x = x
+                circle_y = y
+
                 # lower left corner of house above this house
                 a = house.x
                 b = house.y
+
+                # lower right corner of other house
+                rect_x = a + house.width
+                rect_y = b
 
                 # width and depth of house above this house
                 width, depth = house.width, house.depth
@@ -678,15 +801,28 @@ for repeat in range(1):
                     if freespace < min_freespace:
                         min_freespace = freespace
 
-                # print(house)
-                # print(min_freespace)
+                if rect_x <= circle_x and rect_y >= circle_y:
+                    radius = hypot(rect_x - circle_x, rect_y - circle_y)
+                    radius = round(radius * 2) / 2
+                    if radius < min_radius:
+                        min_radius = radius
+                    if radius < min_freespace:
+                        min_freespace = radius
+                    # print(house, radius)
 
                 # upper right corner of house itself
                 x, y = current_house.x + current_house.width , current_house.y + current_house.depth
 
+                circle_x = x
+                circle_y = y
+
                 # upper left corner of house next to this house (right)
                 a = house.x
                 b = house.y + house.depth
+
+                # lower left corner of other house
+                rect_x = a
+                rect_y = b - house.depth
 
                 # width and depth of house next to this house (right)
                 width, depth = house.width, house.depth
@@ -707,14 +843,27 @@ for repeat in range(1):
                     if freespace < min_freespace:
                         min_freespace = freespace
 
-                # print(min_freespace)
+                if rect_x >= circle_x and rect_y >= circle_y:
+                    radius = hypot(rect_x - circle_x, rect_y - circle_y)
+                    radius = round(radius * 2) / 2
+                    if radius < min_radius:
+                        min_radius = radius
+                    if radius < min_freespace:
+                        min_freespace = radius
+                    # print(house, radius)
 
                 # lower right corner of house itself
                 x, y = current_house.x + current_house.width, current_house.y
 
+                circle_x = x
+                circle_y = y
+
                 # upper right corner of house underneath this house
                 a = house.x + house.width
                 b = house.y + house.depth
+
+                rect_x = a - house.width
+                rect_y = b
 
                 # width and depth of house underneath this house
                 width, depth = house.width, house.depth
@@ -732,13 +881,17 @@ for repeat in range(1):
                         else:
                             freespace = freespace + 0.5
                         y -= 0.5
-
                     if freespace < min_freespace:
                         min_freespace = freespace
 
-                    # print(freespace)
-
-                # print(min_freespace)
+                    if rect_x >= circle_x and rect_y <= circle_y:
+                        radius = hypot(rect_x - circle_x, rect_y - circle_y)
+                        radius = round(radius * 2) / 2
+                        if radius < min_radius:
+                            min_radius = radius
+                        if radius < min_freespace:
+                            min_freespace = radius
+                            # print(house, radius)
 
                 # lower left corner of house itself
                 x, y = current_house.x, current_house.y
@@ -775,16 +928,13 @@ for repeat in range(1):
                 if rect_x <= circle_x and rect_y <= circle_y:
                     radius = hypot(rect_x - circle_x, rect_y - circle_y)
                     radius = round(radius * 2) / 2
-                    if radius < min_radius:
-                        min_radius = radius
                     if radius < min_freespace:
                         min_freespace = radius
-                    # print(house, radius)
 
 
             min_freespace -= current_house.freespace
             current_house.extra_freespace = min_freespace
-            # print(current_house, ":", min_radius)
+            print(current_house, ":", min_radius)
 
             # cal(houses)
             current_house.calculateprice()
