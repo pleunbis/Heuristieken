@@ -1,7 +1,9 @@
 import json
 
-with open('Data/houses.json') as file:
-    house = json.load(file)
+with open('Data/amstel.json') as file:
+    data = json.load(file)
+
+house = data["houses"]
 
 class House_Type():
     def __init__(self, width, depth, freespace, value, price_improvement):

@@ -1,0 +1,44 @@
+{
+  "amstel20": {
+    "sf": "12",
+    "b": "5",
+    "m": "3"
+  },
+  "amstel40": {
+    "sf": "24",
+    "b": "10",
+    "m": "6"
+  },
+  "amstel60": {
+    "sf": "36",
+    "b": "15",
+    "m": "9"
+  },
+  "map": {
+    "width": "160",
+    "height": "180"
+  },
+  "houses": {
+    "sf": {
+      "width":"8.0",
+      "depth":"8.0",
+      "freespace":"2.0",
+      "value":"285000.0",
+      "price_improvement":"0.03"
+    },
+    "b": {
+      "width":"10.0",
+      "depth":"7.5",
+      "freespace":"3.0",
+      "value":"399000.0",
+      "price_improvement":"0.04"
+    },
+    "m": {
+      "width":"11.0",
+      "depth":"10.5",
+      "freespace":"6.0",
+      "value":"610000.0",
+      "price_improvement":"0.06"
+    }
+  }
+}

@@ -1,11 +1,16 @@
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
-import matplotlib
 import numpy as np
 import random
-import math
+import json
 from math import hypot
 from house_classes import *
+
+with open('Data/amstel.json') as file:
+    data = json.load(file)
+
+amstel_width = int(data["map"]["width"])
+amstel_height = int(data["map"]["height"])
 
 def calculate_freespace(list):
     current_house = list[-1]
@@ -26,7 +31,7 @@ def calculate_freespace(list):
         a = house.x
         b = house.y
 
-        # lower right corner of other house
+        # lower right corner of closest house above current house
         rect_x = a + house.width
         rect_y = b
 
@@ -67,7 +72,7 @@ def calculate_freespace(list):
         a = house.x
         b = house.y + house.depth
 
-        # lower left corner of other house
+        # lower left corner of closest house right of current house
         rect_x = a
         rect_y = b - house.depth
 
@@ -110,6 +115,7 @@ def calculate_freespace(list):
         a = house.x + house.width
         b = house.y + house.depth
 
+        # upper left corner of closest house underneath current house
         rect_x = a - house.width
         rect_y = b
 
@@ -154,6 +160,7 @@ def calculate_freespace(list):
         a = house.x + house.width
         b = house.y
 
+        # upper right corner of closest house left of current house
         rect_x = a
         rect_y = b + house.depth
 
@@ -190,7 +197,6 @@ def calculate_freespace(list):
 
     return current_house
 
-
 repetition = []
 for repeat in range(1):
     all_positive = False
@@ -209,22 +215,23 @@ for repeat in range(1):
                 positive = False
                 while positive == False:
                     # create random x and y
-                    x = random.randrange(0, 170, 1)
-                    y = random.randrange(0, 150, 1)
+                    x = random.randrange(0, 150, 1)
+                    y = random.randrange(0, 170, 1)
 
                     # append to houses
                     houses.append(Singlefamily(i, x, y, 0))
 
                     # apply function
-                    current_house = calculate_freespace(houses)
+                    singlefamily = calculate_freespace(houses)
 
-                    current_house.calculateprice()
+                    singlefamily.calculateprice()
 
-                    if current_house.extra_freespace < 0:
+                    if singlefamily.extra_freespace < 0:
                         del houses[-1]
                     else:
+                        sf = data["houses"]["sf"]
                         # create rectangle
-                        rect1 = matplotlib.patches.Rectangle((current_house.x, current_house.y), 8, 8, color="blue")
+                        rect1 = patches.Rectangle((singlefamily.x, singlefamily.y), float(sf["width"]), float(sf["depth"]), color="blue")
                         ax.add_patch(rect1)
                         positive = True
 
@@ -233,22 +240,23 @@ for repeat in range(1):
                 positive = False
                 while positive == False:
                     # create random x and y
-                    x = random.randrange(0, 180, 1)
-                    y = random.randrange(0, 160, 1)
+                    x = random.randrange(0, amstel_width, 1)
+                    y = random.randrange(0, amstel_height, 1)
 
                     # append to houses
                     houses.append(Bungalow(i + 12, x, y, 0))
 
                     # apply function
-                    current_house = calculate_freespace(houses)
+                    bungalow = calculate_freespace(houses)
 
-                    current_house.calculateprice()
+                    bungalow.calculateprice()
 
-                    if current_house.extra_freespace < 0:
+                    if bungalow.extra_freespace < 0:
                         del houses[-1]
                     else:
+                        b = data["houses"]["b"]
                         # create rectangle
-                        rect2 = matplotlib.patches.Rectangle((current_house.x, current_house.y), 10, 7.5, color="deeppink")
+                        rect2 = patches.Rectangle((bungalow.x, bungalow.y), float(b["width"]), float(b["depth"]), color="deeppink")
                         ax.add_patch(rect2)
                         positive = True
                 # print(current_house)
@@ -258,22 +266,23 @@ for repeat in range(1):
                 positive = False
                 while positive == False:
                     # create random x and y
-                    x = random.randrange(0, 160, 1)
-                    y = random.randrange(0, 180, 1)
+                    x = random.randrange(0, amstel_width, 1)
+                    y = random.randrange(0, amstel_height, 1)
 
                     # append to houses
                     houses.append(Maison(i + 17, x, y, 0))
 
                     # apply function
-                    current_house = calculate_freespace(houses)
+                    maison = calculate_freespace(houses)
 
-                    current_house.calculateprice()
+                    maison.calculateprice()
 
-                    if current_house.extra_freespace < 0:
+                    if maison.extra_freespace < 0:
                         del houses[-1]
                     else:
+                        m = data["houses"]["m"]
                         # create rectangle
-                        rect3 = matplotlib.patches.Rectangle((current_house.x, current_house.y), 11, 10.5, color="gold")
+                        rect3 = patches.Rectangle((maison.x, maison.y), float(m["width"]), float(m["depth"]), color="gold")
                         ax.add_patch(rect3)
                         positive = True
 
@@ -295,7 +304,7 @@ for repeat in range(1):
                 a = house.x
                 b = house.y
 
-                # lower right corner of other house
+                # lower right corner of closest house above current house
                 rect_x = a + house.width
                 rect_y = b
 
@@ -337,7 +346,7 @@ for repeat in range(1):
                 a = house.x
                 b = house.y + house.depth
 
-                # lower left corner of other house
+                # lower left corner of closest house right of current house
                 rect_x = a
                 rect_y = b - house.depth
 
@@ -379,6 +388,7 @@ for repeat in range(1):
                 a = house.x + house.width
                 b = house.y + house.depth
 
+                # upper left corner of closest house underneath current house
                 rect_x = a - house.width
                 rect_y = b
 
@@ -415,11 +425,11 @@ for repeat in range(1):
                 circle_x = x
                 circle_y = y
 
-
                 # lower right corner of closest house left of current house
                 a = house.x + house.width
                 b = house.y
 
+                # upper right corner of closest house left of current house
                 rect_x = a
                 rect_y = b + house.depth
 
@@ -466,12 +476,14 @@ for repeat in range(1):
 
 # print(total)
 print(repetition)
-plt.ylim(0, 180)
-plt.xlim(0, 160)
 
-major_xticks = np.arange(0, 160, 1)
+plt.xlim(0, amstel_width)
+plt.ylim(0, amstel_height)
 
-major_yticks = np.arange(0, 180, 1)
+
+major_xticks = np.arange(0, amstel_width, 1)
+
+major_yticks = np.arange(0, amstel_height, 1)
 
 
 plt.xticks(major_xticks)
