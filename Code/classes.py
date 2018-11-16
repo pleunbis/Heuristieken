@@ -54,3 +54,17 @@ class Singlefamily(House_Type):
     def calculateprice(self):
         self.total_price = self.value * (1 + self.extra_freespace * self.price_improvement)
         return round(self.total_price, 2)
+
+class Water():
+    def __init__(self, id, x, y, extra_freespace):
+        House_Type.__init__(self, 18, 20, 0, 0, 0)
+        self.id = id
+        self.x = x
+        self.y = y
+        self.extra_freespace = extra_freespace
+        self.total_price = 0
+    def __str__(self):
+        return str(self.id) + ", " + str(self.x) + ", " + str(self.y) + ", " + str(self.extra_freespace) + ", " + str(self.total_price)
+    def calculateprice(self):
+        self.total_price = self.value * (1 + self.extra_freespace * self.price_improvement)
+        return round(self.total_price, 2)        

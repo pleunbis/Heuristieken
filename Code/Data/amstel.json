@@ -18,6 +18,10 @@
     "width": "160",
     "height": "180"
   },
+  "water": {
+    "width": "18",
+    "height": "20"
+  },
   "houses": {
     "sf": {
       "width":"8.0",

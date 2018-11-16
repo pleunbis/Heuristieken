@@ -33,19 +33,19 @@ def calculate_freespace(list):
         other_depth = house.depth
 
         # check if overlap
-        if current_x < other_x < current_x + current_width and current_y < other_y < current_y + current_depth:
-            min_freespace = 0
-        elif current_x < other_x < current_x + current_width and current_y < other_y + other_depth < current_y + current_depth:
-            min_freespace = 0
-        elif current_x < other_x + other_width < current_x + current_width and current_y < other_y + other_depth < current_y + current_depth:
-            min_freespace = 0
-        elif current_x < other_x + other_width < current_x + current_width and current_y < other_y < current_y + current_depth:
-            min_freespace = 0
+        if current_x <= other_x <= current_x + current_width and current_y <= other_y <= current_y + current_depth:
+            min_freespace = -1
+        elif current_x <= other_x <= current_x + current_width and current_y <= other_y + other_depth <= current_y + current_depth:
+            min_freespace = -1
+        elif current_x <= other_x + other_width <= current_x + current_width and current_y <= other_y + other_depth <= current_y + current_depth:
+            min_freespace = -1
+        elif current_x <= other_x + other_width <= current_x + current_width and current_y <= other_y <= current_y + current_depth:
+            min_freespace = -1
         # check if on grid
         elif current_x + current_width + current_house.freespace > int(data["map"]["width"]) or current_y + current_depth + current_house.freespace > int(data["map"]["height"]):
-            min_freespace = 0
+            min_freespace = -1
         elif current_x - current_house.freespace < 0 or current_y - current_house.freespace < 0:
-            min_freespace = 0
+            min_freespace = -1
         # house above this house
         if (current_x <= other_x <= current_x + current_width or current_x <= other_x + other_width <= current_x + current_width) and other_y >= current_y + current_depth:
             freespace = other_y - (current_y + current_depth)
@@ -135,7 +135,23 @@ for repeat in range(1):
                         sf = data["houses"]["sf"]
                         # create rectangle
                         rect1 = patches.Rectangle((singlefamily.x, singlefamily.y), float(sf["width"]), float(sf["depth"]), color="blue")
+                        rect2=  patches.Rectangle((singlefamily.x  , singlefamily.y -singlefamily.freespace), singlefamily.width, singlefamily.freespace, edgecolor="darkorange",facecolor="white")
+                        rect3=  patches.Rectangle((singlefamily.x  + singlefamily.width , singlefamily.y), singlefamily.freespace,singlefamily.depth,edgecolor="darkorange",facecolor="white")
+                        rect4=  patches.Rectangle((singlefamily.x  , singlefamily.y  + singlefamily.depth), singlefamily.width, singlefamily.freespace,edgecolor="darkorange",facecolor="white")
+                        rect5=  patches.Rectangle((singlefamily.x -singlefamily.freespace , singlefamily.y ), singlefamily.freespace, singlefamily.depth,edgecolor="darkorange",facecolor="white")
+                        wedge1 = patches.Wedge((singlefamily.x, singlefamily.y), singlefamily.freespace, 180, 270, edgecolor="darkorange",facecolor="white")
+                        wedge2 = patches.Wedge((singlefamily.x + singlefamily.width, singlefamily.y), singlefamily.freespace, 270, 360,edgecolor="darkorange",facecolor="white")
+                        wedge3 = patches.Wedge((singlefamily.x+ singlefamily.width, singlefamily.y + singlefamily.depth), singlefamily.freespace, 0, 90, edgecolor="darkorange",facecolor="white")
+                        wedge4 = patches.Wedge((singlefamily.x, singlefamily.y  + singlefamily.depth), singlefamily.freespace, 90, 180, edgecolor="darkorange",facecolor="white")
                         ax.add_patch(rect1)
+                        ax.add_patch(rect2)
+                        ax.add_patch(rect3)
+                        ax.add_patch(rect4)
+                        ax.add_patch(rect5)
+                        ax.add_patch(wedge1)
+                        ax.add_patch(wedge2)
+                        ax.add_patch(wedge3)
+                        ax.add_patch(wedge4)
                         positive = True
 
             # bungalows
@@ -159,8 +175,24 @@ for repeat in range(1):
                     else:
                         b = data["houses"]["b"]
                         # create rectangle
-                        rect2 = patches.Rectangle((bungalow.x, bungalow.y), float(b["width"]), float(b["depth"]), color="deeppink")
-                        ax.add_patch(rect2)
+                        rect11 = patches.Rectangle((bungalow.x, bungalow.y), float(b["width"]), float(b["depth"]), color="deeppink")
+                        rect12=  patches.Rectangle((bungalow.x  , bungalow.y -bungalow.freespace), bungalow.width, bungalow.freespace,edgecolor="darkorange",facecolor="white")
+                        rect13=  patches.Rectangle((bungalow.x  + bungalow.width , bungalow.y), bungalow.freespace,bungalow.depth,edgecolor="darkorange",facecolor="white")
+                        rect14=  patches.Rectangle((bungalow.x  , bungalow.y  + bungalow.depth), bungalow.width, bungalow.freespace,edgecolor= "darkorange",facecolor="white")
+                        rect15=  patches.Rectangle((bungalow.x -bungalow.freespace , bungalow.y ), bungalow.freespace, bungalow.depth,edgecolor="darkorange",facecolor="white")
+                        wedge9 = patches.Wedge((bungalow.x, bungalow.y), bungalow.freespace, 180, 270, edgecolor="darkorange",facecolor="white")
+                        wedge10 = patches.Wedge((bungalow.x + bungalow.width, bungalow.y), bungalow.freespace, 270, 360, edgecolor="darkorange",facecolor="white")
+                        wedge11 = patches.Wedge((bungalow.x+ bungalow.width, bungalow.y + bungalow.depth), bungalow.freespace, 0, 90, edgecolor="darkorange",facecolor="white")
+                        wedge12 = patches.Wedge((bungalow.x, bungalow.y  + bungalow.depth), bungalow.freespace, 90, 180, edgecolor="darkorange",facecolor="white")
+                        ax.add_patch(rect11)
+                        ax.add_patch(rect12)
+                        ax.add_patch(rect13)
+                        ax.add_patch(rect14)
+                        ax.add_patch(rect15)
+                        ax.add_patch(wedge9)
+                        ax.add_patch(wedge10)
+                        ax.add_patch(wedge11)
+                        ax.add_patch(wedge12)
                         positive = True
                 # print(current_house)
 
@@ -185,8 +217,47 @@ for repeat in range(1):
                     else:
                         m = data["houses"]["m"]
                         # create rectangle
-                        rect3 = patches.Rectangle((maison.x, maison.y), float(m["width"]), float(m["depth"]), color="gold")
-                        ax.add_patch(rect3)
+                        rect6 = patches.Rectangle((maison.x, maison.y), float(m["width"]), float(m["depth"]), color="gold")
+                        rect7=  patches.Rectangle((maison.x  , maison.y -maison.freespace), maison.width, maison.freespace,edgecolor="darkorange",facecolor="white")
+                        rect8=  patches.Rectangle((maison.x  + maison.width , maison.y), maison.freespace,maison.depth,edgecolor="darkorange",facecolor="white")
+                        rect9=  patches.Rectangle((maison.x  , maison.y  + maison.depth), maison.width, maison.freespace,edgecolor="darkorange",facecolor="white")
+                        rect10=  patches.Rectangle((maison.x -maison.freespace , maison.y ), maison.freespace, maison.depth,edgecolor="darkorange",facecolor="white")
+                        wedge5 = patches.Wedge((maison.x, maison.y), maison.freespace, 180, 270, edgecolor="darkorange",facecolor="white")
+                        wedge6 = patches.Wedge((maison.x + maison.width, maison.y), maison.freespace, 270, 360, edgecolor="darkorange",facecolor="white")
+                        wedge7 = patches.Wedge((maison.x+ maison.width, maison.y + maison.depth), maison.freespace, 0, 90, edgecolor="darkorange",facecolor="white")
+                        wedge8 = patches.Wedge((maison.x, maison.y  + maison.depth), maison.freespace, 90, 180,edgecolor="darkorange",facecolor="white")
+                        ax.add_patch(rect6)
+                        ax.add_patch(rect7)
+                        ax.add_patch(rect8)
+                        ax.add_patch(rect9)
+                        ax.add_patch(rect10)
+                        ax.add_patch(wedge5)
+                        ax.add_patch(wedge6)
+                        ax.add_patch(wedge7)
+                        ax.add_patch(wedge8)
+                        positive = True
+            # water
+            for i in range(4):
+                positive = False
+                while positive == False:
+                    # create random x and y
+                    x = random.randrange(0, amstel_width, 1)
+                    y = random.randrange(0, amstel_height, 1)
+
+                    # append to houses
+                    houses.append(Water(i + 20, x, y, 0))
+                    # print(Water(18, 20, x, y))
+
+                    # apply function
+                    water = calculate_freespace(houses)
+
+                    if water.extra_freespace < 0:
+                        del houses[-1]
+                    else:
+
+                        # create rectangle
+                        rect6 = patches.Rectangle((water.x, water.y), 18, 20, color="skyblue")
+                        ax.add_patch(rect6)
                         positive = True
 
         for current_house in houses:
@@ -209,19 +280,19 @@ for repeat in range(1):
                 other_depth = house.depth
 
                 # check if overlap
-                if current_x < other_x < current_x + current_width and current_y < other_y < current_y + current_depth:
-                    min_freespace = 0
-                elif current_x < other_x < current_x + current_width and current_y < other_y + other_depth < current_y + current_depth:
-                    min_freespace = 0
-                elif current_x < other_x + other_width < current_x + current_width and current_y < other_y + other_depth < current_y + current_depth:
-                    min_freespace = 0
-                elif current_x < other_x + other_width < current_x + current_width and current_y < other_y < current_y + current_depth:
-                    min_freespace = 0
+                if current_x <= other_x <= current_x + current_width and current_y <= other_y <= current_y + current_depth:
+                    min_freespace = -1
+                elif current_x <= other_x <= current_x + current_width and current_y <= other_y + other_depth <= current_y + current_depth:
+                    min_freespace = -1
+                elif current_x <= other_x + other_width <= current_x + current_width and current_y <= other_y + other_depth <= current_y + current_depth:
+                    min_freespace = -1
+                elif current_x <= other_x + other_width <= current_x + current_width and current_y <= other_y <= current_y + current_depth:
+                    min_freespace = -1
                 # check if on grid
                 elif current_x + current_width + current_house.freespace > int(data["map"]["width"]) or current_y + current_depth + current_house.freespace > int(data["map"]["height"]):
-                    min_freespace = 0
+                    min_freespace = -1
                 elif current_x - current_house.freespace < 0 or current_y - current_house.freespace < 0:
-                    min_freespace = 0
+                    min_freespace = -1
                 # house above this house
                 elif (current_x <= other_x <= current_x + current_width or current_x <= other_x + other_width <= current_x + current_width) and other_y >= current_y + current_depth:
                     freespace = other_y - (current_y + current_depth)
@@ -278,12 +349,12 @@ for repeat in range(1):
             if current_house.extra_freespace < 0:
                 all_positive = False
 
-    total = 0
-    for house in houses:
-        total = total + house.total_price
-        print(house)
-    repetition.append(total)
-    repetition.sort()
+total = 0
+for house in houses:
+    total = total + house.total_price
+    print(house)
+repetition.append(total)
+repetition.sort()
 
 # print(total)
 print(repetition)
