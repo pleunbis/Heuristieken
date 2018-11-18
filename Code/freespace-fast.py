@@ -4,14 +4,17 @@ import numpy as np
 import random
 import json
 from math import hypot
-from house_classes import *
+from classes import *
 
+# load in data
 with open('Data/amstel.json') as file:
     data = json.load(file)
 
+# map dimensions
 amstel_width = int(data["map"]["width"])
 amstel_height = int(data["map"]["height"])
 
+# calculates freespace for each house in list
 def calculate_freespace(list):
     current_house = list[-1]
     min_freespace = 180.0
@@ -42,7 +45,7 @@ def calculate_freespace(list):
         elif current_x <= other_x + other_width <= current_x + current_width and current_y <= other_y <= current_y + current_depth:
             min_freespace = -1
         # check if on grid
-        elif current_x + current_width + current_house.freespace > int(data["map"]["width"]) or current_y + current_depth + current_house.freespace > int(data["map"]["height"]):
+        elif current_x + current_width + current_house.freespace > amstel_width or current_y + current_depth + current_house.freespace > amstel_height:
             min_freespace = -1
         elif current_x - current_house.freespace < 0 or current_y - current_house.freespace < 0:
             min_freespace = -1
@@ -100,6 +103,34 @@ def calculate_freespace(list):
 
     return current_house
 
+# shows calculated freespace around house on grid
+def show_freespace(house):
+
+    # sides
+    downside = patches.Rectangle((house.x, house.y - house.freespace), house.width, house.freespace, edgecolor="darkorange", facecolor="white")
+    rightside = patches.Rectangle((house.x + house.width , house.y), house.freespace, house.depth, edgecolor="darkorange", facecolor="white")
+    upside = patches.Rectangle((house.x, house.y + house.depth), house.width, house.freespace, edgecolor="darkorange", facecolor="white")
+    leftside = patches.Rectangle((house.x - house.freespace, house.y), house.freespace, house.depth, edgecolor="darkorange", facecolor="white")
+
+    # corners
+    bottomleft = patches.Wedge((house.x, house.y), house.freespace, 180, 270, edgecolor="darkorange", facecolor="white")
+    bottomright = patches.Wedge((house.x + house.width, house.y), house.freespace, 270, 360, edgecolor="darkorange", facecolor="white")
+    topright = patches.Wedge((house.x + house.width, house.y + house.depth), house.freespace, 0, 90, edgecolor="darkorange", facecolor="white")
+    topleft = patches.Wedge((house.x, house.y + house.depth), house.freespace, 90, 180, edgecolor="darkorange", facecolor="white")
+
+    # add on grid
+    ax.add_patch(downside)
+    ax.add_patch(rightside)
+    ax.add_patch(upside)
+    ax.add_patch(leftside)
+    ax.add_patch(bottomleft)
+    ax.add_patch(bottomright)
+    ax.add_patch(topright)
+    ax.add_patch(topleft)
+
+    return house
+
+
 repetition = []
 for repeat in range(1):
     all_positive = False
@@ -124,34 +155,22 @@ for repeat in range(1):
                     # append to houses
                     houses.append(Singlefamily(i, x, y, 0))
 
-                    # apply function
-                    singlefamily = calculate_freespace(houses)
+                    # calculate freespace for singlefamily house
+                    sf = calculate_freespace(houses)
 
-                    singlefamily.calculateprice()
+                    sf.calculateprice()
 
-                    if singlefamily.extra_freespace < 0:
+                    if sf.extra_freespace < 0:
                         del houses[-1]
                     else:
-                        sf = data["houses"]["sf"]
-                        # create rectangle
-                        rect1 = patches.Rectangle((singlefamily.x, singlefamily.y), float(sf["width"]), float(sf["depth"]), color="blue")
-                        rect2=  patches.Rectangle((singlefamily.x  , singlefamily.y -singlefamily.freespace), singlefamily.width, singlefamily.freespace, edgecolor="darkorange",facecolor="white")
-                        rect3=  patches.Rectangle((singlefamily.x  + singlefamily.width , singlefamily.y), singlefamily.freespace,singlefamily.depth,edgecolor="darkorange",facecolor="white")
-                        rect4=  patches.Rectangle((singlefamily.x  , singlefamily.y  + singlefamily.depth), singlefamily.width, singlefamily.freespace,edgecolor="darkorange",facecolor="white")
-                        rect5=  patches.Rectangle((singlefamily.x -singlefamily.freespace , singlefamily.y ), singlefamily.freespace, singlefamily.depth,edgecolor="darkorange",facecolor="white")
-                        wedge1 = patches.Wedge((singlefamily.x, singlefamily.y), singlefamily.freespace, 180, 270, edgecolor="darkorange",facecolor="white")
-                        wedge2 = patches.Wedge((singlefamily.x + singlefamily.width, singlefamily.y), singlefamily.freespace, 270, 360,edgecolor="darkorange",facecolor="white")
-                        wedge3 = patches.Wedge((singlefamily.x+ singlefamily.width, singlefamily.y + singlefamily.depth), singlefamily.freespace, 0, 90, edgecolor="darkorange",facecolor="white")
-                        wedge4 = patches.Wedge((singlefamily.x, singlefamily.y  + singlefamily.depth), singlefamily.freespace, 90, 180, edgecolor="darkorange",facecolor="white")
-                        ax.add_patch(rect1)
-                        ax.add_patch(rect2)
-                        ax.add_patch(rect3)
-                        ax.add_patch(rect4)
-                        ax.add_patch(rect5)
-                        ax.add_patch(wedge1)
-                        ax.add_patch(wedge2)
-                        ax.add_patch(wedge3)
-                        ax.add_patch(wedge4)
+                        sf_data = data["houses"]["sf"]
+                        # create and show singlefamily house on grid
+                        sf_rect = patches.Rectangle((sf.x, sf.y), float(sf_data["width"]), float(sf_data["depth"]), color="blue")
+                        ax.add_patch(sf_rect)
+
+                        # show freespace for singlefamily on grid
+                        show_freespace(sf)
+
                         positive = True
 
             # bungalows
@@ -165,34 +184,22 @@ for repeat in range(1):
                     # append to houses
                     houses.append(Bungalow(i + 12, x, y, 0))
 
-                    # apply function
-                    bungalow = calculate_freespace(houses)
+                    # calculate freespace for bungalow
+                    b = calculate_freespace(houses)
 
-                    bungalow.calculateprice()
+                    b.calculateprice()
 
-                    if bungalow.extra_freespace < 0:
+                    if b.extra_freespace < 0:
                         del houses[-1]
                     else:
-                        b = data["houses"]["b"]
-                        # create rectangle
-                        rect11 = patches.Rectangle((bungalow.x, bungalow.y), float(b["width"]), float(b["depth"]), color="deeppink")
-                        rect12=  patches.Rectangle((bungalow.x  , bungalow.y -bungalow.freespace), bungalow.width, bungalow.freespace,edgecolor="darkorange",facecolor="white")
-                        rect13=  patches.Rectangle((bungalow.x  + bungalow.width , bungalow.y), bungalow.freespace,bungalow.depth,edgecolor="darkorange",facecolor="white")
-                        rect14=  patches.Rectangle((bungalow.x  , bungalow.y  + bungalow.depth), bungalow.width, bungalow.freespace,edgecolor= "darkorange",facecolor="white")
-                        rect15=  patches.Rectangle((bungalow.x -bungalow.freespace , bungalow.y ), bungalow.freespace, bungalow.depth,edgecolor="darkorange",facecolor="white")
-                        wedge9 = patches.Wedge((bungalow.x, bungalow.y), bungalow.freespace, 180, 270, edgecolor="darkorange",facecolor="white")
-                        wedge10 = patches.Wedge((bungalow.x + bungalow.width, bungalow.y), bungalow.freespace, 270, 360, edgecolor="darkorange",facecolor="white")
-                        wedge11 = patches.Wedge((bungalow.x+ bungalow.width, bungalow.y + bungalow.depth), bungalow.freespace, 0, 90, edgecolor="darkorange",facecolor="white")
-                        wedge12 = patches.Wedge((bungalow.x, bungalow.y  + bungalow.depth), bungalow.freespace, 90, 180, edgecolor="darkorange",facecolor="white")
-                        ax.add_patch(rect11)
-                        ax.add_patch(rect12)
-                        ax.add_patch(rect13)
-                        ax.add_patch(rect14)
-                        ax.add_patch(rect15)
-                        ax.add_patch(wedge9)
-                        ax.add_patch(wedge10)
-                        ax.add_patch(wedge11)
-                        ax.add_patch(wedge12)
+                        b_data = data["houses"]["b"]
+                        # create and show bungalow on grid
+                        b_rect = patches.Rectangle((b.x, b.y), float(b_data["width"]), float(b_data["depth"]), color="deeppink")
+                        ax.add_patch(b_rect)
+
+                        # show freespace for bungalow on grid
+                        show_freespace(b)
+
                         positive = True
                 # print(current_house)
 
@@ -207,34 +214,22 @@ for repeat in range(1):
                     # append to houses
                     houses.append(Maison(i + 17, x, y, 0))
 
-                    # apply function
-                    maison = calculate_freespace(houses)
+                    # calculate freespace for maison
+                    m = calculate_freespace(houses)
 
-                    maison.calculateprice()
+                    m.calculateprice()
 
-                    if maison.extra_freespace < 0:
+                    if m.extra_freespace < 0:
                         del houses[-1]
                     else:
-                        m = data["houses"]["m"]
-                        # create rectangle
-                        rect6 = patches.Rectangle((maison.x, maison.y), float(m["width"]), float(m["depth"]), color="gold")
-                        rect7=  patches.Rectangle((maison.x  , maison.y -maison.freespace), maison.width, maison.freespace,edgecolor="darkorange",facecolor="white")
-                        rect8=  patches.Rectangle((maison.x  + maison.width , maison.y), maison.freespace,maison.depth,edgecolor="darkorange",facecolor="white")
-                        rect9=  patches.Rectangle((maison.x  , maison.y  + maison.depth), maison.width, maison.freespace,edgecolor="darkorange",facecolor="white")
-                        rect10=  patches.Rectangle((maison.x -maison.freespace , maison.y ), maison.freespace, maison.depth,edgecolor="darkorange",facecolor="white")
-                        wedge5 = patches.Wedge((maison.x, maison.y), maison.freespace, 180, 270, edgecolor="darkorange",facecolor="white")
-                        wedge6 = patches.Wedge((maison.x + maison.width, maison.y), maison.freespace, 270, 360, edgecolor="darkorange",facecolor="white")
-                        wedge7 = patches.Wedge((maison.x+ maison.width, maison.y + maison.depth), maison.freespace, 0, 90, edgecolor="darkorange",facecolor="white")
-                        wedge8 = patches.Wedge((maison.x, maison.y  + maison.depth), maison.freespace, 90, 180,edgecolor="darkorange",facecolor="white")
-                        ax.add_patch(rect6)
-                        ax.add_patch(rect7)
-                        ax.add_patch(rect8)
-                        ax.add_patch(rect9)
-                        ax.add_patch(rect10)
-                        ax.add_patch(wedge5)
-                        ax.add_patch(wedge6)
-                        ax.add_patch(wedge7)
-                        ax.add_patch(wedge8)
+                        m_data = data["houses"]["m"]
+                        # create and show maison on grid
+                        m_rect = patches.Rectangle((m.x, m.y), float(m_data["width"]), float(m_data["depth"]), color="gold")
+                        ax.add_patch(m_rect)
+
+                        # show freespace for maison on grid
+                        show_freespace(m)
+
                         positive = True
             # water
             for i in range(4):
@@ -289,7 +284,7 @@ for repeat in range(1):
                 elif current_x <= other_x + other_width <= current_x + current_width and current_y <= other_y <= current_y + current_depth:
                     min_freespace = -1
                 # check if on grid
-                elif current_x + current_width + current_house.freespace > int(data["map"]["width"]) or current_y + current_depth + current_house.freespace > int(data["map"]["height"]):
+                elif current_x + current_width + current_house.freespace > amstel_width or current_y + current_depth + current_house.freespace > amstel_height:
                     min_freespace = -1
                 elif current_x - current_house.freespace < 0 or current_y - current_house.freespace < 0:
                     min_freespace = -1
@@ -362,11 +357,9 @@ print(repetition)
 plt.xlim(0, amstel_width)
 plt.ylim(0, amstel_height)
 
-
 major_xticks = np.arange(0, amstel_width, 1)
 
 major_yticks = np.arange(0, amstel_height, 1)
-
 
 plt.xticks(major_xticks)
 plt.yticks(major_yticks)
