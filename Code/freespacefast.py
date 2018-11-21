@@ -3,6 +3,7 @@ import matplotlib.patches as patches
 import numpy as np
 import random
 import json
+import csv
 from math import hypot
 from classes import *
 
@@ -132,7 +133,7 @@ def show_freespace(house):
 
 
 repetition = []
-for repeat in range(1):
+for repeat in range(5000):
     all_positive = False
     while all_positive == False:
         all_positive = True
@@ -345,15 +346,21 @@ for repeat in range(1):
             if current_house.extra_freespace < 0:
                 all_positive = False
 
-total = 0
-for house in houses:
-    total = total + house.total_price
-    print(house)
-repetition.append(total)
-repetition.sort()
+    total = 0
+    for house in houses:
+        total = total + house.total_price
+        # print(house)
+    repetition.append(total)
+    repetition.sort()
 
 # print(total)
 print(repetition)
+
+# write values to csv file
+# with open('randomwalk.csv', 'w', newline='') as f:
+#     writer = csv.writer(f)
+#     for item in repetition:
+#         writer.writerows([[item]])
 
 plt.xlim(0, amstel_width)
 plt.ylim(0, amstel_height)
