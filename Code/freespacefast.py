@@ -370,6 +370,5 @@ plt.xlabel("Width (in m)")
 
 # show map
 plt.title("Map AmstelHaege")
-fig.canvas.set_window_title("Map AmstelHaege")
 # plt.grid()
 plt.show()
