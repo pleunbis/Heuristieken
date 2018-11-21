@@ -136,6 +136,7 @@ for repeat in range(1):
     all_positive = False
     while all_positive == False:
         all_positive = True
+        plt.close("all")
         fig = plt.figure()
         ax = fig.add_subplot(111)
         Paste_house = True
@@ -169,7 +170,7 @@ for repeat in range(1):
                         ax.add_patch(sf_rect)
 
                         # show freespace for singlefamily on grid
-                        show_freespace(sf)
+                        # show_freespace(sf)
 
                         positive = True
 
@@ -198,7 +199,7 @@ for repeat in range(1):
                         ax.add_patch(b_rect)
 
                         # show freespace for bungalow on grid
-                        show_freespace(b)
+                        # show_freespace(b)
 
                         positive = True
                 # print(current_house)
@@ -228,32 +229,32 @@ for repeat in range(1):
                         ax.add_patch(m_rect)
 
                         # show freespace for maison on grid
-                        show_freespace(m)
+                        # show_freespace(m)
 
                         positive = True
-            # water
-            for i in range(4):
-                positive = False
-                while positive == False:
-                    # create random x and y
-                    x = random.randrange(0, amstel_width, 1)
-                    y = random.randrange(0, amstel_height, 1)
-
-                    # append to houses
-                    houses.append(Water(i + 20, x, y, 0))
-                    # print(Water(18, 20, x, y))
-
-                    # apply function
-                    water = calculate_freespace(houses)
-
-                    if water.extra_freespace < 0:
-                        del houses[-1]
-                    else:
-
-                        # create rectangle
-                        rect6 = patches.Rectangle((water.x, water.y), 18, 20, color="skyblue")
-                        ax.add_patch(rect6)
-                        positive = True
+            # # water
+            # for i in range(4):
+            #     positive = False
+            #     while positive == False:
+            #         # create random x and y
+            #         x = random.randrange(0, amstel_width, 1)
+            #         y = random.randrange(0, amstel_height, 1)
+            #
+            #         # append to houses
+            #         houses.append(Water(i + 20, x, y, 0))
+            #         # print(Water(18, 20, x, y))
+            #
+            #         # apply function
+            #         water = calculate_freespace(houses)
+            #
+            #         if water.extra_freespace < 0:
+            #             del houses[-1]
+            #         else:
+            #
+            #             # create rectangle
+            #             rect6 = patches.Rectangle((water.x, water.y), 18, 20, color="skyblue")
+            #             ax.add_patch(rect6)
+            #             positive = True
 
         for current_house in houses:
             min_freespace = 180.0
@@ -357,14 +358,18 @@ print(repetition)
 plt.xlim(0, amstel_width)
 plt.ylim(0, amstel_height)
 
-major_xticks = np.arange(0, amstel_width, 1)
+plt.ylabel("Length (in m)")
+plt.xlabel("Width (in m)")
 
-major_yticks = np.arange(0, amstel_height, 1)
+# major_xticks = np.arange(0, amstel_width, 1)
 
-plt.xticks(major_xticks)
-plt.yticks(major_yticks)
+# major_yticks = np.arange(0, amstel_height, 1)
+
+# plt.xticks(major_xticks)
+# plt.yticks(major_yticks)
 
 # show map
 plt.title("Map AmstelHaege")
-plt.grid()
+fig.canvas.set_window_title("Map AmstelHaege")
+# plt.grid()
 plt.show()
