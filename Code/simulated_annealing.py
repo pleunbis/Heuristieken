@@ -1,20 +1,32 @@
 from freespacefast import houses, amstel_width, amstel_height
 from matplotlib.ticker import FuncFormatter
+from hill_climber import hill_climber
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import numpy as np
 import random
+import math
 import json
 from math import hypot
 from classes import *
 
-def hill_climber(iterations):
+# exponentiele degrees function
+
+
+def simulated_annealing(iterations):
+
+    old_total = 0
+    for house in houses:
+        old_total = old_total + house.total_price
+
+    start_temperature = 0.2 * old_total
+    # print("start_temp", temperature)
 
     values = []
     counter = 0
 
     while counter < iterations:
-        print(counter)
+        # print(counter)
         # generates random house number to move
         house_number = random.randrange(0, len(houses), 1)
         # print(house_number)
@@ -142,12 +154,26 @@ def hill_climber(iterations):
             houses[house_number].y = old_y
         elif old_total > new_total:
             counter += 1
-            houses[house_number].x = old_x
-            houses[house_number].y = old_y
-            values.append(old_total)
+            reduction = new_total - old_total
+            # print("reduction", reduction)
+            temperature = start_temperature - math.pow((0.99 * iterations), counter)
+            # print("temperature", temperature)
+            p_acceptance = math.exp(reduction/temperature)
+            # print("p", p_acceptance)
+            random_number = random.randrange(0, 10000) / 10000
+            # print("random", random_number)
+            if random_number < p_acceptance:
+                values.append(new_total)
+            else:
+                houses[house_number].x = old_x
+                houses[house_number].y = old_y
+                values.append(old_total)
         else:
             counter += 1
             values.append(new_total)
+            temperature = start_temperature - math.pow(0.99 * iterations, counter)
+            # print("temperature", temperature)
+
 
         for current_house in houses:
             min_freespace = 180.0
@@ -254,7 +280,7 @@ def hill_climber(iterations):
     # plt.xticks(np.arange(0, 5000, 500))
     # plt.yticks(np.arange(0, 16000000, 1000000))
     fig = plt.gcf()
-    fig.canvas.set_window_title("Hill climber AmstelHaege")
+    fig.canvas.set_window_title("Simulated annealing AmstelHaege")
     plt.show()
 
 
@@ -305,5 +331,5 @@ def hill_climber(iterations):
 def millions(y, pos):
     return "%1.1f" % (y * 1e-6)
 
-
-hill_climber(5000)
+hill_climber(500)
+simulated_annealing(10000)

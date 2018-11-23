@@ -147,7 +147,7 @@ for repeat in range(1):
             houses = []
 
             # singlefamily houses
-            for i in range(36):
+            for i in range(12):
                 positive = False
                 while positive == False:
                     # create random x and y
@@ -176,7 +176,7 @@ for repeat in range(1):
                         positive = True
 
             # bungalows
-            for i in range(15):
+            for i in range(5):
                 positive = False
                 while positive == False:
                     # create random x and y
@@ -184,7 +184,7 @@ for repeat in range(1):
                     y = random.randrange(0, amstel_height, 1)
 
                     # append to houses
-                    houses.append(Bungalow(i + 36, x, y, 0))
+                    houses.append(Bungalow(i + 12, x, y, 0))
 
                     # calculate freespace for bungalow
                     b = calculate_freespace(houses)
@@ -206,7 +206,7 @@ for repeat in range(1):
                 # print(current_house)
 
             # maisons
-            for i in range(9):
+            for i in range(3):
                 positive = False
                 while positive == False:
                     # create random x and y
@@ -214,7 +214,7 @@ for repeat in range(1):
                     y = random.randrange(0, amstel_height, 1)
 
                     # append to houses
-                    houses.append(Maison(i + 51, x, y, 0))
+                    houses.append(Maison(i + 17, x, y, 0))
 
                     # calculate freespace for maison
                     m = calculate_freespace(houses)
