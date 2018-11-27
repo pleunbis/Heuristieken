@@ -1,4 +1,4 @@
-from freespacefast import houses, amstel_width, amstel_height
+from freespacefast import houses, amstel_width, amstel_height, calculate_freespace
 from matplotlib.ticker import FuncFormatter
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
@@ -10,12 +10,15 @@ from classes import *
 
 def hill_climber(iterations):
 
+
     values = []
     counter = 0
 
     while counter < iterations:
-        print(counter)
+
+        # print(counter)
         # generates random house number to move
+        # print(houses[:-4])
         house_number = random.randrange(0, len(houses), 1)
         # print(house_number)
 
@@ -33,8 +36,8 @@ def hill_climber(iterations):
             values.append(old_total)
 
         # create random x and y
-        new_x = random.randrange(0, 150, 1)
-        new_y = random.randrange(0, 170, 1)
+        new_x = random.randrange(0, amstel_width, 1)
+        new_y = random.randrange(0, amstel_height, 1)
         # print(new_x, new_y)
 
         houses[house_number].x = new_x
@@ -131,22 +134,25 @@ def hill_climber(iterations):
             if current_house.extra_freespace < 0:
                 all_positive = False
 
+        # print("freespace berekend")
+
         new_total = 0
         for house in houses:
             new_total = new_total + house.total_price
-            # print(house)
-        # print(new_total)
 
+        # print(all_positive, new_total)
         if not all_positive:
             houses[house_number].x = old_x
             houses[house_number].y = old_y
         elif old_total > new_total:
             counter += 1
+            # print("joe")
             houses[house_number].x = old_x
             houses[house_number].y = old_y
             values.append(old_total)
         else:
             counter += 1
+            # print("joe")
             values.append(new_total)
 
         for current_house in houses:
@@ -241,7 +247,7 @@ def hill_climber(iterations):
         # for house in houses:
         #     print(house)
 
-    print(values)
+    return values
 
     fig, ax = plt.subplots()
     plt.plot(values)
@@ -269,6 +275,8 @@ def hill_climber(iterations):
             color = "deeppink"
         elif house.width == 11:
             color = "gold"
+        elif house.width == 18:
+            color = "skyblue"
         sf_rect = patches.Rectangle((house.x, house.y), house.width, house.depth, color=color)
         ax.add_patch(sf_rect)
         print(house)
@@ -294,16 +302,19 @@ def hill_climber(iterations):
     # plt.grid()
     plt.show()
 
-# for range in (aantal_iteraties):
-    # a) Select a state that has not been yet applied to the current state and apply it to produce a new state.
-    #
-    # b) Perform these to evaluate new state
-    #     i. If the current state is a goal state, then stop and return success.
-    #     ii. If it is better than the current state, then make it current state and proceed further.
-    #     iii. If it is not better than the current state, then continue in the loop until a solution is found.
-
 def millions(y, pos):
     return "%1.1f" % (y * 1e-6)
 
+alle_hill = []
+for i in range(10):
+    alle_hill.append(hill_climber(50))
 
-hill_climber(5000)
+gem_hill = [0] * 51
+
+for hill in alle_hill:
+    for i in range(len(hill)):
+        gem_hill[i] += hill[i] / 10
+
+
+print(alle_hill)
+print(gem_hill)
