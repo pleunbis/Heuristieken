@@ -151,8 +151,8 @@ for repeat in range(1):
                 positive = False
                 while positive == False:
                     # create random x and y
-                    x = random.randrange(0, 150, 1)
-                    y = random.randrange(0, 170, 1)
+                    x = random.randrange(0, amstel_width, 1)
+                    y = random.randrange(0, amstel_height, 1)
 
                     # append to houses
                     houses.append(Singlefamily(i, x, y, 0))
@@ -233,7 +233,7 @@ for repeat in range(1):
                         # show_freespace(m)
 
                         positive = True
-            # # water
+            # water
             # for i in range(4):
             #     positive = False
             #     while positive == False:
@@ -242,7 +242,7 @@ for repeat in range(1):
             #         y = random.randrange(0, amstel_height, 1)
             #
             #         # append to houses
-            #         houses.append(Water(i + 20, x, y, 0))
+            #         houses.append(Water(i + 60, x, y, 0))
             #         # print(Water(18, 20, x, y))
             #
             #         # apply function
