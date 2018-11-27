@@ -107,23 +107,27 @@ def calculate_freespace(list):
 # shows calculated freespace around house on grid
 def show_freespace(house):
 
+    # colors
+    line = "darkorange"
+    fill = "white"
+
     # sides
-    downside = patches.Rectangle((house.x, house.y - house.freespace), house.width, house.freespace, edgecolor="darkorange", facecolor="white")
-    rightside = patches.Rectangle((house.x + house.width , house.y), house.freespace, house.depth, edgecolor="darkorange", facecolor="white")
-    upside = patches.Rectangle((house.x, house.y + house.depth), house.width, house.freespace, edgecolor="darkorange", facecolor="white")
-    leftside = patches.Rectangle((house.x - house.freespace, house.y), house.freespace, house.depth, edgecolor="darkorange", facecolor="white")
+    bottom = patches.Rectangle((house.x, house.y - house.freespace), house.width, house.freespace, edgecolor=line, facecolor=fill)
+    right = patches.Rectangle((house.x + house.width , house.y), house.freespace, house.depth, edgecolor=line, facecolor=fill)
+    top = patches.Rectangle((house.x, house.y + house.depth), house.width, house.freespace, edgecolor=line, facecolor=fill)
+    left = patches.Rectangle((house.x - house.freespace, house.y), house.freespace, house.depth, edgecolor=line, facecolor=fill)
 
     # corners
-    bottomleft = patches.Wedge((house.x, house.y), house.freespace, 180, 270, edgecolor="darkorange", facecolor="white")
-    bottomright = patches.Wedge((house.x + house.width, house.y), house.freespace, 270, 360, edgecolor="darkorange", facecolor="white")
-    topright = patches.Wedge((house.x + house.width, house.y + house.depth), house.freespace, 0, 90, edgecolor="darkorange", facecolor="white")
-    topleft = patches.Wedge((house.x, house.y + house.depth), house.freespace, 90, 180, edgecolor="darkorange", facecolor="white")
+    bottomleft = patches.Wedge((house.x, house.y), house.freespace, 180, 270, edgecolor=line, facecolor=fill)
+    bottomright = patches.Wedge((house.x + house.width, house.y), house.freespace, 270, 360, edgecolor=line, facecolor=fill)
+    topright = patches.Wedge((house.x + house.width, house.y + house.depth), house.freespace, 0, 90, edgecolor=line, facecolor=fill)
+    topleft = patches.Wedge((house.x, house.y + house.depth), house.freespace, 90, 180, edgecolor=line, facecolor=fill)
 
     # add on grid
-    ax.add_patch(downside)
-    ax.add_patch(rightside)
-    ax.add_patch(upside)
-    ax.add_patch(leftside)
+    ax.add_patch(bottom)
+    ax.add_patch(right)
+    ax.add_patch(top)
+    ax.add_patch(left)
     ax.add_patch(bottomleft)
     ax.add_patch(bottomright)
     ax.add_patch(topright)
