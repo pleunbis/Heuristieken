@@ -19,7 +19,7 @@ def simulated_annealing(iterations):
     for house in houses:
         old_total = old_total + house.total_price
 
-    start_temperature = 0.2 * old_total
+    temperature = 0.3 * old_total
     # print("start_temp", temperature)
 
     values = []
@@ -45,8 +45,8 @@ def simulated_annealing(iterations):
             values.append(old_total)
 
         # create random x and y
-        new_x = random.randrange(0, 150, 1)
-        new_y = random.randrange(0, 170, 1)
+        new_x = random.randrange(0, amstel_width, 1)
+        new_y = random.randrange(0, amstel_height, 1)
         # print(new_x, new_y)
 
         houses[house_number].x = new_x
@@ -154,9 +154,9 @@ def simulated_annealing(iterations):
             houses[house_number].y = old_y
         elif old_total > new_total:
             counter += 1
-            reduction = new_total - old_total
+            reduction =( new_total - old_total) * 0.6
             # print("reduction", reduction)
-            temperature = start_temperature - math.pow((0.99 * iterations), counter)
+            temperature = temperature * 0.99
             # print("temperature", temperature)
             p_acceptance = math.exp(reduction/temperature)
             # print("p", p_acceptance)
@@ -171,7 +171,7 @@ def simulated_annealing(iterations):
         else:
             counter += 1
             values.append(new_total)
-            temperature = start_temperature - math.pow(0.99 * iterations, counter)
+            temperature = temperature * 0.99
             # print("temperature", temperature)
 
 
@@ -331,5 +331,5 @@ def simulated_annealing(iterations):
 def millions(y, pos):
     return "%1.1f" % (y * 1e-6)
 
-hill_climber(500)
-simulated_annealing(10000)
+hill_climber(7000)
+simulated_annealing(6000)
