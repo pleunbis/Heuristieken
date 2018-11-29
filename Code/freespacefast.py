@@ -12,8 +12,8 @@ with open('Data/amstel.json') as file:
     data = json.load(file)
 
 # map dimensions
-amstel_width = int(data["map"]["width"])
-amstel_height = int(data["map"]["height"])
+amstel_width = data["map"]["width"]
+amstel_height = data["map"]["height"]
 
 # calculates freespace for each house in list
 def calculate_freespace(list):
@@ -137,7 +137,7 @@ def show_freespace(house):
 
 
 repetition = []
-for repeat in range(1):
+for repeat in range(5):
     all_positive = False
     while all_positive == False:
         all_positive = True
@@ -171,7 +171,7 @@ for repeat in range(1):
                     else:
                         sf_data = data["houses"]["sf"]
                         # create and show singlefamily house on grid
-                        sf_rect = patches.Rectangle((sf.x, sf.y), float(sf_data["width"]), float(sf_data["depth"]), color="blue")
+                        sf_rect = patches.Rectangle((sf.x, sf.y), sf_data["width"], sf_data["depth"], color="blue")
                         ax.add_patch(sf_rect)
 
                         # show freespace for singlefamily on grid
@@ -200,7 +200,7 @@ for repeat in range(1):
                     else:
                         b_data = data["houses"]["b"]
                         # create and show bungalow on grid
-                        b_rect = patches.Rectangle((b.x, b.y), float(b_data["width"]), float(b_data["depth"]), color="deeppink")
+                        b_rect = patches.Rectangle((b.x, b.y), b_data["width"], b_data["depth"], color="deeppink")
                         ax.add_patch(b_rect)
 
                         # show freespace for bungalow on grid
@@ -230,7 +230,7 @@ for repeat in range(1):
                     else:
                         m_data = data["houses"]["m"]
                         # create and show maison on grid
-                        m_rect = patches.Rectangle((m.x, m.y), float(m_data["width"]), float(m_data["depth"]), color="gold")
+                        m_rect = patches.Rectangle((m.x, m.y), m_data["width"], m_data["depth"], color="gold")
                         ax.add_patch(m_rect)
 
                         # show freespace for maison on grid
@@ -361,7 +361,7 @@ for repeat in range(1):
 print(repetition)
 
 # write values to csv file
-# with open('randomwalk.csv', 'w', newline='') as f:
+# with open('Results/randomwalk.csv', 'w', newline='') as f:
 #     writer = csv.writer(f)
 #     for item in repetition:
 #         writer.writerows([[item]])
@@ -369,8 +369,8 @@ print(repetition)
 plt.xlim(0, amstel_width)
 plt.ylim(0, amstel_height)
 
-plt.ylabel("Length (in m)")
-plt.xlabel("Width (in m)")
+plt.ylabel("Length (in m)", size=14)
+plt.xlabel("Width (in m)", size=14)
 
 # major_xticks = np.arange(0, amstel_width, 1)
 
@@ -380,6 +380,6 @@ plt.xlabel("Width (in m)")
 # plt.yticks(major_yticks)
 
 # show map
-plt.title("Map AmstelHaege")
+plt.title("Map AmstelHaege", size=18)
 # plt.grid()
 plt.show()

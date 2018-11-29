@@ -50,26 +50,26 @@ These are the steps we took in finding a solution for our case:
 		<td>1,54E + 89</td>
 	</tr>
 </table>
-			
+
 3. Calculation of the map score  
 	To be able to calculate the total value of the map, it is needed to write a function that calculates the amount of extra freespace of a house relative to another house (the more extra freespace surrounding a house, the higher its value will be). Only after this, it is possible to calculate the final total value of a house, and later of the whole map.
-	* Calculate the extra freespace per house
+	* Calculate the extra freespace per house  
 	This function calculates the amount of freespace of a house relative to his closest neighbour. First the function makes sure the houses will not overlap or (partly) fall out of the map. Hereafter, from each side and corner, the house will loop over the surrounding coordinates until it comes across the position of its neighbour. Having identified this position, the function calculates the extra freespace of the house and stores the outcome in its matching class attribute.
-	* Calculate the total value per house
+	* Calculate the total value per house  
 	In order for a house to be able to calculate its own improved value, a method is included in each of the subclasses. This method takes the original value of the house and multiplies it with the extra freespace multiplied by the percentage of priceimprovement.
 4. Random walk  
-	The first task has been to place the houses on the map randomly.
-	![Random walk](https://github.com/pleunbis/Heuristieken/blob/master/Code/Results/randomwalk.png)
+	The first task has been to place the houses on the map randomly. This is what the plot should look like after running the random function:  
+	![AmstelHaege random](https://github.com/pleunbis/Heuristieken/blob/master/Code/Results/amstelhaege.png)
 5. Algorithms
-	* [Hill climbing](https://www.geeksforgeeks.org/introduction-hill-climbing-artificial-intelligence/)
-	1. Evaluate the intitial state. If it is a goal state then stop and return success. Otherwise, make initial state as current state.
-	2. Loop until the solution state is found or there are no new operators present which can be applied to the current state.
+	1. [Hill climbing](https://www.geeksforgeeks.org/introduction-hill-climbing-artificial-intelligence/)
+	* Evaluate the intitial state. If it is a goal state then stop and return success. Otherwise, make initial state as current state.
+	* Loop until the solution state is found or there are no new operators present which can be applied to the current state.
 		* Select a state that has not been applied yet to the current state and apply it to produce a new state.
 		* Perform these to evaluate the new state
 			* If the current state is the goal state: stop and return success.
 			* If it is better than the current state: make it current state and proceed further
 			* If it is not better than the current state: continue in the loop until a solution is found
-	* Simulated annealing
+	2. Simulated annealing
 6. Add water to the map
 
 ## Prerequisites
