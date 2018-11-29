@@ -49,7 +49,8 @@ These are the steps we took in finding a solution for our case:
 		<td> </td>
 		<td>1,54E + 89</td>
 	</tr>
-</table>			
+</table>
+			
 3. Calculation of the map score  
 	To be able to calculate the total value of the map, it is needed to write a function that calculates the amount of extra freespace of a house relative to another house (the more extra freespace surrounding a house, the higher its value will be). Only after this, it is possible to calculate the final total value of a house, and later of the whole map.
 	* Calculate the extra freespace per house
