@@ -305,16 +305,20 @@ def hill_climber(iterations):
 def millions(y, pos):
     return "%1.1f" % (y * 1e-6)
 
-alle_hill = []
-for i in range(10):
-    alle_hill.append(hill_climber(50))
 
-gem_hill = [0] * 51
-
-for hill in alle_hill:
-    for i in range(len(hill)):
-        gem_hill[i] += hill[i] / 10
+hill_climber(2000)
 
 
-print(alle_hill)
-print(gem_hill)
+# alle_hill = []
+# for i in range(10):
+#     alle_hill.append(hill_climber(50))
+#
+# gem_hill = [0] * 51
+#
+# for hill in alle_hill:
+#     for i in range(len(hill)):
+#         gem_hill[i] += hill[i] / 10
+#
+#
+# print(alle_hill)
+# print(gem_hill)
