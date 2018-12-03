@@ -20,7 +20,7 @@ class Maison(House_Type):
         self.y = y
         self.extra_freespace = extra_freespace
     def __str__(self):
-        return str(self.id) + ", " + str(self.x) + ", " + str(self.y) + ", " + str(self.extra_freespace) + ", " + str(self.total_price) + ", " + str(self.direction) + ", " + str(self.max_freespace)
+        return str(self.id) + ", " + str(self.x) + ", " + str(self.y) + ", " + str(self.extra_freespace) + ", " + str(self.total_price)
     def calculateprice(self):
         self.total_price = self.value * (1 + self.extra_freespace * self.price_improvement)
         return round(self.total_price, 2)
@@ -33,7 +33,7 @@ class Bungalow(House_Type):
         self.y = y
         self.extra_freespace = extra_freespace
     def __str__(self):
-        return str(self.id) + ", " + str(self.x) + ", " + str(self.y) + ", " + str(self.extra_freespace) + ", " + str(self.total_price) + ", " + str(self.direction) + ", " + str(self.max_freespace)
+        return str(self.id) + ", " + str(self.x) + ", " + str(self.y) + ", " + str(self.extra_freespace) + ", " + str(self.total_price)
     def calculateprice(self):
         self.total_price = self.value * (1 + self.extra_freespace * self.price_improvement)
         return round(self.total_price, 2)
@@ -46,7 +46,7 @@ class Singlefamily(House_Type):
         self.y = y
         self.extra_freespace = extra_freespace
     def __str__(self):
-        return str(self.id) + ", " + str(self.x) + ", " + str(self.y) + ", " + str(self.extra_freespace) + ", " + str(self.total_price) + ", " + str(self.direction) + ", " + str(self.max_freespace)
+        return str(self.id) + ", " + str(self.x) + ", " + str(self.y) + ", " + str(self.extra_freespace) + ", " + str(self.total_price)
     def calculateprice(self):
         self.total_price = self.value * (1 + self.extra_freespace * self.price_improvement)
         return round(self.total_price, 2)
