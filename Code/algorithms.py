@@ -263,7 +263,7 @@ def simulated_annealing(houses, iterations):
             houses[house_number].y = old_y
         elif old_total > new_total:
             counter += 1
-            reduction =( new_total - old_total) * 0.6
+            reduction = (new_total - old_total) * 0.6
             temperature = temperature * 0.99
             p_acceptance = math.exp(reduction/temperature)
             random_number = random.randrange(0, 10000) / 10000
@@ -306,5 +306,6 @@ def simulated_annealing(houses, iterations):
 
     return houses
 
-# hill_climber(20)
-# simulated_annealing(20)
+# houses = random_start(20)
+# houses = hill_climber(houses, 500)
+# simulated_annealing(houses, 2000)
