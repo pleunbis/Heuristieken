@@ -137,7 +137,7 @@ def show_freespace(house):
 
 
 repetition = []
-for repeat in range(5):
+for repeat in range(1):
     all_positive = False
     while all_positive == False:
         all_positive = True
@@ -366,6 +366,8 @@ print(repetition)
 #     for item in repetition:
 #         writer.writerows([[item]])
 
+ax.set_facecolor("green")
+
 plt.xlim(0, amstel_width)
 plt.ylim(0, amstel_height)
 
@@ -373,9 +375,9 @@ plt.ylabel("Length (in m)", size=14)
 plt.xlabel("Width (in m)", size=14)
 
 # major_xticks = np.arange(0, amstel_width, 1)
-
+#
 # major_yticks = np.arange(0, amstel_height, 1)
-
+#
 # plt.xticks(major_xticks)
 # plt.yticks(major_yticks)
 
