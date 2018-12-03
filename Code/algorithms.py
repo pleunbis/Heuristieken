@@ -10,7 +10,7 @@ from math import hypot
 from classes import *
 import math
 
-def random_start():
+def random_start(nr_houses):
     repetition = []
     for repeat in range(1):
         all_positive = False
@@ -26,7 +26,7 @@ def random_start():
                 houses = []
 
                 # singlefamily houses
-                for i in range(12):
+                for i in range(int(0.6 * nr_houses)):
                     positive = False
                     while positive == False:
                         # create random x and y
@@ -56,7 +56,7 @@ def random_start():
                             positive = True
 
                 # bungalows
-                for i in range(5):
+                for i in range(int(0.25 * nr_houses)):
                     positive = False
                     while positive == False:
                         # create random x and y
@@ -64,7 +64,7 @@ def random_start():
                         y = random.randrange(0, amstel_height, 1)
 
                         # append to houses
-                        houses.append(Bungalow(i + 12, x, y, 0))
+                        houses.append(Bungalow(int(i + 0.6 * nr_houses), x, y, 0))
 
                         # calculate freespace for bungalow
                         current_house = houses[-1]
@@ -86,7 +86,7 @@ def random_start():
                             positive = True
 
                 # maisons
-                for i in range(3):
+                for i in range(int(0.15 * nr_houses)):
                     positive = False
                     while positive == False:
                         # create random x and y
@@ -94,7 +94,7 @@ def random_start():
                         y = random.randrange(0, amstel_height, 1)
 
                         # append to houses
-                        houses.append(Maison(i + 17, x, y, 0))
+                        houses.append(Maison(int(i + 0.85 * nr_houses), x, y, 0))
 
                         # calculate freespace for maison
                         current_house = houses[-1]
