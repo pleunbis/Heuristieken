@@ -50,9 +50,9 @@ This repository contains two main folders: *Code* and *Experiments*.
 
 ## Approach
 These are the steps we took in finding a solution for our case:  
-1. **Create a map and add houses**  
+1. Create a map and add houses  
 Using *Matplotlib* we plotted a map of AmstelHaege. Then we created classes for each housetype, containing attributes for the requirements (main class) and for the id, coordinates and extra freespace (subclasses). These classes are loaded into a script and being called upon, in order to be able to easily place multiple houses onto the map that each fulfill all requirements. When adding the houses to the map, a singlefamily house will appear as a blue rectangle, a bungalow as a pink one and a maison as a yellow one.
-2. **Calculation of the state space**  
+2. Calculation of the state space  
 In order to determine in how many ways twenty houses can be placed onto the map (160 x 180), we used this calculation of the state space:
 <table>
 	<tr>
@@ -78,11 +78,11 @@ In order to determine in how many ways twenty houses can be placed onto the map 
 	<tr>
 		<td> </td>
 		<td> </td>
-		<td>**1,54E + 89**</td>
+		<td>1,54E + 89</td>
 	</tr>
 </table>
 
-3. **Calculation of the map score**  
+3. Calculation of the map score  
 In order to find solutions within a correct range, we calculated an upperbound and lowerbound of the total map score of AmstelHaege (for 20 houses).
 * Lowerbound (20 houses)  
 Without any extra freespace, the total score of the map will be **€7.245.000**  
@@ -116,7 +116,7 @@ Without any extra freespace, the total score of the map will be **€7.245.000**
 		<td> </td>
 		<td> </td>
 		<td> </td>
-		<td>**€7.245.000**</td>
+		<td>€7.245.000</td>
 	</tr>
 </table>
 
@@ -178,10 +178,9 @@ The first table illustrates our calculation of the upperbound. First, the length
 	</tr>
 </table>  
 
-
 The second table shows our final calculation of the upperbound:  
 
-price x (1 + (price improvement x rounded number of extra freespace))
+*price x (1 + (price improvement x rounded number of extra freespace))*  
 
 (The rounded number of extra freespace is taken from last column of the first table)  
 
@@ -211,25 +210,27 @@ Adding up these calculated values for each housetype, this makes up a total of *
 	<tr>
 		<td> </td>
 		<td> </td>
-		<td>**€29.143.800**</td>
+		<td>€29.143.800</td>
 	</tr>
 </table>
+
 
 Now that we have calculated the state space of the total score, we can start looking to the calculation of a real map. To be able to calculate the total value of the map, it is needed to write a function that calculates the amount of extra freespace of a house relative to another house (the more extra freespace surrounding a house, the higher its value will be). Only after this, it is possible to calculate the final total value of a house, and later of the whole map.
 * Calculate the extra freespace per house (*calculate_freespace()*)  
 This function calculates the amount of freespace of a house relative to his closest neighbor. First the function makes sure the houses will not overlap or (partly) fall out of the map. Hereafter, from each side and corner, the house will loop over the surrounding coordinates until it comes across the position of its neighbor. Having identified this position, the function calculates the extra freespace of the house and stores the outcome in its matching class attribute.
 * Calculate the total value per house (*calculateprice()*)  
 In order for a house to be able to calculate its own improved value, a method is included in each of the subclasses. This method takes the original value of the house and multiplies it with the extra freespace multiplied by the percentage of price improvement.
-4. **Algorithms**  
-* *Random*  
+4. Algorithms  
+* **Random**  
 The first task has been to place the houses on the map randomly. Using the function that calculates the extra freespace (as explained above),
 The random function iterates over the assigned amount of houses of each different house type, and appends each houses' id, random coordinates and extra freespace to the total list of houses. Hereafter, using the functions *calculate_freespace()* and *calculateprice()*, the random algorithm calculates the extra freespace and price of each house and adds these values to the list. Having calculated these values, the rectangles can be created and added to the grid.
 In order to merge every house of a different house type together to one list, the functions described above are used once more for the entire list of houses.  
+
 Running the random algorithm for twenty houses should give you a plot like this:  
 ![AmstelHaege random](https://github.com/pleunbis/Heuristieken/blob/master/Code/Results/amstelhaege.png)
-* *Hill climbing*
+* **Hill climbing**  
 The hill climber algorithm works as follows.  
-Loop until the demanded number of iterations has been executed:
+Loop until the demanded number of iterations has been executed:  
 1. Calculate the value of the current map
 2. Randomly pick a house that will get a new position
 3. Calculate the freespace and value of the new map
@@ -237,9 +238,9 @@ Loop until the demanded number of iterations has been executed:
 	* If the new value is better than or equal to the old value, the new map is accepted
 	* If the old value is better than the new value, continue with the old map
 
-* *Simulated annealing*  
+* **Simulated annealing**  
 The simulated annealing algorithm works as follows.  
-Loop until the demanded number of iterations has been executed:
+Loop until the demanded number of iterations has been executed:  
 1. Calculate the value of the  current map
 2. Randomly pick a house will get a new position
 3. Randomly pick a new x and y coordinate to place the house
@@ -248,20 +249,20 @@ Loop until the demanded number of iterations has been executed:
 	* If the new value is better than or equal to the old value, the new map is accepted
 	* If the old value is better than the new value, the acceptance probability determines whether or not this solution is accepted.
 
-	* *Acceptance probability*
-	The acceptance probability is calculated with the following formula:  
-	p = e ^ reduction/temperature  
-	Where reduction = (new value – old value) * 0.6  
-	[Source](https://www.dropbox.com/sh/g40noo93tnhy7jq/AAAW22CPLIPu_tHR2sfAq6T2a?dl=0&preview=3+-+Iteratieve+Zoekmethoden.pdf)
+*Acceptance probability*  
+The acceptance probability is calculated with the following formula:  
+p = e ^ reduction/temperature  
+Where reduction = (new value – old value) * 0.6  
+[Source](https://www.dropbox.com/sh/g40noo93tnhy7jq/AAAW22CPLIPu_tHR2sfAq6T2a?dl=0&preview=3+-+Iteratieve+Zoekmethoden.pdf)
 
-	* *Cooling scheme*
-	The cooling scheme used in the simulated annealing algorithm is the following:  
-	Start temperature = 0.3 x objective function of start map
+*Cooling scheme*  
+The cooling scheme used in the simulated annealing algorithm is the following:  
+Start temperature = 0.3 x objective function of start map
 
-	For every iteration the temperature will be recalculated with this function:  
-	Temperature = temperature x 0.99
+For every iteration the temperature will be recalculated with this function:  
+Temperature = temperature x 0.99
 
-6. **Add water to the map**  
+6. Add water to the map  
 
 ## Prerequisites
 * [Python 3.6](https://www.python.org/downloads/)
