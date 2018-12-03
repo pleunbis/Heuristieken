@@ -226,7 +226,7 @@ The first task has been to place the houses on the map randomly. Using the funct
 The random function iterates over the assigned amount of houses of each different house type, and appends each houses' id, random coordinates and extra freespace to the total list of houses. Hereafter, using the functions *calculate_freespace()* and *calculateprice()*, the random algorithm calculates the extra freespace and price of each house and adds these values to the list. Having calculated these values, the rectangles can be created and added to the grid.
 In order to merge every house of a different house type together to one list, the functions described above are used once more for the entire list of houses.  
 
-Running the random algorithm for twenty houses should give you a plot like this:  
+	Running the random algorithm for twenty houses should give you a plot like this:  
 ![AmstelHaege random](https://github.com/pleunbis/Heuristieken/blob/master/Code/Results/amstelhaege.png)
 * **Hill climbing**  
 The hill climber algorithm works as follows.  
@@ -249,18 +249,18 @@ Loop until the demanded number of iterations has been executed:
 	* If the new value is better than or equal to the old value, the new map is accepted
 	* If the old value is better than the new value, the acceptance probability determines whether or not this solution is accepted.
 
-*Acceptance probability*  
-The acceptance probability is calculated with the following formula:  
-p = e ^ reduction/temperature  
-Where reduction = (new value – old value) * 0.6  
-[Source](https://www.dropbox.com/sh/g40noo93tnhy7jq/AAAW22CPLIPu_tHR2sfAq6T2a?dl=0&preview=3+-+Iteratieve+Zoekmethoden.pdf)
+	*Acceptance probability*  
+	The acceptance probability is calculated with the following formula:  
+	p = e ^ reduction/temperature  
+	Where reduction = (new value – old value) * 0.6  
+	[(Source)](https://www.dropbox.com/sh/g40noo93tnhy7jq/AAAW22CPLIPu_tHR2sfAq6T2a?dl=0&preview=3+-+Iteratieve+Zoekmethoden.pdf)
 
-*Cooling scheme*  
-The cooling scheme used in the simulated annealing algorithm is the following:  
-Start temperature = 0.3 x objective function of start map
+	*Cooling scheme*  
+	The cooling scheme used in the simulated annealing algorithm is the following:  
+	Start temperature = 0.3 x objective function of start map
 
-For every iteration the temperature will be recalculated with this function:  
-Temperature = temperature x 0.99
+	For every iteration the temperature will be recalculated with this function:  
+	Temperature = temperature x 0.99
 
 6. Add water to the map  
 
