@@ -16,7 +16,7 @@ nr_houses = int(sys.argv[1])
 houses = random_start(nr_houses)
 
 # run hill climber with 10 iterations
-houses = hill_climber(houses, 10)
+houses = hill_climber(houses, 10)[0]
 
 # run simulated annealing with 10 iterations
-simulated_annealing(houses, 10)
+simulated_annealing(houses, 10)[0]

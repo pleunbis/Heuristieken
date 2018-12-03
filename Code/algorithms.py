@@ -124,13 +124,13 @@ def random_start(nr_houses):
         total = 0
         for house in houses:
             total = total + house.total_price
-            print(house)
+            # print(house)
         repetition.append(total)
         repetition.sort()
 
-    print(repetition)
+    # print(total)
 
-    plot_map(ax, fig)
+    # plot_map(ax, fig)
 
     return houses
 
@@ -190,7 +190,7 @@ def hill_climber(houses, iterations):
             if current_house.extra_freespace < 0:
                 all_positive = False
 
-    plot_graph(values, "Hill climber AmstelHaege")
+    # plot_graph(values, "Hill climber AmstelHaege")
 
     # plt.close("all")
     fig = plt.figure()
@@ -206,13 +206,13 @@ def hill_climber(houses, iterations):
             color = "skyblue"
         sf_rect = patches.Rectangle((house.x, house.y), house.width, house.depth, color=color)
         ax.add_patch(sf_rect)
-        print(house)
+        # print(house)
 
-    print(max(old_total, new_total))
+    # print(max(old_total, new_total))
 
-    plot_map(ax, fig)
+    # plot_map(ax, fig)
 
-    return houses
+    return [houses, values]
 
 def simulated_annealing(houses, iterations):
 
@@ -263,7 +263,7 @@ def simulated_annealing(houses, iterations):
             houses[house_number].y = old_y
         elif old_total > new_total:
             counter += 1
-            reduction =( new_total - old_total) * 0.6
+            reduction = (new_total - old_total) * 0.6
             temperature = temperature * 0.99
             p_acceptance = math.exp(reduction/temperature)
             random_number = random.randrange(0, 10000) / 10000
@@ -284,9 +284,9 @@ def simulated_annealing(houses, iterations):
             if current_house.extra_freespace < 0:
                 all_positive = False
 
-    print(values)
+    # print(values)
 
-    plot_graph(values, "Simulated annealing AmstelHaege")
+    # plot_graph(values, "Simulated annealing AmstelHaege")
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
@@ -300,11 +300,12 @@ def simulated_annealing(houses, iterations):
         rect = patches.Rectangle((house.x, house.y), house.width, house.depth, color=color)
         ax.add_patch(rect)
 
-    print(max(old_total, new_total))
+    # print(max(old_total, new_total))
 
-    plot_map(ax, fig)
+    # plot_map(ax, fig)
 
-    return houses
+    return [houses, values]
 
-# hill_climber(20)
-# simulated_annealing(20)
+# houses = random_start(20)
+# houses = hill_climber(houses, 500)
+# simulated_annealing(houses, 2000)
