@@ -6,23 +6,12 @@ from classes import *
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
+# def add_water()
 Info = namedtuple('Info', 'start height')
 
 def max_rect(mat, value=0):
     """returns (height, width, left_column, bottom_row) of the largest rectangle
     containing all `value`'s.
-
-    Example:
-    [[0, 0, 0, 0, 0, 0, 0, 0, 3, 2],
-     [0, 4, 0, 2, 4, 0, 0, 1, 0, 0],
-     [1, 0, 1, 0, 0, 0, 3, 0, 0, 4],
-     [0, 0, 0, 0, 4, 2, 0, 0, 0, 0],
-     [0, 0, 0, 2, 0, 0, 0, 0, 0, 0],
-     [4, 3, 0, 0, 1, 2, 0, 0, 0, 0],
-     [3, 0, 0, 0, 2, 0, 0, 0, 0, 4],
-     [0, 0, 0, 1, 0, 3, 2, 4, 3, 2],
-     [0, 3, 0, 0, 0, 2, 0, 1, 0, 0]]
-     gives: (3, 4, 6, 5)
     """
     it = iter(mat)
     hist = [(el==value) for el in next(it, [])]
