@@ -247,7 +247,7 @@ def hill_climber(iterations):
         # for house in houses:
         #     print(house)
 
-    return values
+    # return values
 
     fig, ax = plt.subplots()
     plt.plot(values)
