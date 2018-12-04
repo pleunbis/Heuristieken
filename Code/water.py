@@ -70,7 +70,7 @@ for house in houses:
     width = int(house.width * 2)
     depth = int(house.depth * 2)
 
-    matrix[0][0]= 3
+
     for i in range(x, x + width):
         for j in range(y, y + depth):
             matrix[i][j] = 1
