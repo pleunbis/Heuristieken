@@ -180,6 +180,7 @@ The first table illustrates our calculation of the upperbound. First, the length
 
 The second table shows our final calculation of the upperbound:  
 
+Objective function:
 *price x (1 + (price improvement x rounded number of extra freespace))*  
 
 (The rounded number of extra freespace is taken from last column of the first table)  
@@ -228,7 +229,7 @@ In order to merge every house of a different house type together to one list, th
 
 	Running the random algorithm for twenty houses should give you a plot like this:  
 ![AmstelHaege random](https://github.com/pleunbis/Heuristieken/blob/master/Code/Results/amstelhaege.png)
-* **Hill climbing**  
+**Hill climbing**  
 The hill climber algorithm works as follows.  
 Loop until the demanded number of iterations has been executed:  
 1. Calculate the value of the current map
@@ -238,7 +239,7 @@ Loop until the demanded number of iterations has been executed:
 	* If the new value is better than or equal to the old value, the new map is accepted
 	* If the old value is better than the new value, continue with the old map
 
-* **Simulated annealing**  
+**Simulated annealing**  
 The simulated annealing algorithm works as follows.  
 Loop until the demanded number of iterations has been executed:  
 1. Calculate the value of the  current map
@@ -249,13 +250,13 @@ Loop until the demanded number of iterations has been executed:
 	* If the new value is better than or equal to the old value, the new map is accepted
 	* If the old value is better than the new value, the acceptance probability determines whether or not this solution is accepted.
 
-	*Acceptance probability*  
+* Acceptance probability  
 	The acceptance probability is calculated with the following formula:  
 	p = e ^ reduction/temperature  
 	Where reduction = (new value – old value) * 0.6  
-	[(Source)](https://www.dropbox.com/sh/g40noo93tnhy7jq/AAAW22CPLIPu_tHR2sfAq6T2a?dl=0&preview=3+-+Iteratieve+Zoekmethoden.pdf)
+	[Source](https://www.dropbox.com/sh/g40noo93tnhy7jq/AAAW22CPLIPu_tHR2sfAq6T2a?dl=0&preview=3+-+Iteratieve+Zoekmethoden.pdf)
 
-	*Cooling scheme*  
+* Cooling scheme   
 	The cooling scheme used in the simulated annealing algorithm is the following:  
 	Start temperature = 0.3 x objective function of start map
 
@@ -263,6 +264,7 @@ Loop until the demanded number of iterations has been executed:
 	Temperature = temperature x 0.99
 
 6. Add water to the map  
+![AmstelHaege water](https://github.com/pleunbis/Heuristieken/blob/master/Code/Results/amstelhaege_water.png)
 
 ## Prerequisites
 * [Python 3.6](https://www.python.org/downloads/)
