@@ -53,8 +53,9 @@ def max_rectangle_size(histogram):
     pos += 1
     for start, height in stack:
         max_size = max(max_size, (height, (pos - start), start), key=area)
-
+        # print(max_size)
     return max_size
+    print(max_size)
 
 def area(size):
     return size[0] * size[1]
@@ -64,19 +65,23 @@ matrix = np.zeros((360, 320))
 for house in houses:
     x = int(house.x * 2)
     y = int(house.y * 2)
+    print(x)
+    print(y)
     width = int(house.width * 2)
     depth = int(house.depth * 2)
 
+    matrix[0][0]= 3
     for i in range(x, x + width):
         for j in range(y, y + depth):
             matrix[i][j] = 1
+    # print("joe")
 
-# print(matrix)
+print(matrix)
 waters = []
 opp = 0
 while opp < 0.2 * (180 * 160):
     max_rect1 = max_rect(matrix)
-
+    print(max_rect1)
     height = max_rect1[0]
     width = max_rect1[1]
     left_column = max_rect1[2]
@@ -88,7 +93,11 @@ while opp < 0.2 * (180 * 160):
 
     opp += width * height
 
-    waters.append(Water(float(left_column / 2), float((bottom_row - (height - 1)) / 2), float(width / 2), float(height / 2)))
+    # het tweede getalletje klopt niet
+    # waters.append(Water(float(left_column / 2), float((bottom_row - (height - 1)) / 2), float(width / 2), float(height / 2)))
+    waters.append(Water(float(left_column / 2), float((bottom_row - (height-1)) / 2), float(width / 2), float(height / 2)))
+    for water in waters:
+        print(water)
 
     print(matrix)
     print(opp)
@@ -106,7 +115,8 @@ for house in houses:
     ax.add_patch(sf_rect)
 
 for water in waters:
-    sf_rect = patches.Rectangle((water.x, water.y), water.width, water.height, color="skyblue")
+    # sf_rect = patches.Rectangle((water.x, water.y), water.width,  water.height, color="skyblue")
+    sf_rect = patches.Rectangle((water.y, water.x), water.height,water.width, color="skyblue")
     ax.add_patch(sf_rect)
 
 plt.xlim(0, amstel_width)
