@@ -223,6 +223,7 @@ This function calculates the amount of freespace of a house relative to his clos
 In order for a house to be able to calculate its own improved value, a method is included in each of the subclasses. This method takes the original value of the house and multiplies it with the extra freespace multiplied by the percentage of price improvement.
 
 4. ALGORITHMS  
+
 **Random**  
 The first task has been to place the houses on the map randomly. Using the function that calculates the extra freespace (as explained above),
 The random function iterates over the assigned amount of houses of each different house type, and appends each houses' id, random coordinates and extra freespace to the total list of houses. Hereafter, using the functions *calculate_freespace()* and *calculateprice()*, the random algorithm calculates the extra freespace and price of each house and adds these values to the list. Having calculated these values, the rectangles can be created and added to the grid.

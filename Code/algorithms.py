@@ -10,27 +10,26 @@ from math import hypot
 from classes import *
 import math
 
-# Generates a random startgrid.
 def random_start(nr_houses):
+    """Generates a random start map"""
     repetition = []
 
-    # Generates one time a grid.
     for repeat in range(1):
 
-        # Boolean keep track if house can be placed.
+        # Boolean keeps track if house can be placed.
         all_positive = False
         while all_positive == False:
             all_positive = True
             plt.close("all")
-            fig = plt.figure()
-            ax = fig.add_subplot(111)
+            # fig = plt.figure()
+            # ax = fig.add_subplot(111)
             Paste_house = True
 
             while Paste_house == True:
                 Paste_house = False
                 houses = []
 
-                # Place the singlefamily houses.
+                # Add the singlefamily houses.
                 for i in range(int(0.6 * nr_houses)):
                     positive = False
                     while positive == False:
@@ -49,22 +48,14 @@ def random_start(nr_houses):
                         # Call calculateprice to calculate the price.
                         sf.calculateprice()
 
-                        # If houses overlap, delete this house.
+                        # If houses overlap, delete this house from list.
                         if sf.extra_freespace < 0:
                             del houses[-1]
-
-                        # Add house to grid.
                         else:
-                            sf_data = data["houses"]["sf"]
-
-                            # Create and show singlefamily house on grid
-                            sf_rect = patches.Rectangle((sf.x, sf.y), sf_data["width"], sf_data["depth"], color="blue")
-                            ax.add_patch(sf_rect)
-
-                            # House is placed, go to the next house.
+                            # House is added, go to the next house.
                             positive = True
 
-                # Place the bungalows.
+                # Add the bungalows.
                 for i in range(int(0.25 * nr_houses)):
                     positive = False
                     while positive == False:
@@ -78,25 +69,19 @@ def random_start(nr_houses):
 
                         # Calculate freespace for bungalow.
                         current_house = houses[-1]
-                        b = calculate_freespace(current_house, houses)
+                        bgl = calculate_freespace(current_house, houses)
 
                         # Calculate price.
-                        b.calculateprice()
+                        bgl.calculateprice()
 
-                        # If houses overlap, delete last placed house.
-                        if b.extra_freespace < 0:
+                        # If houses overlap, delete this house from list.
+                        if bgl.extra_freespace < 0:
                             del houses[-1]
                         else:
-                            b_data = data["houses"]["b"]
-
-                            # Create and show bungalow on grid.
-                            b_rect = patches.Rectangle((b.x, b.y), b_data["width"], b_data["depth"], color="deeppink")
-                            ax.add_patch(b_rect)
-
-                            # House is placed, go to next house.
+                            # House is added, go to next house.
                             positive = True
 
-                # # Place the maisons.
+                # Add the maisons.
                 for i in range(int(0.15 * nr_houses)):
                     positive = False
                     while positive == False:
@@ -110,27 +95,21 @@ def random_start(nr_houses):
 
                         # Calculate freespace for maison.
                         current_house = houses[-1]
-                        m = calculate_freespace(current_house, houses)
+                        ms = calculate_freespace(current_house, houses)
 
                         # Calculate price.
-                        m.calculateprice()
+                        ms.calculateprice()
 
-                        # If house overlap, delete.
-                        if m.extra_freespace < 0:
+                        # If houses overlap, delete this house from list.
+                        if ms.extra_freespace < 0:
                             del houses[-1]
                         else:
-                            m_data = data["houses"]["m"]
-
-                            # Create and show maison on grid.
-                            m_rect = patches.Rectangle((m.x, m.y), m_data["width"], m_data["depth"], color="gold")
-                            ax.add_patch(m_rect)
-
-                            # House is placed, go to next house.
+                            # House is added, go to next house.
                             positive = True
 
-            # add water to startgrid
-            add_water(houses)
-            #
+            # Add water
+            waters = add_water(houses)
+
             # # when there is no space for water
             # if space_for_water == False:
             #     all_positive = False
@@ -144,21 +123,21 @@ def random_start(nr_houses):
                 if current_house.extra_freespace < 0:
                     all_positive = False
 
-
-        # Calculate total grid pice.
+        # Calculate the total price of the map.
         total = 0
         for house in houses:
-            total +=  house.total_price
+            total += house.total_price
 
         repetition.append(total)
         repetition.sort()
 
     # print(total)
-    plot_map(ax, fig)
+
+    create_map(houses, waters)
 
     return houses
 
-# Function for Hill Climber.
+# Function for Hill Climber
 def hill_climber(houses, iterations):
 
     # List which keeps track of the new values.
@@ -186,7 +165,7 @@ def hill_climber(houses, iterations):
         if len(values) == 0:
             values.append(old_total)
 
-        # Create random  x en y for new place for the random chosen house.
+        # Create random x en y for new place for the random chosen house.
         new_x = random.randrange(0, amstel_width, 1)
         new_y = random.randrange(0, amstel_height, 1)
 
@@ -197,12 +176,12 @@ def hill_climber(houses, iterations):
         # Variable keeps track if random swap is valid.
         all_positive = True
 
-        # Calculate if the grid is valid.
+        # Calculate the freespace of each house in list.
         for current_house in houses:
             calculate_freespace(current_house, houses)
             current_house.calculateprice()
 
-            # If the grid is not valid, start again.
+            # If the amount of extra freespace is negative, start again.
             if current_house.extra_freespace < 0:
                 all_positive = False
 
@@ -211,22 +190,25 @@ def hill_climber(houses, iterations):
         for house in houses:
             new_total += house.total_price
 
-        # If hte grid is not valid, swap random chosen house back to old x and y.
+        # If the map is not valid, swap random chosen house back to old x and y.
         if not all_positive:
             houses[house_number].x = old_x
             houses[house_number].y = old_y
 
-        # If the grid is valid but the value is lower than old total.
+        # If the map is valid but the value is lower than old total.
         elif old_total > new_total:
             counter += 1
             houses[house_number].x = old_x
             houses[house_number].y = old_y
             values.append(old_total)
         else:
-
-            # If grid value is higher, we have a valid iteration so add one to counter and append the new higer value to values.
+            # If map value is higher, we have a valid iteration so add one to counter and append the new higher value to values.
             counter += 1
             values.append(new_total)
+
+        # print(max(old_total, new_total))
+
+        waters = add_water(houses)
 
         # VERA HIER NA KIJKEN, IS DIT NOG NODIG?
         for current_house in houses:
@@ -235,32 +217,14 @@ def hill_climber(houses, iterations):
             if current_house.extra_freespace < 0:
                 all_positive = False
 
-    # plot_graph(values, "Hill climber AmstelHaege")
-
-    # plt.close("all")
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    for house in houses:
-        if house.width == 8:
-            color = "blue"
-        elif house.width == 10:
-            color = "deeppink"
-        elif house.width == 11:
-            color = "gold"
-        elif house.width == 18:
-            color = "skyblue"
-        sf_rect = patches.Rectangle((house.x, house.y), house.width, house.depth, color=color)
-        ax.add_patch(sf_rect)
-
-    # print(max(old_total, new_total))
-    # plot_map(ax, fig)
+    create_map(houses, waters)
 
     return [houses, values]
 
 # Function for Simulated Annealing.
 def simulated_annealing(houses, iterations):
 
-    # Caculate the old total.
+    # Calculate the old total.
     old_total = 0
     for house in houses:
         old_total += house.total_price
@@ -293,7 +257,7 @@ def simulated_annealing(houses, iterations):
         if len(values) == 0:
             values.append(old_total)
 
-        # Create a random x and y where the random chosen house is gonna be placed.
+        # Create a random x and y where the random house is going to be placed.
         new_x = random.randrange(0, amstel_width, 1)
         new_y = random.randrange(0, amstel_height, 1)
 
@@ -304,12 +268,12 @@ def simulated_annealing(houses, iterations):
         # Variable keeps track if random swap is valid.
         all_positive = True
 
-        # Calculate if the grid is valid.
+        # Calculate the freespace of each house in list.
         for current_house in houses:
             calculate_freespace(current_house, houses)
             current_house.calculateprice()
 
-            # If the grid is not valid, start again.
+            # If the amount of extra freespace is negative, start again.
             if current_house.extra_freespace < 0:
                 all_positive = False
 
@@ -318,33 +282,32 @@ def simulated_annealing(houses, iterations):
         for house in houses:
             new_total += house.total_price
 
-        # If grid is not valid, set house back to old x and y.
+        # If map is not valid, set house back to old x and y.
         if not all_positive:
             houses[house_number].x = old_x
             houses[house_number].y = old_y
 
-        # If old total is higher than new total, Caculate acceptence.
+        # If old total is higher than new total, calculate acceptance.
         elif old_total > new_total:
             counter += 1
 
             # Calculate reduction.
             reduction = (new_total - old_total) * 0.6
 
-            # Caculate temperature.
+            # Calculate temperature.
             temperature = temperature * 0.99
 
-            # Caculate acceptence.
+            # Calculate acceptance.
             p_acceptance = math.exp(reduction/temperature)
 
             # Take a random number.
             random_number = random.randrange(0, 10000) / 10000
 
-            # If random number is lower the acceptence, accept the swap and append new total to values.
+            # If random number is lower the acceptance, accept the swap and append new total to values.
             if random_number < p_acceptance:
                 values.append(new_total)
             else:
-
-                # Else we swap the house back to orginial x and y.
+                # Swap the house back to original x and y.
                 houses[house_number].x = old_x
                 houses[house_number].y = old_y
 
@@ -356,8 +319,12 @@ def simulated_annealing(houses, iterations):
             counter += 1
             values.append(new_total)
 
-            # Set temperatureself.
+        # print(max(old_total, new_total))
+
+            # Set temperature.
             temperature = temperature * 0.99
+
+        waters = add_water(houses)
 
         # VERA wat moet hier gebeuren.
         for current_house in houses:
@@ -367,24 +334,8 @@ def simulated_annealing(houses, iterations):
                 all_positive = False
 
     # print(values)
-    # plot_graph(values, "Simulated annealing AmstelHaege")
 
-    # Add to figure.
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    for house in houses:
-        if house.width == 8:
-            color = "blue"
-        elif house.width == 10:
-            color = "deeppink"
-        elif house.width == 11:
-            color = "gold"
-        rect = patches.Rectangle((house.x, house.y), house.width, house.depth, color=color)
-        ax.add_patch(rect)
-
-    # print(max(old_total, new_total))
-
-    # plot_map(ax, fig)
+    create_map(houses, water)
 
     return [houses, values]
 
