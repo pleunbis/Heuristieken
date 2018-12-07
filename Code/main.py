@@ -15,8 +15,8 @@ nr_houses = int(sys.argv[1])
 # Create start map
 houses = random_start(nr_houses)
 
-# # Run hill climber with 10 iterations
-# houses = hill_climber(houses, 1000)[0]
+# Run hill climber with 10 iterations
+houses = hill_climber(houses, 5000)[0]
 
 # # Run simulated annealing with 10 iterations
 # simulated_annealing(houses, 10)[0]

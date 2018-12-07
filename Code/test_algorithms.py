@@ -25,7 +25,7 @@ for i in range(500):
 
     alle_hill.append(values)
 
-print(alle_hill)
+# print(alle_hill)
 
 # plot_graph(values, "joe")
 

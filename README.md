@@ -42,7 +42,7 @@ This repository contains two main folders: *Code* and *Experiments*.
 * *Code*  
 	This folder contains a file with possible algorithms for the solution of our case (*algorithms.py*), separate supporting files (*helper.py, classes.py*), and a main file (*main.py*).
 	* *Data*: contains a supporting file with the given requirements of the case
-	* *Results*: contains outcomes and visualizations of our code
+	* *Results*: contains outcomes and visualizations of the algorithms used
 
 * *Experiments*  
 	In this folder you will find our initial and non-final scripts, used for testing and experimenting.
@@ -229,8 +229,9 @@ The first task has been to place the houses on the map randomly. Using the funct
 The random function iterates over the assigned amount of houses of each different house type, and appends each houses' id, random coordinates and extra freespace to the total list of houses. Hereafter, using the functions *calculate_freespace()* and *calculateprice()*, the random algorithm calculates the extra freespace and price of each house and adds these values to the list. Having calculated these values, the rectangles can be created and added to the grid.
 In order to merge every house of a different house type together to one list, the functions described above are used once more for the entire list of houses.  
 
-	Running the random algorithm for twenty houses should give you a plot like this:  
-![AmstelHaege random](https://github.com/pleunbis/Heuristieken/blob/master/Code/Results/amstelhaege.png)
+Running the random algorithm for twenty houses should give you a plot like this:
+
+![AmstelHaege random](https://github.com/pleunbis/Heuristieken/blob/master/Code/Results/Random/amstelhaege.png)
 
 **Hill climbing**  
 The hill climber algorithm works as follows.  
@@ -267,7 +268,7 @@ Loop until the demanded number of iterations has been executed:
 	Temperature = temperature x 0.99
 
 5. ADD WATER TO THE MAP  
-![AmstelHaege water](https://github.com/pleunbis/Heuristieken/blob/master/Code/Results/amstelhaege_water.png)
+![AmstelHaege water](https://github.com/pleunbis/Heuristieken/blob/master/Code/Results/Random/amstelhaege_water.png)
 
 ## Prerequisites
 * [Python 3.6](https://www.python.org/downloads/)

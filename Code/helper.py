@@ -186,7 +186,7 @@ def add_water(houses):
         # else:
             # count_waters += count_waters
         max_rect1 = max_rect(matrix)
-        print(max_rect1)
+        # print(max_rect1)
         height = max_rect1[0]
         width = max_rect1[1]
         left_column = max_rect1[2]
@@ -200,11 +200,11 @@ def add_water(houses):
 
         # Append to list
         waters.append(Water(float(left_column / 2), float((bottom_row - (height-1)) / 2), float(width / 2), float(height / 2)))
-        for water in waters:
-            print(water)
+        # for water in waters:
+            # print(water)
 
         # print(matrix)
-        print(opp)
+        # print(opp)
 
     return waters
 

@@ -140,6 +140,7 @@ def random_start(nr_houses):
 # Function for Hill Climber
 def hill_climber(houses, iterations):
 
+    plt.close("all")
     # List which keeps track of the new values.
     values = []
 
@@ -335,7 +336,7 @@ def simulated_annealing(houses, iterations):
 
     # print(values)
 
-    create_map(houses, water)
+    create_map(houses, waters)
 
     return [houses, values]
 
