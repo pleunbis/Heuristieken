@@ -268,7 +268,14 @@ Loop until the demanded number of iterations has been executed:
 	Temperature = temperature x 0.99
 
 5. ADD WATER TO THE MAP  
+
+For adding water to the map we made use of a matrix. First, using the *add_water()* function, the original map is transformed into a matrix of 1's and 0's, where the 1's stand for freespace and the 0's for houses (irrespective of its type). The function then starts looking for the biggest possible rectangle of 1's, and transforms it from 1's into 2's. After that, it will calculate the size of the surface this rectangle has used. If it has not used up the total of 20% of the map (5760 m2), the function will start looking for the second biggest rectangle in order to reach this minimum, repeating this process until this condition is met. When it seems to be that the total of 20% cannot be reached with four rectangles of water, the solution will be rejected.
+
 ![AmstelHaege water](https://github.com/pleunbis/Heuristieken/blob/master/Code/Results/Random/amstelhaege_water.png)
+
+## Future works  
+* Improvement of the upperbound  
+Up until now we reached the highest score by running the simulated annealing algorithm 500 times, which generated a score of 16.032.675. Our calculation of the upperbound (for 20 houses), however, gave a maximum of 29.143.800. This large difference is because of our assumption that, for our calculation of the upperbound, all houses would be located in the middle of the map in order to reach the highest amount of freespace. Ofcourse, this is not realistic, so it is difficult to say if our highest score of 16.032.675 is a proper improvement. It would be better if the upperbound is calculated using another approach, wherein houses would not be allowed to overlap. In this way, we would gain a better insight in our found maxima.
 
 ## Prerequisites
 * [Python 3.6](https://www.python.org/downloads/)
