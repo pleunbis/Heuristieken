@@ -251,12 +251,11 @@ def random_start(nr_houses):
             repetition.append(total)
             repetition.sort()
 
-    print(total)
+    # print(house)
 
-    create_map(houses, waters)
+    # create_map(houses, waters)
 
-    return houses
-
+    return [houses, waters]
 # Function for Hill Climber
 def hill_climber(houses, iterations):
 
@@ -340,9 +339,9 @@ def hill_climber(houses, iterations):
 
     waters = add_water(houses)
 
-    create_map(houses, waters)
+    # create_map(houses, waters)
 
-    return [houses, values]
+    return [houses, values, waters]
 
 # Function for Simulated Annealing.
 def simulated_annealing(houses, iterations):
@@ -459,9 +458,9 @@ def simulated_annealing(houses, iterations):
     # print(values)
     waters = add_water(houses)
 
-    create_map(houses, waters)
+    # create_map(houses, waters)
 
-    return [houses, values]
+    return [houses, values, waters]
 
 # houses = random_start(20)
 # houses = hill_climber(houses, 500)
