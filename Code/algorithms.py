@@ -125,6 +125,9 @@ def random_start(nr_houses):
         # Add water
         waters = add_water(houses)
 
+        if len(waters) == 0:
+            random_start(nr_houses)
+
         # Calculate the total price of the map.
         total = 0
         for house in houses:
@@ -340,7 +343,7 @@ def simulated_annealing(houses, iterations):
 
     # print(values)
     waters = add_water(houses)
-    
+
     create_map(houses, waters)
 
     return [houses, values]

@@ -13,7 +13,7 @@ elif sys.argv[1] not in ["20", "40", "60"]:
 nr_houses = int(sys.argv[1])
 
 # Create start map
-for i in range(500):
+for i in range(1):
     houses = random_start(nr_houses)
 
 # Run hill climber with 10 iterations

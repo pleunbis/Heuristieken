@@ -220,6 +220,10 @@ def add_water(houses):
         # print(matrix)
         # print(opp)
 
+    if opp < 0.2 * (180 * 160):
+        print("joe")
+        waters = []
+
     return waters
 
 def show_freespace(house):
