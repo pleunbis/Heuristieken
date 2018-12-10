@@ -251,7 +251,7 @@ def random_start(nr_houses):
             repetition.append(total)
             repetition.sort()
 
-    # print(total)
+    print(total)
 
     create_map(houses, waters)
 
