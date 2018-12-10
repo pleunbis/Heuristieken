@@ -98,11 +98,17 @@ for i in range(runs):
     alle_hill_sa.append(values)
 
 total = 0
-print(len(alle_hill_sa))
+# print(alle_hill_sa)
+# print(len(alle_hill_sa))
 
-gem_hill_sa = [0] * (iterations + 2)
+gem_hill_sa = [0] * (iterations * 2 + 2)
 
 for hill_sa in alle_hill_sa:
+
+    # print(alle_hill_sa)
+    print(len(hill_sa))
+    print(len(gem_hill_sa))
+
     # final_values.append(hill_sa[-1])
     for i in range(len(hill_sa)):
         gem_hill_sa[i] += hill_sa[i] / runs
