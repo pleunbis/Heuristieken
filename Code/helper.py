@@ -159,6 +159,7 @@ def add_water(houses):
     matrix = np.zeros((360, 320))
 
     for house in houses:
+        # print(house)
         x = int(house.x * 2)
         y = int(house.y * 2)
         # print(x)
@@ -168,16 +169,18 @@ def add_water(houses):
 
         for i in range(x, x + width):
             for j in range(y, y + depth):
+                # print(i, j)
                 matrix[i][j] = 1
 
-    # print(matrix)
+
     waters = []
     opp = 0
     # count_waters = 0
     # space_for_water = True
 
-    # Check if water takes 20% of map
-    while opp < 0.2 * (180 * 160):
+
+    # Check if water takes 20% of map and max of 4 waters
+    while opp < 0.2 * (180 * 160) and len(waters) < 4:
 
         # Check if number of waters is < 4
         # if count_waters == 4:
@@ -192,14 +195,25 @@ def add_water(houses):
         left_column = max_rect1[2]
         bottom_row = max_rect1[3]
 
-        for i in range(left_column, left_column + width):
-            for j in range(bottom_row - (height - 1), bottom_row + 1):
+        # kloppen de namen van de variabelen wel?!
+        if height > 4 * width:
+            height = 4 * width
+            print(height, width, "height")
+        elif width > 4 * height:
+            width = 4 * height
+            print(height, width, "width")
+
+        for i in range(left_column, left_column + width - 1):
+            for j in range(bottom_row - (height - 1), bottom_row):
                 matrix[j][i] = 2
 
-        opp += width * height
+        # berekening lijkt niet te kloppen
+        opp += (width / 2) * (height / 2)
+        print(opp)
 
         # Append to list
         waters.append(Water(float(left_column / 2), float((bottom_row - (height-1)) / 2), float(width / 2), float(height / 2)))
+
         # for water in waters:
             # print(water)
 

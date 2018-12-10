@@ -107,8 +107,7 @@ def random_start(nr_houses):
                             # House is added, go to next house.
                             positive = True
 
-            # Add water
-            waters = add_water(houses)
+
 
             # # when there is no space for water
             # if space_for_water == False:
@@ -122,6 +121,9 @@ def random_start(nr_houses):
                 # If houses are placed on a wrong place.
                 if current_house.extra_freespace < 0:
                     all_positive = False
+
+        # Add water
+        waters = add_water(houses)
 
         # Calculate the total price of the map.
         total = 0
@@ -209,7 +211,7 @@ def hill_climber(houses, iterations):
 
         # print(max(old_total, new_total))
 
-        waters = add_water(houses)
+
 
         # VERA HIER NA KIJKEN, IS DIT NOG NODIG?
         for current_house in houses:
@@ -217,6 +219,8 @@ def hill_climber(houses, iterations):
             current_house.calculateprice()
             if current_house.extra_freespace < 0:
                 all_positive = False
+
+    waters = add_water(houses)
 
     create_map(houses, waters)
 
@@ -325,7 +329,7 @@ def simulated_annealing(houses, iterations):
             # Set temperature.
             temperature = temperature * 0.99
 
-        waters = add_water(houses)
+
 
         # VERA wat moet hier gebeuren.
         for current_house in houses:
@@ -335,7 +339,8 @@ def simulated_annealing(houses, iterations):
                 all_positive = False
 
     # print(values)
-
+    waters = add_water(houses)
+    
     create_map(houses, waters)
 
     return [houses, values]
