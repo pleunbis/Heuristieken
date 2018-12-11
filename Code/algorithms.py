@@ -25,68 +25,59 @@ def random_start(nr_houses):
             # ax = fig.add_subplot(111)
             # Paste_house = True
             # print("hallo")
-            waters = []
-            waters.append(Water(0, 0 , 36 , 40))
-            waters.append(Water(0, 140 , 36 , 40))
-            waters.append(Water(124, 0 , 36 , 40))
-            waters.append(Water(124, 140 , 36 , 40))
+
 
             # while Paste_house == True:
                 # Paste_house = False
             houses = []
             if nr_houses == 60:
-
+                waters = []
+                waters.append(Water(0, 0 , 36 , 40))
+                waters.append(Water(0, 140 , 36 , 40))
+                waters.append(Water(124, 0 , 36 , 40))
+                waters.append(Water(124, 140 , 36 , 40))
                 # print("joe")
 
-                # Add the maisons.
-                for i in range(int(0.15 * nr_houses)):
-                    # print("maison")
+                for i in range(int(0.6 * nr_houses)):
                     positive = False
                     while positive == False:
 
-                        # Create random x and y.
                         x = random.randrange(0, amstel_width, 1)
-                        if x < 40 or x > 129:
-                            y = random.randrange(36, 113, 1)
+                        if x < 40 or x > 132:
+                            y = random.randrange(36, 116, 1)
                         else:
                             y = random.randrange(0, amstel_height, 1)
-                        # print(x,y)
-
 
                         # Append to houses.
-                        houses.append(Maison(i, x, y, 0))
+                        houses.append(Singlefamily(i, x, y, 0))
 
-                        # Calculate freespace for maison.
+                        # Calculate freespace for singlefamily house.
                         current_house = houses[-1]
-                        ms = calculate_freespace(current_house, houses)
+                        sf = calculate_freespace(current_house, houses)
 
-                        # Calculate price.
-                        ms.calculateprice()
+                        # Call calculateprice to calculate the price.
+                        sf.calculateprice()
 
                         # If houses overlap, delete this house from list.
-                        if ms.extra_freespace < 0:
+                        if sf.extra_freespace < 0:
                             del houses[-1]
-                            # print("false")
                         else:
-                            # House is added, go to next house.
+                            # House is added, go to the next house.
                             positive = True
-                            # print("geplaatst maison")
 
                 # Add the bungalows.
                 for i in range(int(0.25 * nr_houses)):
                     positive = False
                     while positive == False:
 
-                        # Create random x and y.
                         x = random.randrange(0, amstel_width, 1)
                         if x < 40 or x > 130:
                             y = random.randrange(36, 116, 1)
                         else:
                             y = random.randrange(0, amstel_height, 1)
-                        # print(x,y)
 
                         # Append to houses.
-                        houses.append(Bungalow(int(i + 0.15 * nr_houses), x, y, 0))
+                        houses.append(Bungalow(int(i + 0.6 * nr_houses), x, y, 0))
 
                         # Calculate freespace for bungalow.
                         current_house = houses[-1]
@@ -98,45 +89,159 @@ def random_start(nr_houses):
                         # If houses overlap, delete this house from list.
                         if bgl.extra_freespace < 0:
                             del houses[-1]
-                            # print("joe")
                         else:
                             # House is added, go to next house.
                             positive = True
-                            # print("geplaatst b")
 
-                # Add the singlefamily houses.
-                for i in range(int(0.6 * nr_houses)):
+                # Add the maisons.
+                for i in range(int(0.15 * nr_houses)):
                     positive = False
                     while positive == False:
 
-                        # Create random x and y.
                         x = random.randrange(0, amstel_width, 1)
-                        if x < 40 or x > 132:
-                            y = random.randrange(36, 116, 1)
+                        if x < 40 or x > 129:
+                            y = random.randrange(36, 113, 1)
                         else:
                             y = random.randrange(0, amstel_height, 1)
-                        # print(x,y)
-
 
                         # Append to houses.
-                        houses.append(Singlefamily(i + 0.4 * nr_houses, x, y, 0))
+                        houses.append(Maison(int(i + 0.85 * nr_houses), x, y, 0))
 
-                        # Calculate freespace for singlefamily house.
+                        # Calculate freespace for maison.
                         current_house = houses[-1]
-                        sf = calculate_freespace(current_house, houses)
-                        # print(sf.extra_freespace)
+                        ms = calculate_freespace(current_house, houses)
 
-                        # Call calculateprice to calculate the price.
-                        sf.calculateprice()
+                        # Calculate price.
+                        ms.calculateprice()
 
                         # If houses overlap, delete this house from list.
-                        if sf.extra_freespace < 0:
+                        if ms.extra_freespace < 0:
                             del houses[-1]
-                            # print("joe")
                         else:
-                            # House is added, go to the next house.
+                            # House is added, go to next house.
                             positive = True
-                            # print("geplaatst sf")
+
+
+
+
+                # Add the maisons.
+                # for i in range(int(0.15 * nr_houses)):
+                #     # print("maison")
+                #     positive = False
+                #     while positive == False:
+                #
+                #         # Create random x and y.
+                #         x = random.randrange(0, amstel_width, 1)
+                #         if x < 40 or x > 129:
+                #             y = random.randrange(36, 113, 1)
+                #         else:
+                #             y = random.randrange(0, amstel_height, 1)
+                #         # print(x,y)
+                #
+                #
+                #         # Append to houses.
+                #         houses.append(Maison(i, x, y, 0))
+                #
+                #         # Calculate freespace for maison.
+                #         current_house = houses[-1]
+                #         ms = calculate_freespace(current_house, houses)
+                #
+                #         # Calculate price.
+                #         ms.calculateprice()
+                #
+                #         print(i)
+                #         print(ms.extra_freespace)
+                #         # If houses overlap, delete this house from list.
+                #         if ms.extra_freespace < 0:
+                #             del houses[-1]
+                #             print("deleted")
+                #             # print("false")
+                #         else:
+                #             # House is added, go to next house.
+                #             positive = True
+                #             # print("geplaatst maison")
+                #
+                # # Add the bungalows.
+                # for i in range(int(0.25 * nr_houses)):
+                #     positive = False
+                #     while positive == False:
+                #
+                #         # Create random x and y.
+                #         x = random.randrange(0, amstel_width, 1)
+                #         if x < 40 or x > 130:
+                #             y = random.randrange(36, 116, 1)
+                #         else:
+                #             y = random.randrange(0, amstel_height, 1)
+                #         # print(x,y)
+                #
+                #         # Append to houses.
+                #         houses.append(Bungalow(int(i + 0.15 * nr_houses), x, y, 0))
+                #
+                #         # Calculate freespace for bungalow.
+                #         current_house = houses[-1]
+                #         bgl = calculate_freespace(current_house, houses)
+                #         print(int(i + 0.15 * nr_houses))
+                #         print(bgl.extra_freespace)
+                #
+                #         # Calculate price.
+                #         bgl.calculateprice()
+                #
+                #         # If houses overlap, delete this house from list.
+                #         if bgl.extra_freespace < 0:
+                #             del houses[-1]
+                #             print("deleted")
+                #             # print("joe")
+                #         else:
+                #             # House is added, go to next house.
+                #             positive = True
+                #             # print("geplaatst b")
+
+                # Add the singlefamily houses.
+                # for i in range(int(0.6 * nr_houses)):
+                #     positive = False
+                #     while positive == False:
+                #
+                #         # Create random x and y.
+                #         x = random.randrange(0, amstel_width, 1)
+                #         if x < 40 or x > 132:
+                #             y = random.randrange(36, 116, 1)
+                #         else:
+                #             y = random.randrange(0, amstel_height, 1)
+                #         # print(x,y)
+                #
+                #
+                #         # Append to houses.
+                #         houses.append(Singlefamily(i + 0.4 * nr_houses, x, y, 0))
+                #
+                #         # Calculate freespace for singlefamily house.
+                #         current_house = houses[-1]
+                #         sf = calculate_freespace(current_house, houses)
+                #         print(sf.extra_freespace)
+                #
+                #         # Call calculateprice to calculate the price.
+                #         sf.calculateprice()
+                #
+                #         # If houses overlap, delete this house from list.
+                #         if sf.extra_freespace < 0:
+                #             del houses[-1]
+                #             print("deleted")
+                #             # print("joe")
+                #         else:
+                #             # House is added, go to the next house.
+                #             positive = True
+                #             # print("geplaatst sf")
+
+                # Calculate freespace and price.
+                # for current_house in houses:
+                #     calculate_freespace(current_house, houses)
+                #     current_house.calculateprice()
+                #
+                #     # If houses are placed on a wrong place.
+                #     if current_house.extra_freespace < 0:
+                #         all_positive = False
+                #         # print("false")
+                for house in houses:
+                    print(house)
                 create_map(houses, waters)
             else:
                 # print('klopt niet')
@@ -217,11 +322,11 @@ def random_start(nr_houses):
                         else:
                             # House is added, go to next house.
                             positive = True
-
+                    # create_map(houses, [])
             # # when there is no space for water
             # if space_for_water == False:
             #     all_positive = False
-
+            # print("ben er")
             # Calculate freespace and price.
             for current_house in houses:
                 calculate_freespace(current_house, houses)
@@ -241,7 +346,8 @@ def random_start(nr_houses):
             waters = add_water(houses)
 
             if len(waters) == 0:
-                random_start(nr_houses)
+                # print("0")
+                return random_start(nr_houses)
 
             # Calculate the total price of the map.
             total = 0
@@ -252,12 +358,13 @@ def random_start(nr_houses):
             repetition.sort()
 
     # print(house)
-
     # create_map(houses, waters)
 
     return [houses, waters]
 # Function for Hill Climber
 def hill_climber(houses, iterations):
+
+    old_houses = houses
 
     plt.close("all")
     # List which keeps track of the new values.
@@ -286,8 +393,28 @@ def hill_climber(houses, iterations):
             values.append(old_total)
 
         # Create random x en y for new place for the random chosen house.
-        new_x = random.randrange(0, amstel_width, 1)
-        new_y = random.randrange(0, amstel_height, 1)
+        if len(houses) == 60:
+            if house.width == 8:
+                new_x = random.randrange(0, amstel_width, 1)
+                if new_x < 40 or new_x > 132:
+                    new_y = random.randrange(36, 116, 1)
+                else:
+                    new_y = random.randrange(0, amstel_height, 1)
+            elif house.width == 10:
+                new_x = random.randrange(0, amstel_width, 1)
+                if new_x < 40 or new_x > 130:
+                    new_y = random.randrange(36, 116, 1)
+                else:
+                    new_y = random.randrange(0, amstel_height, 1)
+            else:
+                new_x = random.randrange(0, amstel_width, 1)
+                if new_x < 40 or new_x > 129:
+                    new_y = random.randrange(36, 113, 1)
+                else:
+                    new_y = random.randrange(0, amstel_height, 1)
+        else:
+            new_x = random.randrange(0, amstel_width, 1)
+            new_y = random.randrange(0, amstel_height, 1)
 
         # Set x en y for the random house.
         houses[house_number].x = new_x
@@ -328,17 +455,24 @@ def hill_climber(houses, iterations):
 
         # print(max(old_total, new_total))
 
-
-
         # VERA HIER NA KIJKEN, IS DIT NOG NODIG?
         for current_house in houses:
             calculate_freespace(current_house, houses)
             current_house.calculateprice()
             if current_house.extra_freespace < 0:
                 all_positive = False
+    if len(houses) == 60:
+        waters = []
+        waters.append(Water(0, 0 , 36 , 40))
+        waters.append(Water(0, 140 , 36 , 40))
+        waters.append(Water(124, 0 , 36 , 40))
+        waters.append(Water(124, 140 , 36 , 40))
+    else:
+        waters = add_water(houses)
 
-    waters = add_water(houses)
-
+    if len(waters) == 0:
+        # print("0")
+        return hill_climber(old_houses, iterations)
     # create_map(houses, waters)
 
     return [houses, values, waters]
