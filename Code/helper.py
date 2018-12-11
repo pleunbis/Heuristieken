@@ -150,7 +150,7 @@ def add_water(houses):
         for start, height in stack:
             max_size = max(max_size, (height, (pos - start), start), key=area)
         return max_size
-        print(max_size)
+        # print(max_size)
 
     def area(size):
         return size[0] * size[1]
@@ -198,10 +198,10 @@ def add_water(houses):
         # kloppen de namen van de variabelen wel?!
         if height > 4 * width:
             height = 4 * width
-            print(height, width, "height")
+            # print(height, width, "height")
         elif width > 4 * height:
             width = 4 * height
-            print(height, width, "width")
+            # print(height, width, "width")
 
         for i in range(left_column, left_column + width - 1):
             for j in range(bottom_row - (height - 1), bottom_row):
@@ -209,7 +209,7 @@ def add_water(houses):
 
         # berekening lijkt niet te kloppen
         opp += (width / 2) * (height / 2)
-        print(opp)
+        # print(opp)
 
         # Append to list
         waters.append(Water(float(left_column / 2), float((bottom_row - (height-1)) / 2), float(width / 2), float(height / 2)))
@@ -221,7 +221,7 @@ def add_water(houses):
         # print(opp)
 
     if opp < 0.2 * (180 * 160):
-        print("joe")
+        # print("joe")
         waters = []
 
     return waters

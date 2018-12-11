@@ -24,7 +24,7 @@ def random_start(nr_houses):
             # fig = plt.figure()
             # ax = fig.add_subplot(111)
             # Paste_house = True
-            print("hallo")
+            # print("hallo")
             waters = []
             waters.append(Water(0, 0 , 36 , 40))
             waters.append(Water(0, 140 , 36 , 40))
@@ -124,7 +124,7 @@ def random_start(nr_houses):
                         # Calculate freespace for singlefamily house.
                         current_house = houses[-1]
                         sf = calculate_freespace(current_house, houses)
-                        print(sf.extra_freespace)
+                        # print(sf.extra_freespace)
 
                         # Call calculateprice to calculate the price.
                         sf.calculateprice()
@@ -139,7 +139,7 @@ def random_start(nr_houses):
                             # print("geplaatst sf")
                 create_map(houses, waters)
             else:
-                print('klopt niet')
+                # print('klopt niet')
                 # Add the singlefamily houses.
                 for i in range(int(0.6 * nr_houses)):
                     positive = False
@@ -232,10 +232,10 @@ def random_start(nr_houses):
                     all_positive = False
                     # print("false")
 
-        if nr_houses == 60:
+        # if nr_houses == 60:
 
-            print("60 huizen variant")
-        else:
+            # print("60 huizen variant")
+        if nr_houses != 60:
 
             # Add water
             waters = add_water(houses)

@@ -17,7 +17,7 @@ print("max: ", max(random_values))
 print("min: ", min(random_values))
 
 def millions(x, pos):
-    return '%1i' % (x*1e-6)
+    return '%1.1f' % (x*1e-6)
 
 formatter = FuncFormatter(millions)
 
