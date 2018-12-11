@@ -19,8 +19,9 @@ def random_start(nr_houses):
         # Boolean keeps track if house can be placed.
         all_positive = False
         while all_positive == False:
+            # print("plattegrond niet goed")
             all_positive = True
-            plt.close("all")
+            # plt.close("all")
             # fig = plt.figure()
             # ax = fig.add_subplot(111)
             # Paste_house = True
@@ -41,6 +42,7 @@ def random_start(nr_houses):
                 for i in range(int(0.6 * nr_houses)):
                     positive = False
                     while positive == False:
+                        # print("sf niet goed")
 
                         x = random.randrange(0, amstel_width, 1)
                         if x < 40 or x > 132:
@@ -69,6 +71,7 @@ def random_start(nr_houses):
                 for i in range(int(0.25 * nr_houses)):
                     positive = False
                     while positive == False:
+                        # print("b niet goed")
 
                         x = random.randrange(0, amstel_width, 1)
                         if x < 40 or x > 130:
@@ -96,7 +99,9 @@ def random_start(nr_houses):
                 # Add the maisons.
                 for i in range(int(0.15 * nr_houses)):
                     positive = False
+                    counter = 0
                     while positive == False:
+                        # print("maison niet goed")
 
                         x = random.randrange(0, amstel_width, 1)
                         if x < 40 or x > 129:
@@ -117,6 +122,11 @@ def random_start(nr_houses):
                         # If houses overlap, delete this house from list.
                         if ms.extra_freespace < 0:
                             del houses[-1]
+                            counter += 1
+                            if counter == 1000:
+                                # print("joeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
+                                positive = True
+                                all_positive = False
                         else:
                             # House is added, go to next house.
                             positive = True
@@ -240,9 +250,9 @@ def random_start(nr_houses):
                 #     if current_house.extra_freespace < 0:
                 #         all_positive = False
                 #         # print("false")
-                for house in houses:
-                    print(house)
-                create_map(houses, waters)
+                # for house in houses:
+                #     print(house)
+                # create_map(houses, waters)
             else:
                 # print('klopt niet')
                 # Add the singlefamily houses.
@@ -358,7 +368,7 @@ def random_start(nr_houses):
             repetition.sort()
 
     # print(house)
-    # create_map(houses, waters)
+    create_map(houses, waters)
 
     return [houses, waters]
 # Function for Hill Climber
@@ -480,6 +490,8 @@ def hill_climber(houses, iterations):
 # Function for Simulated Annealing.
 def simulated_annealing(houses, iterations):
 
+    old_houses = houses
+
     # Calculate the old total.
     old_total = 0
     for house in houses:
@@ -513,9 +525,29 @@ def simulated_annealing(houses, iterations):
         if len(values) == 0:
             values.append(old_total)
 
-        # Create a random x and y where the random house is going to be placed.
-        new_x = random.randrange(0, amstel_width, 1)
-        new_y = random.randrange(0, amstel_height, 1)
+        # Create random x en y for new place for the random chosen house.
+        if len(houses) == 60:
+            if house.width == 8:
+                new_x = random.randrange(0, amstel_width, 1)
+                if new_x < 40 or new_x > 132:
+                    new_y = random.randrange(36, 116, 1)
+                else:
+                    new_y = random.randrange(0, amstel_height, 1)
+            elif house.width == 10:
+                new_x = random.randrange(0, amstel_width, 1)
+                if new_x < 40 or new_x > 130:
+                    new_y = random.randrange(36, 116, 1)
+                else:
+                    new_y = random.randrange(0, amstel_height, 1)
+            else:
+                new_x = random.randrange(0, amstel_width, 1)
+                if new_x < 40 or new_x > 129:
+                    new_y = random.randrange(36, 113, 1)
+                else:
+                    new_y = random.randrange(0, amstel_height, 1)
+        else:
+            new_x = random.randrange(0, amstel_width, 1)
+            new_y = random.randrange(0, amstel_height, 1)
 
         # Set x and y from the house.
         houses[house_number].x = new_x
@@ -589,8 +621,17 @@ def simulated_annealing(houses, iterations):
             if current_house.extra_freespace < 0:
                 all_positive = False
 
-    # print(values)
-    waters = add_water(houses)
+    if len(houses) == 60:
+        waters = []
+        waters.append(Water(0, 0 , 36 , 40))
+        waters.append(Water(0, 140 , 36 , 40))
+        waters.append(Water(124, 0 , 36 , 40))
+        waters.append(Water(124, 140 , 36 , 40))
+    else:
+        waters = add_water(houses)
+
+    if len(waters) == 0:
+        return simulated_annealing(old_houses, iterations)
 
     # create_map(houses, waters)
 
