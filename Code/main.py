@@ -121,17 +121,18 @@ maximum_values = []
 maximum_waters = []
 final_values = []
 # Create start map Simulated Annealing
-runs = 2
-iterations = 20
+runs = 500
+iterations_hill = 500
+iterations_sa = 500
 for i in range(runs):
     houses = random_start(nr_houses)[0]
     # Run hill climber with 10 iterations
-    info = hill_climber(houses, iterations)
+    info = hill_climber(houses, iterations_hill)
     # info = simulated_annealing(houses, iterations)
     houses = info[0]
     values = info[1]
 
-    info = simulated_annealing(houses, iterations)
+    info = simulated_annealing(houses, iterations_sa)
     values += info[1]
 
     houses = info[0]
@@ -151,7 +152,7 @@ for i in range(runs):
 
 total = 0
 
-gem_hill_sa = [0] * (iterations * 2 + 2)
+gem_hill_sa = [0] * (iterations_hill + iterations_sa + 2)
 
 for hill_sa in alle_hill_sa:
     final_values.append(hill_sa[-1])
@@ -168,15 +169,15 @@ plot_graph(maximum_values, "Hill Climber + Simulated Annealing")
 plot_graph(gem_hill_sa, "Average Hill Climber + Simulated Annealing")
 # #
 #
-# with open('Results/Hillclimber + simulated annealing/Data/average_hill_sa_2_250.csv', 'w', newline='') as f:
-#     writer = csv.writer(f)
-#     for item in gem_hill_sa:
-#         writer.writerows([[item]])
-#
-# with open('Results/Hillclimber + simulated annealing/Data/final_hill_sa_2_250.csv', 'w', newline='') as f:
-#     writer = csv.writer(f)
-#     for item in final_values:
-#         writer.writerows([[item]])
+with open('Results/Hillclimber + simulated annealing/Data/40/average_hill_sa_500_500_500.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    for item in gem_hill_sa:
+        writer.writerows([[item]])
+
+with open('Results/Hillclimber + simulated annealing/Data/40/final_hill_sa_500_500_500.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    for item in final_values:
+        writer.writerows([[item]])
 
 
 

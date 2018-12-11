@@ -368,7 +368,7 @@ def random_start(nr_houses):
             repetition.sort()
 
     # print(house)
-    create_map(houses, waters)
+    # create_map(houses, waters)
 
     return [houses, waters]
 # Function for Hill Climber
