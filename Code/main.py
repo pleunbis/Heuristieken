@@ -169,12 +169,12 @@ plot_graph(maximum_values, "Hill Climber + Simulated Annealing")
 plot_graph(gem_hill_sa, "Average Hill Climber + Simulated Annealing")
 # #
 #
-with open('Results/Hillclimber + simulated annealing/Data/40/average_hill_sa_500_500_500.csv', 'w', newline='') as f:
+with open('Results/Hillclimber + simulated annealing/40/Data/a40_average_hill_sa_500_500_500.csv', 'w', newline='') as f:
     writer = csv.writer(f)
     for item in gem_hill_sa:
         writer.writerows([[item]])
 
-with open('Results/Hillclimber + simulated annealing/Data/40/final_hill_sa_500_500_500.csv', 'w', newline='') as f:
+with open('Results/Hillclimber + simulated annealing/40/Data/a40_hill_sa_500_500_500.csv', 'w', newline='') as f:
     writer = csv.writer(f)
     for item in final_values:
         writer.writerows([[item]])
