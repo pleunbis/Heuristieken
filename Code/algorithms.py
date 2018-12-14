@@ -101,7 +101,7 @@ def hill_climber(houses, iterations):
             new_total += house.total_price
 
         # If the map is not valid, swap random chosen house back to old x and y
-        if all_positive is false:
+        if all_positive is False:
             houses[house_number].x = old_x
             houses[house_number].y = old_y
 
@@ -194,7 +194,7 @@ def simulated_annealing(houses, iterations):
             new_total += house.total_price
 
         # If map is not valid, set house back to old x and y.
-        if all_positive is false:
+        if all_positive is False:
             houses[house_number].x = old_x
             houses[house_number].y = old_y
 

@@ -292,7 +292,7 @@ def add_water(houses, nr_houses):
             return size[0] * size[1]
 
         # Create matrix
-        matrix = np.zeros((361, 321))
+        matrix = np.zeros((362, 322))
 
         for house in houses:
             x = int(house.x * 2)

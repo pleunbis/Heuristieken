@@ -10,39 +10,44 @@ start = time.time()
 # Usage:
 # main.py number of houses, algorithm, number of runs, number of iteraties
 
-# Check if there is 5 command-line arguments
-if  len(sys.argv) >6:
-    print("Usage: python main.py, number of houses, algorithm, number of runs, number of iteraties first algorithm, number of iterations second algorithm, if used")
+# Check if there is 3 command-line arguments
+if len(sys.argv) < 3:
+    print("Choose the number of houses and the algorithm")
     sys.exit(1)
-
+elif len(sys.argv) > 6:
+    print("Too many arguments")
+    sys.exit(1)
 # Check for valid number of houses
 elif sys.argv[1] not in ["20", "40", "60"]:
     print("Number of houses must be 20, 40 or 60")
     sys.exit()
-
 # Check for valid algorithm
-elif sys.argv[2] not in ["random", "simulated_annealing" , "hill_climber", "hill_climber+simulated_annealing"]:
-    print("Algorithm does not exit")
+elif sys.argv[2] not in ["random", "simulated_annealing", "hill_climber",
+                         "hill_climber+simulated_annealing"]:
+    print("Algorithm does not exist")
     sys.exit()
-
-# Check for valid number of iterations and runs
-elif sys.argv[3] == "" or sys.argv[4] == "":
-    print( "fill in runs or and iterations")
-    sys.exit()
-
-
-# iterations = iterations for hill_climber and iterations1 = iterations for  Simulated annealing
-elif sys.argv[2] == "hill_climber+simulated_annealing":
-    iterations1 = int(sys.argv[5])
-
-
+elif sys.argv[2] != "random":
+    # Check for valid number of iterations and runs
+    if len(sys.argv) < 5:
+        print("Fill in runs or and iterations")
+        sys.exit()
+    # Simulated annealing
+    elif sys.argv[2] == "hill_climber+simulated_annealing":
+        if len(sys.argv) < 6:
+            print("Fill in iterations for both hill climber and simuated annealing")
+            sys.exit()
+        else:
+            iterations1 = int(sys.argv[5])
+    runs = int(sys.argv[3])
+    iterations = int(sys.argv[4])
+elif sys.argv[2] == "random":
+    if len(sys.argv) > 3:
+        print("Too many arguments for random algorithm")
+        sys.exit()
 
 # set variable
 nr_houses = int(sys.argv[1])
 algorithm = sys.argv[2]
-runs = int(sys.argv[3])
-iterations = int(sys.argv[4])
-
 
 # if random is chosen
 if algorithm == "random":
@@ -194,7 +199,7 @@ elif algorithm == "hill_climber+simulated_annealing":
         plot_graph(maximum_values, "Hill Climber + Simulated Annealing")
         plot_graph(av_hill_sa, "Average Hill Climber + Simulated Annealing")
 
-#
+
 # with open('Results/Hillclimber + simulated annealing/40/Data/a40_average_hill_sa_500_500_500.csv', 'w', newline='') as f:
 #     writer = csv.writer(f)
 #     for item in av_hill_sa:
@@ -204,13 +209,3 @@ elif algorithm == "hill_climber+simulated_annealing":
 #     writer = csv.writer(f)
 #     for item in final_values:
 #         writer.writerows([[item]])
-#
-
-
-
-
-# Run sa climber with 10 iterations
-# houses = sa_climber(houses, 500)[0]
-
-# # Run simulated annealing with 10 iterations
-# simulated_annealing(houses, 10)[0]
