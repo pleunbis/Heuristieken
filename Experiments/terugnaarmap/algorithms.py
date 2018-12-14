@@ -10,6 +10,7 @@ from math import hypot
 from classes import *
 import math
 
+
 def random_start(nr_houses):
     """Generates a random start map"""
     repetition = []
@@ -17,7 +18,7 @@ def random_start(nr_houses):
     for repeat in range(1):
         # Boolean keeps track if house can be placed.
         all_positive = False
-        while all_positive == False:
+        while all_positive is False:
             all_positive = True
             houses = []
 
@@ -50,6 +51,7 @@ def random_start(nr_houses):
 
     return [houses, waters]
 
+
 # Function for Hill Climber
 def hill_climber(houses, iterations):
     plt.close("all")
@@ -58,42 +60,42 @@ def hill_climber(houses, iterations):
     values = []
     counter = 0
 
-    # Loop to make sure that an iteration is always a valid one.
+    # Loop to make sure that an iteration is always a valid one
     while counter < iterations:
 
-        # Take a random house from houses.
+        # Take a random house from houses
         house_number = random.randrange(0, len(houses), 1)
 
-        # Save the x and y of the house.
+        # Save the x and y of the house
         old_x = houses[house_number].x
         old_y = houses[house_number].y
 
-        # Save old value of the total price.
+        # Save old value of the total price
         old_total = 0
         for house in houses:
-            old_total +=  house.total_price
+            old_total += house.total_price
 
-        # The first total price is always the first value.
+        # The first total price is always the first value
         if len(values) == 0:
             values.append(old_total)
 
-        # Set x en y for the random house.
+        # Set x en y for the random house
         houses[house_number].x = swap_houses(houses, house_number)[0]
         houses[house_number].y = swap_houses(houses, house_number)[1]
 
-        # Variable keeps track if random swap is valid.
+        # Variable keeps track if random swap is valid
         all_positive = True
 
-        # Calculate the freespace of each house in list.
+        # Calculate the freespace of each house in list
         for current_house in houses:
             calculate_freespace(current_house, houses)
             current_house.calculateprice()
 
-            # If the amount of extra freespace is negative, start again.
+            # If the amount of extra freespace is negative, start again
             if current_house.extra_freespace < 0:
                 all_positive = False
 
-        # Calculate the new total price.
+        # Calculate the new total price
         new_total = 0
         for house in houses:
             new_total += house.total_price
@@ -103,14 +105,15 @@ def hill_climber(houses, iterations):
             houses[house_number].x = old_x
             houses[house_number].y = old_y
 
-        # If the map is valid but the value is lower than old total.
+        # If the map is valid but the value is lower than old total
         elif old_total > new_total:
             counter += 1
             houses[house_number].x = old_x
             houses[house_number].y = old_y
             values.append(old_total)
         else:
-            # If map value is higher, we have a valid iteration so add one to counter and append the new higher value to values.
+            # If map value is higher, we have a valid iteration so add one to
+            # counter and append the new higher value to values
             counter += 1
             values.append(new_total)
 
@@ -129,6 +132,7 @@ def hill_climber(houses, iterations):
     # create_map(houses, waters)
 
     return [houses, values, waters]
+
 
 # Function for Simulated Annealing.
 def simulated_annealing(houses, iterations):
@@ -210,7 +214,8 @@ def simulated_annealing(houses, iterations):
             # Take a random number.
             random_number = random.randrange(0, 10000) / 10000
 
-            # If random number is lower the acceptance, accept the swap and append new total to values.
+            # If random number is lower the acceptance, accept the swap and
+            # append new total to values.
             if random_number < p_acceptance:
                 values.append(new_total)
             else:
