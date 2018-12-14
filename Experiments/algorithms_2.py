@@ -1,4 +1,4 @@
-from helper import *
+from helper_2 import *
 # from freespacefast import houses
 from matplotlib.ticker import FuncFormatter
 import matplotlib.pyplot as plt
@@ -46,7 +46,7 @@ def random_start(nr_houses):
             repetition.append(total)
             repetition.sort()
 
-    # create_map(houses, waters)
+    create_map(houses, waters)
 
     return [houses, waters]
 
@@ -126,7 +126,7 @@ def hill_climber(houses, iterations):
     if len(waters) == 0:
         return hill_climber(old_houses, iterations)
 
-    # create_map(houses, waters)
+    create_map(houses, waters)
 
     return [houses, values, waters]
 
@@ -241,6 +241,6 @@ def simulated_annealing(houses, iterations):
     if len(waters) == 0:
         return simulated_annealing(old_houses, iterations)
 
-    # create_map(houses, waters)
+    create_map(houses, waters)
 
     return [houses, values, waters]
