@@ -21,8 +21,8 @@ def random_start(nr_houses):
             all_positive = True
             houses = []
 
-            added_houses = add_houses(nr_houses)
-            houses, waters = added_houses[0], added_houses[1]
+            added_houses = add_houses(nr_houses, all_positive)
+            houses, waters, all_positive = added_houses[0], added_houses[1], added_houses[2]
 
         for current_house in houses:
             calculate_freespace(current_house, houses)
@@ -45,6 +45,9 @@ def random_start(nr_houses):
 
             repetition.append(total)
             repetition.sort()
+
+    # for house in houses:
+    #     print(house)
 
     # create_map(houses, waters)
 
