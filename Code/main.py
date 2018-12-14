@@ -1,7 +1,8 @@
-from helper import *
-from algorithms import *
 import sys
 import time
+from helper import *
+from algorithms import *
+
 
 # stat to hold the time
 start = time.time()
@@ -29,15 +30,19 @@ elif sys.argv[3] == "" or sys.argv[4] == "":
     print( "fill in runs or and iterations")
     sys.exit()
 
+
+# iterations = iterations for hill_climber and iterations1 = iterations for  Simulated annealing
+elif sys.argv[2] == "hill_climber+simulated_annealing":
+    iterations1 = int(sys.argv[5])
+
+
+
 # set variable
 nr_houses = int(sys.argv[1])
 algorithm = sys.argv[2]
 runs = int(sys.argv[3])
 iterations = int(sys.argv[4])
 
-# iterations = iterations for hill_climber and iterations1 = iterations for  Simulated annealing
-if sys.argv[2] == "hill_climber+simulated_annealing":
-    iterations1 = int(sys.argv[5])
 
 # if random is chosen
 if algorithm == "random":
