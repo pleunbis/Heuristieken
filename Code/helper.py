@@ -211,7 +211,7 @@ def add_houses(nr_houses):
                 positive = True
 
     if nr_houses != 60:
-        waters = add_water(houses, nr_houses)
+        waters = []
     return [houses, waters]
 
 def swap_houses(houses, house_number):

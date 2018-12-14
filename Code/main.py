@@ -155,6 +155,7 @@ elif algorithm == "hill_climber+simulated_annealing":
         final_values = []
 
         for i in range(runs):
+            print(i)
             houses = random_start(nr_houses)[0]
 
             info = hill_climber(houses, iterations)
@@ -182,7 +183,7 @@ elif algorithm == "hill_climber+simulated_annealing":
 
         total = 0
 
-        av_hill_sa = [0] * (iterations * 2 + 2)
+        av_hill_sa = [0] * (iterations1 + iterations + 2)
 
         for hill_sa in all_hill_sa:
             final_values.append(hill_sa[-1])
@@ -199,12 +200,12 @@ elif algorithm == "hill_climber+simulated_annealing":
         plot_graph(av_hill_sa, "Average Hill Climber + Simulated Annealing")
 
 
-# with open('Results/Hillclimber + simulated annealing/40/Data/a40_average_hill_sa_500_500_500.csv', 'w', newline='') as f:
-#     writer = csv.writer(f)
-#     for item in av_hill_sa:
-#         writer.writerows([[item]])
-#
-# with open('Results/Hillclimber + simulated annealing/40/Data/a40_hill_sa_500_500_500.csv', 'w', newline='') as f:
-#     writer = csv.writer(f)
-#     for item in final_values:
-#         writer.writerows([[item]])
+with open('Results/Hillclimber + simulated annealing/60/Data/a60_average_hill_sa_20_350_650.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    for item in av_hill_sa:
+        writer.writerows([[item]])
+
+with open('Results/Hillclimber + simulated annealing/60/Data/a60_hill_sa_20_350_650.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    for item in final_values:
+        writer.writerows([[item]])
