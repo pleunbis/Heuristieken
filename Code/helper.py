@@ -107,7 +107,7 @@ def calculate_freespace(current_house, list):
 
     return current_house
 
-def add_houses(nr_houses):
+def add_houses(nr_houses, all_positive):
     houses = []
 
     if nr_houses == 60:
@@ -212,7 +212,7 @@ def add_houses(nr_houses):
 
     if nr_houses != 60:
         waters = []
-    return [houses, waters]
+    return [houses, waters, all_positive]
 
 def swap_houses(houses, house_number):
     # Create random x en y for new place for the random chosen house.
@@ -302,7 +302,6 @@ def add_water(houses, nr_houses):
 
             for i in range(x, x + width):
                 for j in range(y, y + depth):
-                    # print(i, j)
                     matrix[i][j] = 1
 
         waters = []
