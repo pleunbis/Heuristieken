@@ -49,10 +49,12 @@ This repository contains two main folders: *Code* and *Experiments*.
 	* *Data*: contains a supporting file with the given requirements of the case
 
 ## Usage
-In order to run our code, (*main.py*) has to be executed like this:
+In order to run our code, (*main.py*) has to be executed like this:  
+
 """
-python main.py 20
+python main.py 20  
 """
+
 The number 20 stands for the amount of houses to be placed onto the map and can be replaced with 40 or 60, depending on which version you would like to run.
 
 ## Approach
