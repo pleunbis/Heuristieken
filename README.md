@@ -49,20 +49,24 @@ This repository contains two main folders: *Code* and *Experiments*.
 	* *Data*: contains a supporting file with the given requirements of the case
 
 ## Usage
-In order to run our code, (*main.py*) has to be executed like this:  
+In order to run our code, you will have to enter the folder *Code* and execute (*main.py*). The command line takes six or seven arguments, depending on which algorithm you would like to run.  
 
-"""
-python main.py 20  
-"""
+```
+python main.py number_of_houses algorithm number_of_runs number_of_iterations number_of_iterations  
+```
 
-The number 20 stands for the amount of houses to be placed onto the map and can be replaced with 40 or 60, depending on which version you would like to run.
+* **Number of houses**: This stands for the amount of houses to be placed onto the map and can be prompted with 20, 40 or 60, depending on which version you would like to run.  
+* **Algorithm**: Here you can type the algorithm you would like to apply. Your choice can be made out of: *random*, *hill_climber*, *simulated_annealing* and *hill_climber+simulated_annealing*.  
+* **Number of runs**: Here you can decide how many times you would like to run a ```number_of_iterations```.  
+* **Number of iterations**: This stands for how many iterations the chosen algorithm should make. If you have chosen the combination *hill_climber+simulated_annealing*, you enter the number of iterations for the *hill_climber* here.  
+* **Number of iterations**: The second number of iterations only needs to be filled in when you choose to run the combination *hill_climber+simulated_annealing*. Because in this case the previous number of iterations applies to the *hill_climber*, this one will apply to *simulated_annealing*.  
 
 ## Approach
 These are the steps we took in finding a solution for our case:  
 1. CREATE MAP AND ADD HOUSES  
 Using *Matplotlib* we plotted a map of AmstelHaege. Then we created classes for each housetype, containing attributes for the requirements (main class) and for the id, coordinates and extra freespace (subclasses). These classes are loaded into a script and being called upon, in order to be able to easily place multiple houses onto the map that each fulfill all requirements. When adding the houses to the map, a singlefamily house will appear as a blue rectangle, a bungalow as a pink one and a maison as a yellow one.
 2. STATE SPACE  
-In order to determine in how many ways twenty houses can be placed onto the map (160 x 180), we used this calculation of the state space:
+In order to determine in how many ways 20 houses can be placed onto the map (160 x 180), we used this calculation of the state space:
 <table>
 	<tr>
 		<th>House on grid (160 x 180 m)</th>
@@ -71,25 +75,29 @@ In order to determine in how many ways twenty houses can be placed onto the map 
 	</tr>
 	<tr>
 		<td>Singlefamily (8 x 8 m)</td>
-		<td>(160 x 180) ^ 12</td>
-		<td>3,26E + 53</td>
+		<td>((160 x 2) x (180 x 2)) ^ 12</td>
+		<td>5,46E + 60</td>
 	</tr>
 	<tr>
 		<td>Bungalow (10 x 7.5 m)</td>
-		<td>(160 x 180) ^ 5</td>
-		<td>1,98E + 22</td>
+		<td>((160 x 2) x (180 x 2)) ^ 5</td>
+		<td>2,03E + 25</td>
 	</tr>
 	<tr>
 		<td>Maison (11 x 10.5)</td>
-		<td>(160 x 180) ^ 3</td>
-		<td>2,39E + 13</td>
+		<td>((160 x 2) x (180 x 2)) ^ 3</td>
+		<td>1,53E + 15</td>
 	</tr>
 	<tr>
-		<td> </td>
-		<td> </td>
-		<td>1,54E + 89</td>
+		<td>Totaal</td>
+		<td>((160 x 2) x (180 x 2)) ^ 20</td>
+		<td>1,54E + 101</td>
 	</tr>
 </table>
+
+For a map with 40 or 60 houses, similar calculation swith different amounts of every housetype have been made. These calculations resulted in a total of these numbers:  
+* For 40 houses: 2,87E + 202  
+* For 60 houses: 4,87E + 303  
 
 3. CALCULATION OF THE MAP SCORE  
 In order to find solutions within a correct range, we calculated an upperbound and lowerbound of the total map score of AmstelHaege (for 20 houses).
@@ -240,7 +248,7 @@ In order to merge every house of a different house type together to one list, th
 
 Running the random algorithm for twenty houses should give you a plot like this:
 
-![AmstelHaege random](https://github.com/pleunbis/Heuristieken/blob/master/Code/Results/Random/amstelhaege.png)
+![AmstelHaege random](https://github.com/pleunbis/Heuristieken/blob/master/Code/Results/Random/amstelhaege_water.png)
 
 **Hill climbing**  
 The hill climber algorithm works as follows.  
@@ -281,8 +289,6 @@ Loop until the demanded number of iterations has been executed:
 For adding water to the map we made use of a matrix. First, using the *add_water()* function, the original map is transformed into a matrix of 1's and 0's, where the 1's stand for freespace and the 0's for houses (irrespective of its type). The function then starts looking for the biggest possible rectangle of 1's, and transforms it from 1's into 2's. After that, it will calculate the size of the surface this rectangle has used. If it has not used up the total of 20% of the map (5760 m2), the function will start looking for the second biggest rectangle in order to reach this minimum, repeating this process until this condition is met. When it seems to be that the total of 20% cannot be reached with four rectangles of water, the solution will be rejected.
 
 Unfortunately, this approach only worked for the version of 20 and 40 houses. For 60 houses, our function was not able to find empty spaces big enough for the necessary 20% of water. This is why, for 60 houses, we decided to hold the place of the water fixed.
-
-![AmstelHaege water](https://github.com/pleunbis/Heuristieken/blob/master/Code/Results/Random/amstelhaege_water.png)
 
 ## Future works  
 * Improvement of the upperbound  
