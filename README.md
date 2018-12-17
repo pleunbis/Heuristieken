@@ -290,6 +290,11 @@ Code from: https://stackoverflow.com/questions/2478447/find-largest-rectangle-co
 
 ## Results 
 
+This table contains the highest values we have found after running the algorithm a certain number of times.
+* 20 houses: the algorithm has been run 500 times with 5000 iterations in every run. 
+* 40 houses: the algorithm has been run 20 times with 1000 iterations in every run. 
+* 60 houses: the algorithm has been run 20 times with 1000 iterations in every run. 
+
 <table>
 	<tr>
 		<th>Total price of map </th>
@@ -301,19 +306,19 @@ Code from: https://stackoverflow.com/questions/2478447/find-largest-rectangle-co
 		<td>Hill climber</td>
 		<td>€16.389.045</td>
 		<td> <b>€22.821.960</b> </td>
-		<td> <b>€27.455.535</b> </td>
+		<td> <b>€26.619.405</b> </td>
 	</tr>
 	<tr>
 		<td>Simulated annealing</td>
 		<td>€16.666.800 </td>
-		<td>€22.482.675</td>
+		<td>€21.893.295</td>
 		<td>€26.405.595</td>
 	</tr>
 	<tr>
 		<td>Hill climber + Simulated annealing</td>
 		<td><b>€17.047.125</b></td>
 		<td>€21.086.655</td>
-		<td>€27.140.280</td>
+		<td>€25.542.675</td>
 	</tr>
 </table>
 
