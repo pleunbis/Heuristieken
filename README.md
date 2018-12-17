@@ -295,27 +295,27 @@ Unfortunately, this approach only worked for the version of 20 and 40 houses. Fo
 <table>
 	<tr>
 		<th> </th>
-		<th>Amount of houses</th>
-		<th>Total price</th>
-		<th>Total price</th>
+		<th>Total price 20 houses</th>
+		<th>Total price 40 houses</th>
+		<th>Total price 60 houses</th>
 	</tr>
 	<tr>
-		<td>Singlefamily</td>
-		<td>12</td>
-		<td>€13.543.200</td>
-		<td>€13.543.200</td>
+		<td>Hill Climber</td>
+		<td>€16.389.045</td>
+		<td>€ </td>
+		<td>€27.455.535</td>
 	</tr>
 	<tr>
-		<td>Bungalow</td>
-		<td>5</td>
-		<td>€6.304.200</td>
-		<td>€13.543.200</td>
+		<td>Simuleated annealing</td>
+		<td>€16.666.800 </td>
+		<td>€22.482.675</td>
+		<td>€</td>
 	</tr>
 	<tr>
-		<td>Maison</td>
-		<td>3</td>
-		<td>€9.296.400</td>
-		<td>€13.543.200</td>
+		<td>Hill CLimber + Simuleated annealing</td>
+		<td>€17.047.125</td>
+		<td>€21.086.655</td>
+		<td>€27.140.280</td>
 	</tr>
 </table>
 
