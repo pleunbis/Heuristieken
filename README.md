@@ -290,6 +290,38 @@ For adding water to the map we made use of a matrix. First, using the *add_water
 
 Unfortunately, this approach only worked for the version of 20 and 40 houses. For 60 houses, our function was not able to find empty spaces big enough for the necessary 20% of water. This is why, for 60 houses, we decided to hold the place of the water fixed.
 
+## Results 
+
+<table>
+	<tr>
+		<th> </th>
+		<th>Amount of houses</th>
+		<th>Total price</th>
+	</tr>
+	<tr>
+		<td>Singlefamily</td>
+		<td>12</td>
+		<td>€13.543.200</td>
+	</tr>
+	<tr>
+		<td>Bungalow</td>
+		<td>5</td>
+		<td>€6.304.200</td>
+	</tr>
+	<tr>
+		<td>Maison</td>
+		<td>3</td>
+		<td>€9.296.400</td>
+	</tr>
+	<tr>
+		<td> </td>
+		<td> </td>
+		<td>€29.143.800</td>
+	</tr>
+</table>
+
+
+
 ## Future works  
 * Improvement of the upperbound  
 Up until now we reached the highest score by running the combination of the hill climber (1750 iterations) and simulated annealing algorithms (3250 iterations) 500 times, which generated a score of 17.047.125. Our calculation of the upperbound (for 20 houses), however, gave a maximum of 29.143.800. This large difference is because of our assumption that, for our calculation of the upperbound, all houses would be located in the middle of the map in order to reach the highest amount of freespace. Ofcourse, this is not realistic, so it is difficult to say if our highest score of 17.047.125 is a proper improvement. It would be better if the upperbound is calculated using another approach, wherein houses would not be allowed to overlap. In this way, we would gain a better insight in our found maxima.
