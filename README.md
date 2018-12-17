@@ -132,6 +132,10 @@ Without any extra freespace, the total score of the map will be **€7.245.000**
 	</tr>
 </table>
 
+For a map with 40 or 60 houses, similar calculation swith different amounts of every housetype have been made. These calculations resulted in a total of these numbers:  
+* For 40 houses: € 14.490.000
+* For 60 houses: € 21.735.000
+
 * Upperbound (20 houses)  
 The first table illustrates our calculation of the upperbound. First, the length, width and freespace (on both sides) of a house are subtracted from the map length and width. Furthermore, we assume the house to be in the middle of the map, since this would generate the most extra freespace (and thus a higher price). The middle position of the house explains why the space that is left from the earlier subtraction is divided by two (for both length and width). We then take the shortest distance to the edge of the map and round this number down. This number is counted as meters of extra freespace.
 
@@ -197,7 +201,7 @@ Objective function =
 
 (The rounded number of extra freespace is taken from last column of the first table)  
 
-Adding up these calculated values for each housetype, this makes up a total of **€29.143.800**  
+Adding up these calculated values for each housetype, this makes up a total of **€28.129.200**  
 
 <table>
 	<tr>
@@ -227,6 +231,9 @@ Adding up these calculated values for each housetype, this makes up a total of *
 	</tr>
 </table>
 
+For a map with 40 or 60 houses, similar calculation swith different amounts of every housetype have been made. These calculations resulted in a total of these numbers:  
+* For 40 houses: <b>€ 56.258.400</b>
+* For 60 houses: <b>€ 84.387.600</b>
 
 Now that we have calculated the state space of the total score, we can start looking to the calculation of a real map. To be able to calculate the total value of the map, it is needed to write a function that calculates the amount of extra freespace of a house relative to another house (the more extra freespace surrounding a house, the higher its value will be). Only after this, it is possible to calculate the final total value of a house, and later of the whole map.
 * Calculate the extra freespace per house (*calculate_freespace()*)  
@@ -331,20 +338,20 @@ This table contains the highest values we have found after running the algorithm
 * 20 houses:
 	* Best value found:<b>€ 17.047.125</b>
 	* Hill climber and simulated annealing has been run 500 times with 5000 iterations (1750 hill climber, 3250 simulated annealing) in every run.
-	
+	* First picture is the random start map, second the best result map.
 	<img src="https://user-images.githubusercontent.com/43133057/50089106-2cba2700-0205-11e9-9876-bcf17f02c9e3.png" width="40%" height="40%" title="Random" /><img title="Result" src="https://user-images.githubusercontent.com/43133057/50088026-21193100-0202-11e9-9835-66025836b265.png" width="40%" height="40%"/>
 
 * 40 houses: 
 	* Best value found: <b>€ 22.821.960</b>
 	* Hill climber has been run 20 times with 1000 iterations in every run.
-	
+	* First picture is the random start map, second the best result map.
 	<img src="https://user-images.githubusercontent.com/43133057/50089114-317edb00-0205-11e9-9b74-dcfe05ef66cb.png" width="40%" height="40%"/><img src="https://user-images.githubusercontent.com/43133057/50088032-2a0a0280-0202-11e9-9771-cf00b99c4674.png" width="40%" height="40%"/>
 
 * 60 houses: 
 	* Best value found: <b>€ 26.619.405</b>
 	* Hill climber has been run 20 times with 1000 iterations in every run.
-
-	<img src="https://user-images.githubusercontent.com/43133057/50089121-36438f00-0205-11e9-9082-dfcf0550e1ad.png" width="40%" height="40%"/><img src="https://user-images.githubusercontent.com/43133057/50088113-60e01880-0202-11e9-962b-f688e008583b.png" width="40%" height="40%" title="Result"/>
+	* First picture is the random start map, second the best result map.
+	<img src="https://user-images.githubusercontent.com/43133057/50089121-36438f00-0205-11e9-9082-dfcf0550e1ad.png" width="40%" height="40%"/><img src="https://user-images.githubusercontent.com/43133057/50088113-60e01880-0202-11e9-962b-f688e008583b.png" width="40%" height="40%"/>
 
 ## Future works  
 * Improvement of the upperbound  
