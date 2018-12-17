@@ -331,9 +331,8 @@ This table contains the highest values we have found after running the algorithm
 * 20 houses:
 	* Best value found:<b>€ 17.047.125</b>
 	* Hill climber and Simulated annealing has been run 500 times with 5000 iterations (1750 hill climber, 3250 simulated annealing) in every run.
-	Random	                   Result
 	
-	<img src="https://user-images.githubusercontent.com/43133057/50089106-2cba2700-0205-11e9-9876-bcf17f02c9e3.png" width="40%" height="40%"/><img src="https://user-images.githubusercontent.com/43133057/50088026-21193100-0202-11e9-9835-66025836b265.png" width="40%" height="40%"/>
+	<img title="Random" src="https://user-images.githubusercontent.com/43133057/50089106-2cba2700-0205-11e9-9876-bcf17f02c9e3.png" width="40%" height="40%"/><img title="Result" src="https://user-images.githubusercontent.com/43133057/50088026-21193100-0202-11e9-9835-66025836b265.png" width="40%" height="40%"/>
 
 * 40 houses: 
 	* Best value found: <b>€ 22.821.960</b>
