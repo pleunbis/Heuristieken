@@ -344,7 +344,7 @@ This table contains the highest values we have found after running the algorithm
 	* Best value found: <b>€ 26.619.405</b>
 	* Hill climber has been run 20 times with 1000 iterations in every run.
 
-	<img src="https://user-images.githubusercontent.com/43133057/50089121-36438f00-0205-11e9-9082-dfcf0550e1ad.png" width="40%" height="40%"/><img src="https://user-images.githubusercontent.com/43133057/50088113-60e01880-0202-11e9-962b-f688e008583b.png" width="40%" height="40%"/>
+	<img src="https://user-images.githubusercontent.com/43133057/50089121-36438f00-0205-11e9-9082-dfcf0550e1ad.png" width="40%" height="40%"/><img src="https://user-images.githubusercontent.com/43133057/50088113-60e01880-0202-11e9-962b-f688e008583b.png" width="40%" height="40%" title="Result"/>
 
 ## Future works  
 * Improvement of the upperbound  
