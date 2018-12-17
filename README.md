@@ -331,17 +331,20 @@ This table contains the highest values we have found after running the algorithm
 * 20 houses:
 	* Best value found:<b>€ 17.047.125</b>
 	* Hill climber and Simulated annealing has been run 500 times with 5000 iterations (1750 hill climber, 3250 simulated annealing) in every run.
-	<img src="https://user-images.githubusercontent.com/43133057/50088026-21193100-0202-11e9-9835-66025836b265.png" width="60%" height="60%"/>
+	Random								Result
+	<img src="https://user-images.githubusercontent.com/43133057/50089106-2cba2700-0205-11e9-9876-bcf17f02c9e3.png" width="60%" height="60%"/><img src="https://user-images.githubusercontent.com/43133057/50088026-21193100-0202-11e9-9835-66025836b265.png" width="60%" height="60%"/>
 
 * 40 houses: 
 	* Best value found: <b>€ 22.821.960</b>
 	* Hill climber has been run 20 times with 1000 iterations in every run.
-	<img src="https://user-images.githubusercontent.com/43133057/50088032-2a0a0280-0202-11e9-9771-cf00b99c4674.png" width="60%" height="60%"/>
+	Random								Result
+	<img src="https://user-images.githubusercontent.com/43133057/50089114-317edb00-0205-11e9-9b74-dcfe05ef66cb.png" width="60%" height="60%"/><img src="https://user-images.githubusercontent.com/43133057/50088032-2a0a0280-0202-11e9-9771-cf00b99c4674.png" width="60%" height="60%"/>
 
 * 60 houses: 
 	* Best value found: <b>€ 26.619.405</b>
 	* Hill climber has been run 20 times with 1000 iterations in every run.
-	<img src="https://user-images.githubusercontent.com/43133057/50088113-60e01880-0202-11e9-962b-f688e008583b.png" width="60%" height="60%"/>
+	Random								Result
+	<img src="https://user-images.githubusercontent.com/43133057/50089121-36438f00-0205-11e9-9082-dfcf0550e1ad.png" width="60%" height="60%"/><img src="https://user-images.githubusercontent.com/43133057/50088113-60e01880-0202-11e9-962b-f688e008583b.png" width="60%" height="60%"/>
 
 ## Future works  
 * Improvement of the upperbound  
