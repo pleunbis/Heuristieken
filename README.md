@@ -322,7 +322,8 @@ This table contains the highest values we have found after running the algorithm
 	</tr>
 </table>
 
-![comparison](https://user-images.githubusercontent.com/43133057/50087693-30e44580-0201-11e9-95a3-a08ff21ba9ff.png)
+<img src="https://user-images.githubusercontent.com/43133057/50087693-30e44580-0201-11e9-95a3-a08ff21ba9ff.png" width="40%" height="40%"/>
+
 
 
 ## Conclusion
