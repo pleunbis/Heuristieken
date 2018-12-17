@@ -328,6 +328,11 @@ This table contains the highest values we have found after running the algorithm
 
 ## Conclusion
 
+* 20 houses: €17.047.125
+* 40 houses: €22.821.960
+* 60 houses: €26.619.405
+
+
 ## Future works  
 * Improvement of the upperbound  
 Up until now we reached the highest score by running the combination of the hill climber (1750 iterations) and simulated annealing algorithms (3250 iterations) 500 times, which generated a score of 17.047.125. Our calculation of the upperbound (for 20 houses), however, gave a maximum of 29.143.800. This large difference is because of our assumption that, for our calculation of the upperbound, all houses would be located in the middle of the map in order to reach the highest amount of freespace. Ofcourse, this is not realistic, so it is difficult to say if our highest score of 17.047.125 is a proper improvement. It would be better if the upperbound is calculated using another approach, wherein houses would not be allowed to overlap. In this way, we would gain a better insight in our found maxima.
