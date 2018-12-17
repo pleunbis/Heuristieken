@@ -285,6 +285,8 @@ For adding water to the map we made use of a matrix. First, using the *add_water
 
 Unfortunately, this approach only worked for the version of 20 and 40 houses. For 60 houses, our function was not able to find empty spaces big enough for the necessary 20% of water. This is why, for 60 houses, we decided to hold the place of the water fixed.
 
+Code from: https://stackoverflow.com/questions/2478447/find-largest-rectangle-containing-only-zeros-in-an-n%C3%97n-binary-matrix.
+
 ## Results 
 
 <table>
@@ -335,4 +337,5 @@ Up until now we reached the highest score by running the combination of the hill
 ## Acknowledgement
 * Minor Programmeren, UvA
 * Mentor: E.H. Steffens
+* https://stackoverflow.com/questions/2478447/find-largest-rectangle-containing-only-zeros-in-an-n%C3%97n-binary-matrix
 
