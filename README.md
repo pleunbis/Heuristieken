@@ -328,7 +328,7 @@ This table contains the highest values we have found after running the algorithm
 
 ## Conclusion
 
-* 20 houses
+* 20 houses:
 	* Best value found: €17.047.125
 	* Hill climber and Simulated annealing has been run 500 times with 5000 iterations (1750 Hill climber, 3250 Simulated annealing) in every run.
 	<img src="https://user-images.githubusercontent.com/43133057/50088026-21193100-0202-11e9-9835-66025836b265.png" width="60%" height="60%"/>
@@ -354,6 +354,11 @@ Up until now we reached the highest score by running the combination of the hill
 	* [Matplotlib 2.1.2](https://matplotlib.org/2.1.2/users/installing.html)
 	* [Numpy](https://scipy.org/install.html)
 
+The packages used can be installed using pip by executing the following code:
+```
+pip install -r requirements.txt
+```
+	
 ## Authors
 * Philline Dikker
 * Pleun Bisseling
