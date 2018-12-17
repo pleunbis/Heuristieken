@@ -292,8 +292,7 @@ Loop until the demanded number of iterations has been executed:
 	Temperature = temperature x 0.99
 
 
-	<img src="https://user-images.githubusercontent.com/43133057/50115709-81cb5c80-0248-11e9-8740-f9bec825e952.png
-" width="40%" height="40%"/>
+	<img src="https://user-images.githubusercontent.com/43133057/50115709-81cb5c80-0248-11e9-8740-f9bec825e952.png" width="40%" height="40%"/>
 
 
 5. ADD WATER TO THE MAP  
