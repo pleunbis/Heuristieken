@@ -39,6 +39,7 @@ The objective is to eventually create a map with the most profitable layout of t
 
 ## Guide
 **Code**
+
 	This folder contains a file with possible algorithms for the solution of our case (*algorithms.py*), separate supporting files (*helper.py, classes.py*), and a main file (*main.py*).
 	* *Data*: contains a supporting file with the given requirements of the case
 	* *Results*: contains outcomes and visualizations of the algorithms used
