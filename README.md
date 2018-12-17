@@ -243,7 +243,8 @@ In order to merge every house of a different house type together to one list, th
 
 Running the random algorithm for twenty houses should give you a plot like this:
 
-![AmstelHaege random](https://github.com/pleunbis/Heuristieken/blob/master/Code/Results/Random/amstelhaege_water.png)
+![map_amstelhaege_start](https://user-images.githubusercontent.com/43133057/50086976-114c1d80-01ff-11e9-8cd1-40732d212b1c.png)
+
 
 **Hill climbing**  
 The hill climber algorithm works as follows.  
