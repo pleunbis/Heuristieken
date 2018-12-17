@@ -288,6 +288,8 @@ Loop until the demanded number of iterations has been executed:
 
 	For every iteration the temperature will be recalculated with this function:  
 	Temperature = temperature x 0.99
+	
+	
 	<img src="https://user-images.githubusercontent.com/43133057/50090578-43627d00-0209-11e9-9659-151ddc669269.PNG" width="40%" height="40%"/>
 
 
