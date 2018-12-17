@@ -317,12 +317,6 @@ Unfortunately, this approach only worked for the version of 20 and 40 houses. Fo
 		<td>€9.296.400</td>
 		<td>€13.543.200</td>
 	</tr>
-	<tr>
-		<td> </td>
-		<td> </td>
-		<td>€29.143.800</td>
-		<td>€13.543.200</td>
-	</tr>
 </table>
 
 
