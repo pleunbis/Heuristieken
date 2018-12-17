@@ -241,7 +241,7 @@ The first task has been to place the houses on the map randomly. Using the funct
 The random function iterates over the assigned amount of houses of each different house type, and appends each houses' id, random coordinates and extra freespace to the total list of houses. Hereafter, using the functions *calculate_freespace()* and *calculateprice()*, the random algorithm calculates the extra freespace and price of each house and adds these values to the list. Having calculated these values, the rectangles can be created and added to the grid.
 In order to merge every house of a different house type together to one list, the functions described above are used once more for the entire list of houses.  
 
-Running the random algorithm for twenty houses should give you a plot like this:
+Running the random algorithm for forty houses should give you a plot like this:
 
 ![map_amstelhaege_start](https://user-images.githubusercontent.com/43133057/50086976-114c1d80-01ff-11e9-8cd1-40732d212b1c.png)
 
