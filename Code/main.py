@@ -200,12 +200,12 @@ elif algorithm == "hill_climber+simulated_annealing":
         plot_graph(av_hill_sa, "Average Hill Climber + Simulated Annealing")
 
 
-with open('Results/Hillclimber + simulated annealing/60/Data/a60_average_hill_sa_20_350_650.csv', 'w', newline='') as f:
-    writer = csv.writer(f)
-    for item in av_hill_sa:
-        writer.writerows([[item]])
+# with open('Results/Hillclimber + simulated annealing/60/Data/a60_average_hill_sa_20_350_650.csv', 'w', newline='') as f:
+#     writer = csv.writer(f)
+#     for item in av_hill_sa:
+#         writer.writerows([[item]])
 
-with open('Results/Hillclimber + simulated annealing/60/Data/a60_hill_sa_20_350_650.csv', 'w', newline='') as f:
-    writer = csv.writer(f)
-    for item in final_values:
-        writer.writerows([[item]])
+# with open('Results/Hillclimber + simulated annealing/60/Data/a60_hill_sa_20_350_650.csv', 'w', newline='') as f:
+#     writer = csv.writer(f)
+#     for item in final_values:
+#         writer.writerows([[item]])
