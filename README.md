@@ -328,11 +328,9 @@ Up until now we reached the highest score by running the combination of the hill
 	* [Numpy](https://scipy.org/install.html)
 
 ## Authors
-Philline Dikker
-
-Pleun Bisseling
-
-Vera Nijmeijer
+* Philline Dikker
+* Pleun Bisseling
+* Vera Nijmeijer
 
 ## Acknowledgement
 * Minor Programmeren, UvA
