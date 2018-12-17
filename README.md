@@ -379,9 +379,10 @@ pip install -r requirements.txt
 ```
 	
 ## Authors
-* Philline Dikker
-* Pleun Bisseling
-* Vera Nijmeijer
+* Team TreeHouse
+	* Philline Dikker
+	* Pleun Bisseling
+	* Vera Nijmeijer
 
 ## Acknowledgement
 * Minor Programmeren, UvA
