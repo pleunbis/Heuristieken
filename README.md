@@ -132,9 +132,9 @@ Without any extra freespace, the total score of the map will be **€7.245.000**
 	</tr>
 </table>
 
-	For a map with 40 or 60 houses, similar calculation swith different amounts of every housetype have been made. These calculations resulted in a total of these numbers:  
+<i>For a map with 40 or 60 houses, similar calculation swith different amounts of every housetype have been made. These calculations resulted in a total of these numbers:  
 	* For 40 houses: € 14.490.000
-	* For 60 houses: € 21.735.000
+	* For 60 houses: € 21.735.000</i>
 
 * Upperbound (20 houses)  
 The first table illustrates our calculation of the upperbound. First, the length, width and freespace (on both sides) of a house are subtracted from the map length and width. Furthermore, we assume the house to be in the middle of the map, since this would generate the most extra freespace (and thus a higher price). The middle position of the house explains why the space that is left from the earlier subtraction is divided by two (for both length and width). We then take the shortest distance to the edge of the map and round this number down. This number is counted as meters of extra freespace.
