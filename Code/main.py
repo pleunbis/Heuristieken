@@ -111,12 +111,14 @@ elif algorithm == "simulated_annealing":
     plot_graph(maximum_values, "Simulated Annealing")
     plot_graph(av_sa, "Average Simulated Annealing")
 
-    with open('a20_average_sa_500_5000.csv', 'w', newline='') as f:
+    with open('a' + str(nr_houses) + '_average_sa_' + \
+    str(runs) + '_' + str(iterations) + '.csv', 'w', newline='') as f:
         writer = csv.writer(f)
         for item in av_sa:
             writer.writerows([[item]])
 
-    with open('a20_sa_500_5000.csv', 'w', newline='') as f:
+    with open('a' + str(nr_houses) + '_sa_' + \
+    str(runs) + '_' + str(iterations) + '.csv', 'w', newline='') as f:
         writer = csv.writer(f)
         for item in final_values:
             writer.writerows([[item]])
@@ -172,12 +174,14 @@ elif algorithm == "hill_climber":
     plot_graph(maximum_values, "Hill Climber")
     plot_graph(av_hill, "Average Hill Climber")
 
-    with open('a20_average_hill_500_5000.csv', 'w', newline='') as f:
+    with open('a' + str(nr_houses) + '_average_hill_' + \
+    str(runs) + '_' + str(iterations) + '.csv', 'w', newline='') as f:
         writer = csv.writer(f)
         for item in av_hill:
             writer.writerows([[item]])
 
-    with open('a20_hill_500_5000.csv', 'w', newline='') as f:
+    with open('a' + str(nr_houses) + '_hill_' + \
+    str(runs) + '_' + str(iterations) + '.csv', 'w', newline='') as f:
         writer = csv.writer(f)
         for item in final_values:
             writer.writerows([[item]])
@@ -243,12 +247,14 @@ elif algorithm == "hill_climber+simulated_annealing":
 
 
     # write values to csv file
-    with open('a20_average_hill_sa_500_5000.csv', 'w', newline='') as f:
+    with open('a' + str(nr_houses) + '_average_hill_sa_' + \
+    str(runs) + '_' + str(iterations) + '.csv', 'w', newline='') as f:
         writer = csv.writer(f)
         for item in av_hill_sa:
             writer.writerows([[item]])
 
-    with open('a20_hill_sa_500_5000.csv', 'w', newline='') as f:
+    with open('a' + str(nr_houses) + '_hill_sa_' + \
+    str(runs) + '_' + str(iterations) + '.csv', 'w', newline='') as f:
         writer = csv.writer(f)
         for item in final_values:
             writer.writerows([[item]])

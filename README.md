@@ -56,6 +56,8 @@ python main.py number_of_houses algorithm number_of_runs number_of_iterations nu
 * **Number of iterations**: This stands for how many iterations the chosen algorithm should make. If you have chosen the combination *hill_climber+simulated_annealing*, you enter the number of iterations for the *hill_climber* here.  
 * **Number of iterations**: The second number of iterations only needs to be filled in when you choose to run the combination *hill_climber+simulated_annealing*. Because in this case the previous number of iterations applies to the *hill_climber*, this one will apply to *simulated_annealing*.  
 
+When you have run this code, your command prompt will have counted and printed the number of runs. This will enable you to keep track of the speed of the program. When the program is done, it will print the total value of the final map. Also, the id, coordinates, freespace and value per house will be printed, so that you will be able to analyze the positions of the houses.  
+
 ## Approach
 These are the steps we took in finding a solution for our case:  
 1. CREATE MAP AND ADD HOUSES  
@@ -84,9 +86,9 @@ In order to determine in how many ways 20 houses can be placed onto the map (160
 		<td>1,53E + 15</td>
 	</tr>
 	<tr>
-		<td>Totaal</td>
-		<td>((160 x 2) x (180 x 2)) ^ 20</td>
-		<td>1,54E + 101</td>
+		<td><b>Total</b></td>
+		<td><b>((160 x 2) x (180 x 2)) ^ 20</b></td>
+		<td><b>1,54E + 101</b></td>
 	</tr>
 </table>
 
@@ -129,11 +131,11 @@ In order to find solutions within a correct range, we calculated an upperbound a
 		<td> </td>
 		<td> </td>
 		<td> </td>
-		<td>€7.245.000</td>
+		<td><b>€7.245.000</b></td>
 	</tr>
 </table>
 
-For a map with 40 or 60 houses, similar calculation swith different amounts of every housetype have been made. These calculations resulted in a total of these numbers:  
+For a map with 40 or 60 houses, similar calculation with different amounts of every housetype have been made. These calculations resulted in a total of these numbers:  
 * For 40 houses: € 14.490.000
 * For 60 houses: € 21.735.000
 
@@ -229,11 +231,11 @@ Adding up these calculated values for each housetype, this makes up a total of *
 	<tr>
 		<td> </td>
 		<td> </td>
-		<td>€29.143.800</td>
+		<td><b>€29.143.800</b></td>
 	</tr>
 </table>
 
-For a map with 40 or 60 houses, similar calculation swith different amounts of every housetype have been made. These calculations resulted in a total of these numbers:  
+For a map with 40 or 60 houses, similar calculations with different amounts of every housetype have been made. These calculations resulted in a total of these numbers:  
 * For 40 houses: <b>€ 56.258.400</b>
 * For 60 houses: <b>€ 84.387.600</b>
 
@@ -255,7 +257,7 @@ Running the random algorithm for forty houses should give you a plot like this:
 ![map_amstelhaege_start](https://user-images.githubusercontent.com/43133057/50086976-114c1d80-01ff-11e9-8cd1-40732d212b1c.png)
 
 
-**Hill climbing**  
+**Hill climber**  
 The hill climber algorithm works as follows.  
 Loop until the demanded number of iterations has been executed:  
 1. Calculate the value of the current map
@@ -288,8 +290,8 @@ Loop until the demanded number of iterations has been executed:
 
 	For every iteration the temperature will be recalculated with this function:  
 	Temperature = temperature x 0.99
-	
-	
+
+
 	<img src="https://user-images.githubusercontent.com/43133057/50090578-43627d00-0209-11e9-9659-151ddc669269.PNG" width="40%" height="40%"/>
 
 
@@ -299,18 +301,18 @@ For adding water to the map we made use of a matrix. First, using the *add_water
 
 Unfortunately, this approach only worked for the version of 20 and 40 houses. For 60 houses, our function was not able to find empty spaces big enough for the necessary 20% of water. This is why, for 60 houses, we decided to hold the place of the water fixed.
 
-Code from: https://stackoverflow.com/questions/2478447/find-largest-rectangle-containing-only-zeros-in-an-n%C3%97n-binary-matrix.
+[Source matrix](https://stackoverflow.com/questions/2478447/find-largest-rectangle-containing-only-zeros-in-an-n%C3%97n-binary-matrix)
 
-## Results 
+## Results
 
 This table contains the highest values we have found after running the algorithm a certain number of times.
-* 20 houses: the algorithm has been run 500 times with 5000 iterations in every run. 
-* 40 houses: the algorithm has been run 20 times with 1000 iterations in every run. 
-* 60 houses: the algorithm has been run 20 times with 1000 iterations in every run. 
+* 20 houses: the algorithm has been run 500 times with 5000 iterations in every run.
+* 40 houses: the algorithm has been run 20 times with 1000 iterations in every run.
+* 60 houses: the algorithm has been run 20 times with 1000 iterations in every run.
 
 <table>
 	<tr>
-		<th>Total price of map </th>
+		<th>Total price of map</th>
 		<th>20 houses</th>
 		<th>40 houses</th>
 		<th>60 houses</th>
@@ -338,33 +340,33 @@ This table contains the highest values we have found after running the algorithm
 <img src="https://user-images.githubusercontent.com/43133057/50087693-30e44580-0201-11e9-95a3-a08ff21ba9ff.png" width="60%" height="60%"/>
 
 
-
 ## Conclusion
 
 * 20 houses:
 	* Best value found:<b>€ 17.047.125</b>
 	* Hill climber and simulated annealing has been run 500 times with 5000 iterations (1750 hill climber, 3250 simulated annealing) in every run.
 	* First picture is the random start map, second the best result map.
-	
+
 	<img src="https://user-images.githubusercontent.com/43133057/50089106-2cba2700-0205-11e9-9876-bcf17f02c9e3.png" width="40%" height="40%" title="Random" /><img title="Result" src="https://user-images.githubusercontent.com/43133057/50088026-21193100-0202-11e9-9835-66025836b265.png" width="40%" height="40%"/>
 
-* 40 houses: 
+* 40 houses:
 	* Best value found: <b>€ 22.821.960</b>
 	* Hill climber has been run 20 times with 1000 iterations in every run.
 	* First picture is the random start map, second the best result map.
-	
+
 	<img src="https://user-images.githubusercontent.com/43133057/50089114-317edb00-0205-11e9-9b74-dcfe05ef66cb.png" width="40%" height="40%"/><img src="https://user-images.githubusercontent.com/43133057/50088032-2a0a0280-0202-11e9-9771-cf00b99c4674.png" width="40%" height="40%"/>
 
-* 60 houses: 
+* 60 houses:
 	* Best value found: <b>€ 26.619.405</b>
 	* Hill climber has been run 20 times with 1000 iterations in every run.
 	* First picture is the random start map, second the best result map.
-	
+
 	<img src="https://user-images.githubusercontent.com/43133057/50089121-36438f00-0205-11e9-9082-dfcf0550e1ad.png" width="40%" height="40%"/><img src="https://user-images.githubusercontent.com/43133057/50088113-60e01880-0202-11e9-962b-f688e008583b.png" width="40%" height="40%"/>
 
 ## Future works  
 * Improvement of the upperbound  
-Up until now we reached the highest score by running the combination of the hill climber (1750 iterations) and simulated annealing algorithms (3250 iterations) 500 times, which generated a score of 17.047.125. Our calculation of the upperbound (for 20 houses), however, gave a maximum of 29.143.800. This large difference is because of our assumption that, for our calculation of the upperbound, all houses would be located in the middle of the map in order to reach the highest amount of freespace. Ofcourse, this is not realistic, so it is difficult to say if our highest score of 17.047.125 is a proper improvement. It would be better if the upperbound is calculated using another approach, wherein houses would not be allowed to overlap. In this way, we would gain a better insight in our found maxima.
+Up until now we reached the highest score by running the combination of the hill climber (1750 iterations) and simulated annealing algorithms (3250 iterations) 500 times, which generated a score of 17.047.125. Our calculation of the upperbound (for 20 houses), however, gave a maximum of 29.143.800. This large difference is because of our assumption that, for our calculation of the upperbound, all houses would be located in the middle of the map in order to reach the highest amount of freespace. Ofcourse, this is not realistic, so it is difficult to say if our highest score of 17.047.125 is a proper improvement. It would be better if the upperbound is calculated using another approach, wherein houses would not be allowed to overlap. In this way, we would gain a better insight in our found maxima.  
+The same problem goes for our outcomes for the version with 40 and 60 houses.  
 
 ## Prerequisites
 * [Python 3.6](https://www.python.org/downloads/) - the programming language used
@@ -377,15 +379,14 @@ The packages used can be installed using pip by executing the following code:
 ```
 pip install -r requirements.txt
 ```
-	
+
 ## Authors
 * Team TreeHouse
 	* Philline Dikker
 	* Pleun Bisseling
 	* Vera Nijmeijer
 
-## Acknowledgement
-* Minor Programmeren, UvA
+## Acknowledgements
+* Minor programmeren, Universiteit van Amsterdam
 * Mentor: E.H. Steffens
-* https://stackoverflow.com/questions/2478447/find-largest-rectangle-containing-only-zeros-in-an-n%C3%97n-binary-matrix
-
+* [Source matrix](https://stackoverflow.com/questions/2478447/find-largest-rectangle-containing-only-zeros-in-an-n%C3%97n-binary-matrix)
