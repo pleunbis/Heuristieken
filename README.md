@@ -297,26 +297,31 @@ Unfortunately, this approach only worked for the version of 20 and 40 houses. Fo
 		<th> </th>
 		<th>Amount of houses</th>
 		<th>Total price</th>
+		<th>Total price</th>
 	</tr>
 	<tr>
 		<td>Singlefamily</td>
 		<td>12</td>
+		<td>€13.543.200</td>
 		<td>€13.543.200</td>
 	</tr>
 	<tr>
 		<td>Bungalow</td>
 		<td>5</td>
 		<td>€6.304.200</td>
+		<td>€13.543.200</td>
 	</tr>
 	<tr>
 		<td>Maison</td>
 		<td>3</td>
 		<td>€9.296.400</td>
+		<td>€13.543.200</td>
 	</tr>
 	<tr>
 		<td> </td>
 		<td> </td>
 		<td>€29.143.800</td>
+		<td>€13.543.200</td>
 	</tr>
 </table>
 
