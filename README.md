@@ -302,14 +302,14 @@ Unfortunately, this approach only worked for the version of 20 and 40 houses. Fo
 	<tr>
 		<td>Hill Climber</td>
 		<td>€16.389.045</td>
-		<td>€ </td>
+		<td>€22.821.960 </td>
 		<td>€27.455.535</td>
 	</tr>
 	<tr>
 		<td>Simuleated annealing</td>
 		<td>€16.666.800 </td>
 		<td>€22.482.675</td>
-		<td>€</td>
+		<td>€26.405.595</td>
 	</tr>
 	<tr>
 		<td>Hill Climber + Simuleated annealing</td>
