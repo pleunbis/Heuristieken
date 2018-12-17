@@ -302,7 +302,7 @@ Unfortunately, this approach only worked for the version of 20 and 40 houses. Fo
 	<tr>
 		<td>Hill Climber</td>
 		<td>€16.389.045</td>
-		<td>**€22.821.960**</td>
+		<td> <b>**€22.821.960** </b> </td>
 		<td>**€27.455.535**</td>
 	</tr>
 	<tr>
