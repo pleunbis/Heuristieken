@@ -33,7 +33,7 @@ elif sys.argv[2] != "random":
     if len(sys.argv) < 5:
         print("Fill in runs or and iterations")
         sys.exit()
-    
+
     # simulated annealing
     elif sys.argv[2] == "hill_climber+simulated_annealing":
         if len(sys.argv) < 6:
@@ -42,7 +42,7 @@ elif sys.argv[2] != "random":
             sys.exit()
         else:
             iterations1 = int(sys.argv[5])
-    
+
     runs = int(sys.argv[3])
     iterations = int(sys.argv[4])
 
@@ -88,7 +88,7 @@ elif algorithm == "simulated_annealing":
             maximum_values = values
 
         all_sa.append(values)
-    
+
     total = 0
 
     # average simulated annealing
@@ -102,11 +102,11 @@ elif algorithm == "simulated_annealing":
     end = time.time()
     print(end - start)
     print(maximum)
-    
+
     # print id, coordinates, freespace and value of each house on final map
     for house in maximum_houses:
         print(house)
-    
+
     create_map(maximum_houses, maximum_waters)
     plot_graph(maximum_values, "Simulated Annealing")
     plot_graph(av_sa, "Average Simulated Annealing")
@@ -151,7 +151,7 @@ elif algorithm == "hill_climber":
             maximum_waters = waters
             maximum_values = values
         all_hill.append(values)
-    
+
     total = 0
 
     # average hill climber
@@ -165,11 +165,11 @@ elif algorithm == "hill_climber":
     end = time.time()
     print(end - start)
     print(maximum)
-    
+
     # print id, coordinates, freespace and value of each house on final map
     for house in maximum_houses:
         print(house)
-    
+
     create_map(maximum_houses, maximum_waters)
     plot_graph(maximum_values, "Hill Climber")
     plot_graph(av_hill, "Average Hill Climber")
@@ -236,11 +236,11 @@ elif algorithm == "hill_climber+simulated_annealing":
     end = time.time()
     print(end - start)
     print(maximum)
-    
+
     # print id, coordinates, freespace and value of each house on final map
     for house in maximum_houses:
         print(house)
-    
+
     create_map(maximum_houses, maximum_waters)
     plot_graph(maximum_values, "Hill Climber + Simulated Annealing")
     plot_graph(av_hill_sa, "Average Hill Climber + Simulated Annealing")
