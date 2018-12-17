@@ -38,9 +38,8 @@ The requirements of the construction of this new residential area are as follows
 The objective is to eventually create a map with the most profitable layout of the residential area, for an amount of 20, 40 and 60 houses. The score for a map is the sum of the final values of the houses.
 
 ## Guide
-**Code**
-
-	This folder contains a file with possible algorithms for the solution of our case (*algorithms.py*), separate supporting files (*helper.py, classes.py*), and a main file (*main.py*).
+### Code
+This folder contains a file with possible algorithms for the solution of our case (*algorithms.py*), separate supporting files (*helper.py, classes.py*), and a main file (*main.py*).
 	* *Data*: contains a supporting file with the given requirements of the case
 	* *Results*: contains outcomes and visualizations of the algorithms used
 
