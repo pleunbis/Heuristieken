@@ -312,14 +312,14 @@ Unfortunately, this approach only worked for the version of 20 and 40 houses. Fo
 		<td>€</td>
 	</tr>
 	<tr>
-		<td>Hill CLimber + Simuleated annealing</td>
+		<td>Hill Climber + Simuleated annealing</td>
 		<td>€17.047.125</td>
 		<td>€21.086.655</td>
 		<td>€27.140.280</td>
 	</tr>
 </table>
 
-
+## Conclusion
 
 ## Future works  
 * Improvement of the upperbound  
