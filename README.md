@@ -333,3 +333,8 @@ Philline Dikker
 Pleun Bisseling
 
 Vera Nijmeijer
+
+## Acknowledgement
+* Minor Programmeren, UvA
+* Mentor: E.H. Steffens
+
