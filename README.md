@@ -294,10 +294,10 @@ Unfortunately, this approach only worked for the version of 20 and 40 houses. Fo
 
 <table>
 	<tr>
-		<th> </th>
-		<th>Total price 20 houses</th>
-		<th>Total price 40 houses</th>
-		<th>Total price 60 houses</th>
+		<th>Total price of map </th>
+		<th>20 houses</th>
+		<th>40 houses</th>
+		<th>60 houses</th>
 	</tr>
 	<tr>
 		<td>Hill Climber</td>
