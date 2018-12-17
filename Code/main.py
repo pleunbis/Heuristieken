@@ -1,7 +1,8 @@
+from algorithms import *
+from helper import *
 import sys
 import time
-from helper import *
-from algorithms import *
+
 
 # stat to hold the time
 start = time.time()
