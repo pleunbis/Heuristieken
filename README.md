@@ -331,17 +331,17 @@ This table contains the highest values we have found after running the algorithm
 * 20 houses
 	* Best value found: €17.047.125
 	* Hill climber and Simulated annealing has been run 500 times with 5000 iterations (1750 Hill climber, 3250 Simulated annealing) in every run.
-![map_hill_sa_500_1750_3250](https://user-images.githubusercontent.com/43133057/50088026-21193100-0202-11e9-9835-66025836b265.png)
+	<img src="https://user-images.githubusercontent.com/43133057/50088026-21193100-0202-11e9-9835-66025836b265.png" width="60%" height="60%"/>
 
 * 40 houses: 
 	* Best value found: €22.821.960
 	* Hill climber has been run 20 times with 1000 iterations in every run.
-![a40_map_hill_20_1000](https://user-images.githubusercontent.com/43133057/50088032-2a0a0280-0202-11e9-9771-cf00b99c4674.png)
+	<img src="https://user-images.githubusercontent.com/43133057/50088032-2a0a0280-0202-11e9-9771-cf00b99c4674.png" width="60%" height="60%"/>
 
 * 60 houses: 
 	* Best value found: €26.619.405
 	* Hill climber has been run 20 times with 1000 iterations in every run.
-![a60_map_hill_20_1000](https://user-images.githubusercontent.com/43133057/50088113-60e01880-0202-11e9-962b-f688e008583b.png)
+	<img src="https://user-images.githubusercontent.com/43133057/50088113-60e01880-0202-11e9-962b-f688e008583b.png" width="60%" height="60%"/>
 
 ## Future works  
 * Improvement of the upperbound  
