@@ -326,7 +326,7 @@ This table contains the highest values we have found after running the algorithm
 	<tr>
 		<td>Simulated annealing</td>
 		<td>€16.666.800 </td>
-		<td>€21.893.295</td>
+		<td>€21.979.935</td>
 		<td>€26.405.595</td>
 	</tr>
 	<tr>
